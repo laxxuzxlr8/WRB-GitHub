@@ -3,7 +3,7 @@ import pandas as pd
 
 
 import sys
-sys.path.append(r"C:\Users\Adrian\Documents\GitHub\Proyecto - Copy")
+sys.path.append(r"https://github.com/laxxuzxlr8/WRB-GitHub/blob/main")
 from core import cargar_combates
 
 

@@ -1,6 +1,6 @@
 import streamlit as st
 import sys
-sys.path.append(r"C:\Users\Adrian\Documents\GitHub\Proyecto - Copy")
+sys.path.append(r"https://github.com/laxxuzxlr8/WRB-GitHub/blob/main")
 from core import mostrar_texto
 
 # --- #: Sección acerca de :# --- #
@@ -13,7 +13,7 @@ mostrar_texto(texto_info_1)
 st.write("\n")
 
 st.image(
-    image="images/pelea_robots.png"
+    image="https://github.com/laxxuzxlr8/WRB-GitHub/blob/main/images/pelea_robots.png"
     )
 
 st.write("\n")
@@ -53,7 +53,7 @@ with col1:
     mostrar_texto(texto_final)
 
 with col2:
-    st.image("images/ciberboxing.png")
+    st.image("https://github.com/laxxuzxlr8/WRB-GitHub/blob/main/images/ciberboxing.png")
 
 with col3:
     texto_copa = "Si quiere conocer más acerca de este mundo y del robot boxeador más famoso de la WRB, puedes ver la película que inspira esta WEB: Gigantes de acero:"    

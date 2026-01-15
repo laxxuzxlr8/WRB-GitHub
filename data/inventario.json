@@ -1,0 +1,104 @@
+{
+    "robots": {
+        "Atom": "Resistencia y capacidad de aprendizaje",
+        "Zeus": "M\u00e1xima fuerza y velocidad, invicto en el campeonato",
+        "Noisy Boy": "Potencia ofensiva y estilo llamativo",
+        "Ambush": "Robot de segunda mano, poca resistencia",
+        "Midas": "Gran fuerza bruta, estilo callejero",
+        "Metro": "Resistencia f\u00edsica, robot de entrenamiento",
+        "Twin Cities": "Dos cabezas, gran capacidad de ataque simult\u00e1neo",
+        "Blacktop": "Estilo rudo, robot de peleas clandestinas",
+        "Axelrod": "Robot de exhibici\u00f3n, estilo t\u00e9cnico",
+        "Six Shooter": "Rapidez y ataques m\u00faltiples",
+        "Blue Bot": "Robot gen\u00e9rico de peleas menores",
+        "Fatboy": "Gran tama\u00f1o y fuerza, poca agilidad",
+        "Albino": "Dise\u00f1o \u00fanico, resistencia media",
+        "Bash": "Estilo agresivo",
+        "Bricks": "Gran resistencia",
+        "Gambit": "Movimientos impredecibles",
+        "Gridlock": "Fuerza mec\u00e1nica",
+        "HollowJack": "Estilo intimidante",
+        "Nitro": "Velocidad explosiva",
+        "Shogun": "Inspiraci\u00f3n samur\u00e1i",
+        "Tackle": "Ataques de impacto",
+        "Tri-Tip": "Dise\u00f1o triangular",
+        "Vanda": "Estilo destructivo",
+        "Visualizer": "Sistema de an\u00e1lisis",
+        "Wheeled Bot": "Movilidad r\u00e1pida"
+    },
+    "armas_equipables": {
+        "Pu\u00f1os reforzados": "ofensivo",
+        "Martillo hidr\u00e1ulico": "ofensivo",
+        "Ca\u00f1\u00f3n l\u00e1ser": "ofensivo",
+        "Lanzallamas": "ofensivo",
+        "Sierra circular": "ofensivo",
+        "Arma de impacto giratorio": "ofensivo",
+        "Misiles de corto alcance": "ofensivo",
+        "Electroshock": "ofensivo",
+        "Escudo de energ\u00eda": "defensivo",
+        "Blindaje reforzado": "defensivo",
+        "Campo magn\u00e9tico protector": "defensivo",
+        "Placas de titanio": "defensivo",
+        "Sistema de evasi\u00f3n autom\u00e1tica": "defensivo",
+        "Absorci\u00f3n de impactos": "defensivo",
+        "Sensores \u00f3pticos avanzados": "soporte",
+        "Radar de proximidad": "soporte",
+        "Sistema de c\u00e1maras HD": "soporte",
+        "Drones de reconocimiento": "soporte",
+        "IA t\u00e1ctica": "soporte",
+        "Sistema de comunicaci\u00f3n encriptada": "soporte",
+        "Detector de energ\u00eda enemiga": "soporte",
+        "Iluminaci\u00f3n UV": "especial",
+        "Iluminaci\u00f3n infrarroja": "especial",
+        "Generador de niebla": "especial",
+        "Campo de gravedad variable": "especial",
+        "Sistema de hologramas distractores": "especial"
+    },
+    "exclusividades_armas": {
+        "1": {
+            "arma1": "Lanzallamas",
+            "arma2": "Sensores \u00f3pticos avanzados",
+            "razon": "El fuego bloquea la visi\u00f3n de los sensores"
+        },
+        "2": {
+            "arma1": "Ca\u00f1\u00f3n l\u00e1ser",
+            "arma2": "Generador de niebla",
+            "razon": "La niebla impide la precisi\u00f3n del l\u00e1ser"
+        },
+        "3": {
+            "arma1": "Martillo hidr\u00e1ulico",
+            "arma2": "Escudo de energ\u00eda",
+            "razon": "El escudo absorbe el impacto, no pueden coexistir"
+        },
+        "4": {
+            "arma1": "Electroshock",
+            "arma2": "Campo magn\u00e9tico protector",
+            "razon": "El campo anula la descarga el\u00e9ctrica"
+        },
+        "5": {
+            "arma1": "Blindaje reforzado",
+            "arma2": "Sistema de evasi\u00f3n autom\u00e1tica",
+            "razon": "El blindaje pesado impide la agilidad"
+        },
+        "6": {
+            "arma1": "Placas de titanio",
+            "arma2": "Absorci\u00f3n de impactos",
+            "razon": "Ambos ocupan el mismo sistema estructural"
+        },
+        "7": {
+            "arma1": "Drones de reconocimiento",
+            "arma2": "Iluminaci\u00f3n infrarroja",
+            "razon": "La luz IR interfiere con los drones"
+        },
+        "8": {
+            "arma1": "Iluminaci\u00f3n UV",
+            "arma2": "Iluminaci\u00f3n infrarroja",
+            "razon": "Solo puede usarse un tipo de iluminaci\u00f3n a la vez"
+        }
+    }, 
+    "arena": {
+        "Ring principal" : "Arena principal de combates WRB.",
+        "Area con obst\u00e1culos": "Terreno para combates con riesgo. "
+    }
+    
+}

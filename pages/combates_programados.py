@@ -12,11 +12,11 @@ combates = pd.DataFrame.from_dict(
     data=combates,
     orient="index",
     )
-# combates = pd.DataFrame(combates).drop(columns="patrocinador")
+
 
 st.dataframe(
     data=combates,
     width="stretch",
     height="auto",
     hide_index=True,
-    column_order=["fecha", "patrocinador", "modo", "equipo_a", "equipo_b", "arena", "control"])
+    column_order=["Fecha", "Patrocinador", "Modo", "Equipo_A", "Equipo_B", "Arena", "Control"])

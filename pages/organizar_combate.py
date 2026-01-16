@@ -4,12 +4,12 @@ import sys
 import datetime as datetime
 import re
 import pandas as pd
-sys.path.append(r"https://github.com/laxxuzxlr8/WRB-GitHub/blob/main")
-from core import cargar_inventario, cargar_combates, guardar_combates
+sys.path.append(r"C:\Users\Adrian\Documents\GitHub\Proyecto - Copy")
+from core import cargar_inventario, cargar_combates, val_armas, guardar_combates
 
 # --- #: Algoritmo de combates :# --- #
 
-RUTA_COMBATES = "https://github.com/laxxuzxlr8/WRB-GitHub/blob/main/data/combates.json"
+RUTA_COMBATES = "data/combates.json"
 
 def guardar_combates():           # ~ Guardar Combates ~ #
     data = {

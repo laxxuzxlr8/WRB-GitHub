@@ -3,8 +3,8 @@ import os
 import streamlit as st
 # --- #: Rutas de Base de Datos :# --- #
 
-RUTA_INVENTARIO = "https://github.com/laxxuzxlr8/WRB-GitHub/blob/main/data/inventario.json"
-RUTA_COMBATES = "https://github.com/laxxuzxlr8/WRB-GitHub/blob/main/data/combates.json"
+RUTA_INVENTARIO = "data/inventario.json"
+RUTA_COMBATES = "data/combates.json"
 
 # --- #: Variables Datos Cargados :# --- #
 

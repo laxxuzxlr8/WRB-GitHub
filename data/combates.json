@@ -256,6 +256,139 @@
             },
             "Control": "Control Manual",
             "Patrocinador": "Yata"
+        },
+        "rICARDON": {
+            "Fecha": "2026-01-19",
+            "Arena": "Ring principal",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Atom": [
+                    "Pu\u00f1os reforzados",
+                    "Martillo hidr\u00e1ulico"
+                ]
+            },
+            "Equipo_B": {
+                "Zeus": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Electroshock"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "rICARDON"
+        },
+        "dadad": {
+            "Fecha": "2026-01-23",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Six Shooter": [
+                    "Radar de proximidad",
+                    "IA t\u00e1ctica"
+                ]
+            },
+            "Equipo_B": {
+                "Twin Cities": [
+                    "Sensores \u00f3pticos avanzados",
+                    "Sistema de comunicaci\u00f3n encriptada"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "dadad"
+        },
+        "Blablasss": {
+            "Fecha": "2026-01-22",
+            "Arena": "Ring principal",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Noisy Boy": [
+                    "Sierra circular",
+                    "Ca\u00f1\u00f3n l\u00e1ser"
+                ]
+            },
+            "Equipo_B": {
+                "Atom": [
+                    "Lanzallamas",
+                    "Misiles de corto alcance"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "Blablasss"
+        },
+        "Holasa": {
+            "Fecha": "2026-01-29",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Atom": [
+                    "Lanzallamas",
+                    "Misiles de corto alcance"
+                ]
+            },
+            "Equipo_B": {
+                "Zeus": [
+                    "Sierra circular",
+                    "Electroshock"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "Holasa"
+        },
+        "GAGAGA": {
+            "Fecha": "2026-01-24",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Blacktop": [
+                    "Martillo hidr\u00e1ulico",
+                    "Escudo de energ\u00eda"
+                ]
+            },
+            "Equipo_B": {
+                "Midas": [
+                    "Campo magn\u00e9tico protector",
+                    "Drones de reconocimiento"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "GAGAGA"
+        },
+        "bbababjdjka": {
+            "Fecha": "2026-01-21",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Atom": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Arma de impacto giratorio"
+                ]
+            },
+            "Equipo_B": {
+                "Zeus": [
+                    "Martillo hidr\u00e1ulico",
+                    "Escudo de energ\u00eda"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "bbababjdjka"
+        },
+        "nnnnnn": {
+            "Fecha": "2026-01-30",
+            "Arena": "Ring principal",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Noisy Boy": [
+                    "Sierra circular",
+                    "Misiles de corto alcance"
+                ]
+            },
+            "Equipo_B": {
+                "Atom": [
+                    "Lanzallamas",
+                    "Escudo de energ\u00eda"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "nnnnnn"
         }
     }
 }

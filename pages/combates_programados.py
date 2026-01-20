@@ -2,10 +2,11 @@ import streamlit as st
 import pandas as pd
 
 
-import sys
-sys.path.append(r"C:\Users\Adrian\Documents\GitHub\Proyecto - Copy")
-from core import cargar_combates
+# import sys
+# sys.path.append(r"C:\Users\Adrian\Documents\GitHub\Proyecto - Copy")
+# from core import cargar_combates
 
+from core import cargar_combates
 
 combates = cargar_combates()
 combates = pd.DataFrame.from_dict(

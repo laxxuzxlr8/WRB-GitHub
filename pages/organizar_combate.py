@@ -1,11 +1,10 @@
 import streamlit as st
 import json
-import sys
 import datetime as datetime
+from time import sleep
 import re
 import pandas as pd
-sys.path.append(r"C:\Users\Adrian\Documents\GitHub\Proyecto - Copy")
-from core import cargar_inventario, cargar_combates, val_armas, guardar_combates
+from core import cargar_inventario, cargar_combates, guardar_combates
 
 # --- #: Algoritmo de combates :# --- #
 
@@ -31,7 +30,7 @@ def validar_combate():               # ~ Campos vacios ~ #
             else:
                 if len(st.session_state.combate[key]) < 3:
                     llaves_estado.append(key)
-        if value == None:
+        elif not value:
             llaves_estado.append(key)
     
     if len(llaves_estado) == 0:
@@ -47,7 +46,7 @@ def resetear_web():                 # ~ Resetea los datos de la web ~ #
         "Equipo_A": {},
         "Equipo_B": {},
         "Control": None,
-        "Patrocinador": None
+        "Patrocinador": ""
         })
     
     st.session_state.inventario.update(cargar_inventario())
@@ -190,7 +189,7 @@ st.subheader(
 Fecha = st.date_input(    
     label="**Elija una :violet[Fecha] para el combate:**", 
     min_value="today", 
-    value=None,
+    value=st.session_state.combate["Fecha"],
     format="DD/MM/YYYY",
     help="*Fecha* en la cual se desarrollará el combate."
     )
@@ -506,6 +505,8 @@ if bt_confirmar:
         st.session_state.combates_programados[st.session_state.combate["Patrocinador"]] = st.session_state.combate
         guardar_combates()
         resetear_web()
+        sleep(2)
+        st.rerun()
 
 with col2:                          # ~ Boton para cancelar ~ #
     
@@ -518,3 +519,6 @@ with col2:                          # ~ Boton para cancelar ~ #
 if bt_cancelar:
     st.info("El combate que estaba organizando a sido cancelado. Gracias por su atención!")
     resetear_web()
+    sleep(2)
+    st.rerun()
+

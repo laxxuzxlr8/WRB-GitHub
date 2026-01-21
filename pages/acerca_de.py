@@ -1,6 +1,5 @@
 import streamlit as st
-import sys
-sys.path.append(r"C:\Users\Adrian\Documents\GitHub\Proyecto - Copy")
+
 from core import mostrar_texto
 
 # --- #: Sección acerca de :# --- #

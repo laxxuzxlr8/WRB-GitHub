@@ -45,13 +45,10 @@
         "Radar de proximidad": "soporte",
         "Sistema de c\u00e1maras HD": "soporte",
         "Drones de reconocimiento": "soporte",
-        "IA t\u00e1ctica": "soporte",
-        "Sistema de comunicaci\u00f3n encriptada": "soporte",
         "Detector de energ\u00eda enemiga": "soporte",
         "Iluminaci\u00f3n UV": "especial",
         "Iluminaci\u00f3n infrarroja": "especial",
         "Generador de niebla": "especial",
-        "Campo de gravedad variable": "especial",
         "Sistema de hologramas distractores": "especial"
     },
     "exclusividades_armas": {

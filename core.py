@@ -12,6 +12,15 @@ RUTA_COMBATES = "data/combates.json"
 COMBATES = {}
 INVENTARIO = {}
 
+# --- #: Función Guardar Combates :# --- #
+
+def guardar_combates(combates):           
+    data = {
+        "combates": combates
+    }
+    with open(RUTA_COMBATES, "w") as f:
+        json.dump(data, f, indent=4)
+
 # --- #: Función Cargar data :# --- #
 
 def cargar_combates():             # Cargar Combates #

@@ -1,21 +1,9 @@
 import streamlit as st
-import json
 import datetime as datetime
 from time import sleep
 import re
 import pandas as pd
-from core import cargar_inventario, cargar_combates
-
-# --- #: Algoritmo de combates :# --- #
-
-RUTA_COMBATES = "data/combates.json"
-
-def guardar_combates():           # ~ Guardar Combates ~ #
-    data = {
-        "combates": st.session_state.get("combates_programados")
-    }
-    with open(RUTA_COMBATES, "w") as f:
-        json.dump(data, f, indent=4)
+from core import cargar_inventario, cargar_combates, guardar_combates
 
 # --- #: Funciones auxiliares :# --- #
 
@@ -250,10 +238,14 @@ Arena = st.selectbox(
 if Arena:
     st.session_state.combate["Arena"] = Arena
 
+st.write("\n")
+
 if st.session_state.combate["Arena"] == "Ring principal":
     st.image("images/Gestionar Combate/Ring.png")
+
 elif st.session_state.combate["Arena"] == "Area con obstáculos":
     st.image("images/Gestionar Combate/Obstaculos.jpg")
+
 else:
     st.session_state.combate["Arena"] = None
 
@@ -378,14 +370,17 @@ with col1:                      # ~ Asignacion Equipo A ~ #
                 help="Agrega un *robot* al **Equipo A**. El robot debe estar *equipado* completamente para ser *válido*."
                 )
     
-    st.dataframe(pd.Series([robot for robot in st.session_state.combate["Equipo_A"].keys()], name = "Equipo A" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente A"), hide_index=True)
+    st.dataframe(
+        pd.Series([robot for robot in st.session_state.combate["Equipo_A"].keys()], name = "Equipo A" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente A"),
+        hide_index=True
+        )
          
     if bt_a:
         if st.session_state.combate["Fecha"] != None:
             valido_A, mensaje_A = validar_robot("a")      
             if not valido_A:
                 st.warning(mensaje_A)
-                sleep(1.5)
+                sleep(1.3)
                 st.rerun()
             else:
                 st.session_state.combate["Equipo_A"][robot_a] = [arma_izq_a, arma_der_a]
@@ -395,13 +390,13 @@ with col1:                      # ~ Asignacion Equipo A ~ #
                 st.rerun()
         else:
             st.warning("Escoja una Fecha Válida primero.")
-            sleep(1.5)
+            sleep(1.3)
             st.rerun()
             
     if len(st.session_state.combate["Equipo_A"]) > st.session_state.len_anterior["Equipo_A"]:
         st.success("Robot añadido!")
         st.session_state.len_anterior["Equipo_A"] += 1
-        sleep(1.5)
+        sleep(1.3)
         st.rerun()
 
 with col2:                      # ~ Asignacion Equipo B ~ #
@@ -456,14 +451,17 @@ with col2:                      # ~ Asignacion Equipo B ~ #
                 help="Agrega un *robot* al **Equipo B**. El robot debe estar *equipado* completamente para ser *válido*."
                 )
      
-    st.dataframe(pd.Series([robot for robot in st.session_state.combate["Equipo_B"].keys()], name = "Equipo B" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente B"), hide_index=True)
+    st.dataframe(
+        pd.Series([robot for robot in st.session_state.combate["Equipo_B"].keys()], name = "Equipo B" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente B"),
+        hide_index=True
+        )
                 
     if bt_b:
         if st.session_state.combate["Fecha"] != None:
             valido_B, mensaje_B = validar_robot("b")      
             if not valido_B:
                 st.warning(mensaje_B)
-                sleep(1.5)
+                sleep(1.3)
                 st.rerun()
             else:
                 st.session_state.combate["Equipo_B"][robot_b] = [arma_izq_b, arma_der_b]
@@ -473,13 +471,13 @@ with col2:                      # ~ Asignacion Equipo B ~ #
                 st.rerun()
         else:
             st.warning("Escoja una Fecha Válida primero.")
-            sleep(1.5)
+            sleep(1.3)
             st.rerun()
     
     if len(st.session_state.combate["Equipo_B"]) > st.session_state.len_anterior["Equipo_B"]:
         st.success("Robot añadido!")
         st.session_state.len_anterior["Equipo_B"] += 1
-        sleep(1.5)
+        sleep(1.3)
         st.rerun()   
             
 st.divider()
@@ -628,7 +626,7 @@ if bt_confirmar:
     else:
         st.success("El combate ha sido programado, que gane el mejor!")
         st.session_state.combates_programados[st.session_state.combate["Patrocinador"]] = st.session_state.combate
-        guardar_combates()
+        guardar_combates(st.session_state.get("combates_programados"))
         resetear_web()
         sleep(2)
         st.rerun()

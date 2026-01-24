@@ -1,24 +1,5 @@
 {
     "combates": {
-        "Sebastian": {
-            "Fecha": "2026-01-21",
-            "Arena": "Ring principal",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Atom": [
-                    "Pu\u00f1os reforzados",
-                    "Martillo hidr\u00e1ulico"
-                ]
-            },
-            "Equipo_B": {
-                "Zeus": [
-                    "Ca\u00f1\u00f3n l\u00e1ser",
-                    "Lanzallamas"
-                ]
-            },
-            "Control": "Control Manual",
-            "Patrocinador": "Sebastian"
-        },
         "Rodrigo": {
             "Fecha": "2026-01-22",
             "Arena": "Area con obst\u00e1culos",
@@ -72,6 +53,41 @@
             },
             "Control": "AI Boxing",
             "Patrocinador": "Machupichu"
+        },
+        "Mariano": {
+            "Fecha": "2026-01-31",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Equipo vs Equipo",
+            "Equipo_A": {
+                "Atom": [
+                    "Pu\u00f1os reforzados",
+                    "Martillo hidr\u00e1ulico"
+                ],
+                "Zeus": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Lanzallamas"
+                ],
+                "Noisy Boy": [
+                    "Sierra circular",
+                    "Arma de impacto giratorio"
+                ]
+            },
+            "Equipo_B": {
+                "Ambush": [
+                    "Misiles de corto alcance",
+                    "Electroshock"
+                ],
+                "Midas": [
+                    "Escudo de energ\u00eda",
+                    "Blindaje reforzado"
+                ],
+                "Metro": [
+                    "Campo magn\u00e9tico protector",
+                    "Placas de titanio"
+                ]
+            },
+            "Control": "AI Boxing",
+            "Patrocinador": "Mariano"
         }
     }
 }

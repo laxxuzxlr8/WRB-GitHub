@@ -1,6 +1,7 @@
 import json
 import os
 import streamlit as st
+
 # --- #: Rutas de Base de Datos :# --- #
 
 RUTA_INVENTARIO = "data/inventario.json"
@@ -37,14 +38,6 @@ def cargar_inventario():          # Cargar Inventario #
     except Exception as e:
         print(f'Error al cargar datos: {e}')
         
-def guardar_combates():           # Guardar Combates #
-    global COMBATES
-    data = {
-        "combates": COMBATES
-    }
-    with open(RUTA_COMBATES, "w") as f:
-        json.dump(data, f, indent=4)
-        
 # --- #: Justificar Texto con sangría :# --- #
 
 def mostrar_texto(texto: str, sangria: str = "40px"):
@@ -60,14 +53,3 @@ def mostrar_texto(texto: str, sangria: str = "40px"):
     </p> 
     """ 
     st.markdown(html, unsafe_allow_html=True)
-    
-def val_armas(armas, brazos):
-    b = set(brazos)
-    for id, v in armas.items():
-        arm = [v["arma1"], v["arma2"]]
-        a = set(arm)
-        
-        if b == a:
-            return False, id
-    else:
-        return True , ""

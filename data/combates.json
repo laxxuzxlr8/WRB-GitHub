@@ -1,4 +1,77 @@
 {
     "combates": {
+        "Sebastian": {
+            "Fecha": "2026-01-21",
+            "Arena": "Ring principal",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Atom": [
+                    "Pu\u00f1os reforzados",
+                    "Martillo hidr\u00e1ulico"
+                ]
+            },
+            "Equipo_B": {
+                "Zeus": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Lanzallamas"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "Sebastian"
+        },
+        "Rodrigo": {
+            "Fecha": "2026-01-22",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Equipo vs Equipo",
+            "Equipo_A": {
+                "Noisy Boy": [
+                    "Martillo hidr\u00e1ulico",
+                    "Lanzallamas"
+                ],
+                "Midas": [
+                    "Escudo de energ\u00eda",
+                    "Campo magn\u00e9tico protector"
+                ],
+                "Axelrod": [
+                    "Electroshock",
+                    "Arma de impacto giratorio"
+                ]
+            },
+            "Equipo_B": {
+                "Zeus": [
+                    "Sierra circular",
+                    "Sistema de evasi\u00f3n autom\u00e1tica"
+                ],
+                "Blacktop": [
+                    "Misiles de corto alcance",
+                    "Ca\u00f1\u00f3n l\u00e1ser"
+                ],
+                "Twin Cities": [
+                    "Placas de titanio",
+                    "Sensores \u00f3pticos avanzados"
+                ]
+            },
+            "Control": "AI Boxing",
+            "Patrocinador": "Rodrigo"
+        },
+        "Machupichu": {
+            "Fecha": "2026-01-28",
+            "Arena": "Ring principal",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Zeus": [
+                    "Lanzallamas",
+                    "Misiles de corto alcance"
+                ]
+            },
+            "Equipo_B": {
+                "Atom": [
+                    "Pu\u00f1os reforzados",
+                    "Martillo hidr\u00e1ulico"
+                ]
+            },
+            "Control": "AI Boxing",
+            "Patrocinador": "Machupichu"
+        }
     }
 }

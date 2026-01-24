@@ -4,7 +4,7 @@ import datetime as datetime
 from time import sleep
 import re
 import pandas as pd
-from core import cargar_inventario, cargar_combates, guardar_combates
+from core import cargar_inventario, cargar_combates
 
 # --- #: Algoritmo de combates :# --- #
 
@@ -197,7 +197,9 @@ Fecha = st.date_input(
 # --- #: Algoritmo de validación de Fecha y eliminacion de recursos :# --- #
 
 if Fecha != st.session_state.fecha_anterior:
- 
+
+    st.session_state.combate["Arena"] = None
+    
     arena_no = []
     robot_no = []
     armas_no = []
@@ -220,7 +222,8 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.disponibles["arena"] = [arena for arena in st.session_state.inventario["arena"]]
         st.session_state.disponibles["robots"] = [robot for robot in st.session_state.inventario["robots"].keys()]
         st.session_state.disponibles["armas"] = [arma for arma in st.session_state.inventario["armas_equipables"].keys()]
-    
+
+        
     elif len(arena_no) >= len(st.session_state.inventario["arena"]):
         st.error("Todas las arenas estan ocupadas para ese día, escoja otro.")
         st.session_state.combate["Fecha"] = None
@@ -234,7 +237,7 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.combate["Fecha"] = str(Fecha)    
     
     st.session_state.fecha_anterior = str(Fecha)   
-
+    
 # --- #: Sección Arena :# --- #
 
 Arena = st.selectbox(
@@ -247,41 +250,64 @@ Arena = st.selectbox(
 if Arena:
     st.session_state.combate["Arena"] = Arena
 
+if st.session_state.combate["Arena"] == "Ring principal":
+    st.image("images/Gestionar Combate/Ring.png")
+elif st.session_state.combate["Arena"] == "Area con obstáculos":
+    st.image("images/Gestionar Combate/Obstaculos.jpg")
+else:
+    st.session_state.combate["Arena"] = None
+
 st.write("\n")
+
 st.divider()
 
 # --- #: Sección Modo de juego :# --- #
 
-with st.container(
-    key="Modo", 
-    horizontal_alignment="center"
-    ):
-    
-    st.subheader(
+st.subheader(
         "Modo de juego:", 
         text_alignment="center", 
         anchor=False
         )
-    
-    st.session_state.combate["Modo"] = st.radio(
-        label="Escoja un Modo de juego:",
-        label_visibility="hidden",
-        options=["Robot vs Robot", "Equipo vs Equipo"]
-        )
 
-if st.session_state.combate["Modo"] != st.session_state.modo_anterior:         # ~ Control con cambia de modo ~ #     
-    st.session_state.combate["Equipo_A"] = {}
-    st.session_state.combate["Equipo_B"] = {}
-    st.session_state.len_anterior = {
-        "Equipo_A" : 0,
-        "Equipo_B" : 0,
-    }
-    st.session_state.usados = {
-        "robots" : [],
-        "armas" : []
-    }
-    st.session_state.modo_anterior = st.session_state.combate["Modo"]
-    st.rerun()
+st.write("\n")
+
+col1,col2 = st.columns(
+    [0.7, 1.3],
+    gap = "small",
+    vertical_alignment='center')
+
+with col1:
+
+    with st.container(
+        key="Modo", 
+        horizontal_alignment="center"
+        ):
+        
+        st.session_state.combate["Modo"] = st.radio(
+            label="**Escoja un :violet[Modo de juego]:**",
+            options=["Robot vs Robot", "Equipo vs Equipo"],
+            help = "Establece la *distribución de equipos* para el combate: *1vs1* o *3vs3*"
+            )
+
+    if st.session_state.combate["Modo"] != st.session_state.modo_anterior:         # ~ Control con cambia de modo ~ #     
+        st.session_state.combate["Equipo_A"] = {}
+        st.session_state.combate["Equipo_B"] = {}
+        st.session_state.len_anterior = {
+            "Equipo_A" : 0,
+            "Equipo_B" : 0,
+        }
+        st.session_state.usados = {
+            "robots" : [],
+            "armas" : []
+        }
+        st.session_state.modo_anterior = st.session_state.combate["Modo"]
+        st.rerun()
+
+with col2:
+    if st.session_state.combate["Modo"] == "Robot vs Robot":
+        st.image("images/Gestionar Combate/1vs1.png")   
+    elif st.session_state.combate["Modo"] == "Equipo vs Equipo":
+        st.image("images/Gestionar Combate/3vs3.png") 
 
 st.divider()
 
@@ -323,33 +349,44 @@ with col1:                      # ~ Asignacion Equipo A ~ #
         ):
                 
         robot_a = st.selectbox(
-            "Escoja un robot:",
+            "**Escoja un :violet[robot]:**",
             options=st.session_state.disponibles["robots"],
             index=None,
             on_change= recursos_disponibles()
             )
                 
         arma_izq_a = st.selectbox(
-            "Escoja un arma para el brazo izquierdo:",
+            "**Escoja un :violet[arma] para el brazo izquierdo:**",
             options=st.session_state.disponibles["armas"],
             index=None,
             on_change= recursos_disponibles()
             )
                 
         arma_der_a = st.selectbox(
-            "Escoja un arma para el brazo derecho:",
+            "**Escoja un :violet[arma] para el brazo derecho:**",
             options=st.session_state.disponibles["armas"],
             index=None,
             on_change= recursos_disponibles()
             )
-                
-        bt_a = st.form_submit_button("Agregar Robot")
+        
+        with st.container(
+            horizontal_alignment="center"
+        ):        
+        
+            bt_a = st.form_submit_button(
+                label="**:green[Agregar] Robot**",
+                help="Agrega un *robot* al **Equipo A**. El robot debe estar *equipado* completamente para ser *válido*."
+                )
+    
+    st.dataframe(pd.Series([robot for robot in st.session_state.combate["Equipo_A"].keys()], name = "Equipo A" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente A"), hide_index=True)
          
     if bt_a:
         if st.session_state.combate["Fecha"] != None:
             valido_A, mensaje_A = validar_robot("a")      
             if not valido_A:
                 st.warning(mensaje_A)
+                sleep(1.5)
+                st.rerun()
             else:
                 st.session_state.combate["Equipo_A"][robot_a] = [arma_izq_a, arma_der_a]
                 st.session_state.usados["robots"] += [robot_a]
@@ -357,11 +394,15 @@ with col1:                      # ~ Asignacion Equipo A ~ #
                 st.session_state.usados["armas"] += [arma_der_a]
                 st.rerun()
         else:
-            st.warning("Escoja una Fecha primero.")
-
+            st.warning("Escoja una Fecha Válida primero.")
+            sleep(1.5)
+            st.rerun()
+            
     if len(st.session_state.combate["Equipo_A"]) > st.session_state.len_anterior["Equipo_A"]:
         st.success("Robot añadido!")
         st.session_state.len_anterior["Equipo_A"] += 1
+        sleep(1.5)
+        st.rerun()
 
 with col2:                      # ~ Asignacion Equipo B ~ #
         
@@ -386,33 +427,44 @@ with col2:                      # ~ Asignacion Equipo B ~ #
         ):
                 
         robot_b = st.selectbox(
-            "Escoja un robot:",
+            "**Escoja un :violet[robot]:**",
             options=st.session_state.disponibles["robots"],
             index=None,
             on_change= recursos_disponibles()
             )
                 
         arma_izq_b = st.selectbox(
-            "Escoja un arma para el brazo izquierdo:",
+            "**Escoja un :violet[arma] para el brazo izquierdo:**",
             options=st.session_state.disponibles["armas"],
             index=None,
             on_change= recursos_disponibles()
             )
                 
         arma_der_b = st.selectbox(
-            "Escoja un arma para el brazo derecho:",
+            "**Escoja un :violet[arma] para el brazo derecho:**",
             options=st.session_state.disponibles["armas"],
             index=None,
             on_change= recursos_disponibles()
             )
+        
+        with st.container(
+            horizontal_alignment="center"
+        ):
                 
-        bt_b = st.form_submit_button("Agregar Robot")
+            bt_b = st.form_submit_button(
+                label="**:green[Agregar] Robot**",
+                help="Agrega un *robot* al **Equipo B**. El robot debe estar *equipado* completamente para ser *válido*."
+                )
+     
+    st.dataframe(pd.Series([robot for robot in st.session_state.combate["Equipo_B"].keys()], name = "Equipo B" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente B"), hide_index=True)
                 
     if bt_b:
         if st.session_state.combate["Fecha"] != None:
             valido_B, mensaje_B = validar_robot("b")      
             if not valido_B:
                 st.warning(mensaje_B)
+                sleep(1.5)
+                st.rerun()
             else:
                 st.session_state.combate["Equipo_B"][robot_b] = [arma_izq_b, arma_der_b]
                 st.session_state.usados["robots"] += [robot_b]
@@ -420,17 +472,22 @@ with col2:                      # ~ Asignacion Equipo B ~ #
                 st.session_state.usados["armas"] += [arma_der_b]
                 st.rerun()
         else:
-            st.warning("Escoja una Fecha primero.")
+            st.warning("Escoja una Fecha Válida primero.")
+            sleep(1.5)
+            st.rerun()
+    
     if len(st.session_state.combate["Equipo_B"]) > st.session_state.len_anterior["Equipo_B"]:
         st.success("Robot añadido!")
         st.session_state.len_anterior["Equipo_B"] += 1
+        sleep(1.5)
+        st.rerun()   
             
 st.divider()
 
-# --- #: Sección otros detalles :# --- #
+# --- #: Sección Control :# --- #
 
 st.subheader(
-    body="Detalles finales:",
+    body="Tipo de control:",
     text_alignment="center",
     anchor=False
 )
@@ -438,11 +495,11 @@ st.subheader(
 st.write("\n")
 
 col1,col2 = st.columns(
-    [0.6, 1.4],
+    [0.7, 1.3],
     gap = "small",
-    vertical_alignment='top')
+    vertical_alignment='center')
 
-with col1:                      # ~ Seccion control ~ #
+with col1:                      
     
     with st.container(
         key="final", 
@@ -453,52 +510,120 @@ with col1:                      # ~ Seccion control ~ #
             label="**Escoja un tipo de :violet[Control]:**",
             options=["Control Manual", "AI Boxing"],
             index=0,
-            horizontal=True,
+            horizontal=False,
             help="Escoger entre controlar a los robots *manualmente* o con *IA Boxing*."
             )
 
-with col2:                      # ~ Seccion Patrocinador ~ #
+with col2:
     
+    if st.session_state.combate["Control"] == "Control Manual":
+        st.image("images/Gestionar Combate/Manual.png")   
+    elif st.session_state.combate["Control"] == "AI Boxing":
+        st.image("images/Gestionar Combate/AI.png") 
+    
+st.divider()    
+       
+# --- #: Sección Patrocinador :# --- #
+    
+st.subheader(
+    body="Patrocinador:",
+    text_alignment="center",
+    anchor=False
+    )
+
+st.write("\n")
+
+col1,col2,col3 = st.columns(
+    [0.3, 1.4, 0.3],
+    gap = "small",
+    vertical_alignment="center"
+    )
+
+with col2:
     Patrocinador = st.text_input(
-        label="**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
-        value=st.session_state.combate["Patrocinador"],
-        max_chars=20,
-        help="*Encargador* o *responsable* del combate.",
-        )
-    
+            label="**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
+            value=st.session_state.combate["Patrocinador"],
+            max_chars=20,
+            help="*Encargado* o *Responsable* del **combate**.",
+            )
+        
     if Patrocinador:                    # ~ Validacion Patrocinador ~ #
         valid, error = validar_patrocinador()
         if not valid:
             st.error(error)
             st.session_state.combate["Patrocinador"] = None
+        
         else:
             st.session_state.combate["Patrocinador"] = Patrocinador
-         
+            st.success("Patrocinador Válido.")   
+            
 st.divider()
-
-# --- #: Confirmar/Cancelar evento :# --- #
 
 st.write("\n")
 
-col1, col2 = st.columns(
-    2, 
+# --- #: Confirmar/Cancelar evento :# --- #
+
+col1, col2, col3 = st.columns(
+    [0.3, 1.4, 0.3], 
     gap="small",
     vertical_alignment="bottom"
 )
 
-with col1:                      # ~ Boton para confirmar ~ #
+with col2:                      
     
     with st.container(
-        key="button_confirm",
-        horizontal_alignment="center"
-    ):    
-        bt_confirmar = st.button("Confirmar evento")
+        border=True,
+        key= "Menu_Botones",
+        vertical_alignment="center"
+    ):
+        
+        st.subheader(
+            body = "Finalizar evento:",
+            text_alignment="center",
+            anchor=False
+            )
+        
+        col1, col2 = st.columns(
+            2,
+            gap="small",
+            vertical_alignment="center",
+        )
+        
+        with col1:                  # ~ Boton para confirmar ~ #
+            with st.container(
+                key="button_confirm",
+                horizontal_alignment="center"
+                ):    
+                
+                bt_confirmar = st.button(
+                    label = "**:green[Confirmar] evento**",
+                    help = "**Confirma** el *combate* que estaba planificando. No se *agregará* hasta que todos los *campos* sean **válidos**."
+                    )
+
+        with col2:                  # ~ Boton para cancelar ~ #
+            with st.container(                          
+                key="button_cancel",
+                horizontal_alignment="center"
+                ):    
+                
+                bt_cancelar = st.button(
+                    label = "**:red[Cancelar] evento**",
+                    help = "**Cancela** el *combate* que estaba *planificando*."
+                    )
+
+        st.write("\n")
+
+st.write("\n")
 
 if bt_confirmar:                                
+    
     val, campos = validar_combate()
+    
     if not val:
         for error in campos:
             st.warning(f"Falta por llenar: {error}")
+        sleep(2)
+        st.rerun()
     
     else:
         st.success("El combate ha sido programado, que gane el mejor!")
@@ -507,18 +632,10 @@ if bt_confirmar:
         resetear_web()
         sleep(2)
         st.rerun()
-
-with col2:                          # ~ Boton para cancelar ~ #
-    
-    with st.container(
-        key="button_cancel",
-        horizontal_alignment="center"
-    ):    
-        bt_cancelar = st.button("Cancelar evento")
-           
+          
 if bt_cancelar:
+    
     st.info("El combate que estaba organizando a sido cancelado. Gracias por su atención!")
     resetear_web()
     sleep(2)
-    st.rerun()
-
+    st.rerun()      

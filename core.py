@@ -1,15 +1,25 @@
 import json
 import os
 import streamlit as st
+
 # --- #: Rutas de Base de Datos :# --- #
 
-RUTA_INVENTARIO = "https://github.com/laxxuzxlr8/WRB-GitHub/blob/main/data/inventario.json"
-RUTA_COMBATES = "https://github.com/laxxuzxlr8/WRB-GitHub/blob/main/data/combates.json"
+RUTA_INVENTARIO = "data/inventario.json"
+RUTA_COMBATES = "data/combates.json"
 
 # --- #: Variables Datos Cargados :# --- #
 
 COMBATES = {}
 INVENTARIO = {}
+
+# --- #: Función Guardar Combates :# --- #
+
+def guardar_combates(combates):           
+    data = {
+        "combates": combates
+    }
+    with open(RUTA_COMBATES, "w") as f:
+        json.dump(data, f, indent=4)
 
 # --- #: Función Cargar data :# --- #
 
@@ -37,14 +47,6 @@ def cargar_inventario():          # Cargar Inventario #
     except Exception as e:
         print(f'Error al cargar datos: {e}')
         
-def guardar_combates():           # Guardar Combates #
-    global COMBATES
-    data = {
-        "combates": COMBATES
-    }
-    with open(RUTA_COMBATES, "w") as f:
-        json.dump(data, f, indent=4)
-        
 # --- #: Justificar Texto con sangría :# --- #
 
 def mostrar_texto(texto: str, sangria: str = "40px"):
@@ -60,14 +62,3 @@ def mostrar_texto(texto: str, sangria: str = "40px"):
     </p> 
     """ 
     st.markdown(html, unsafe_allow_html=True)
-    
-def val_armas(armas, brazos):
-    b = set(brazos)
-    for id, v in armas.items():
-        arm = [v["arma1"], v["arma2"]]
-        a = set(arm)
-        
-        if b == a:
-            return False, id
-    else:
-        return True , ""

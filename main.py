@@ -48,13 +48,12 @@ armas = st.Page(
 
 # --- #: Menú de Navegación :# --- #
 
+st.logo("images/logo.png", size="large", link="https://gigantes-de-acero.fandom.com/es/wiki/World_Robot_Boxing#:~:text=World%20Robot%20Boxing%20es%20una,los%20que%20participan%20los%20robots.")
+
 navegacion = st.navigation({
     "Info": [acerca_de],
     "Combates":[organizar_combates, combates_programados],
     "Catálogo":[robots, armas]
     })
 
-st.logo("images/logo.png", size="large", link="https://gigantes-de-acero.fandom.com/es/wiki/World_Robot_Boxing#:~:text=World%20Robot%20Boxing%20es%20una,los%20que%20participan%20los%20robots.")
-
 navegacion.run()
-

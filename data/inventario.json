@@ -51,46 +51,38 @@
         "Generador de niebla": "especial",
         "Sistema de hologramas distractores": "especial"
     },
-    "exclusividades_armas": {
+    "combinaciones_no": {
         "1": {
-            "arma1": "Lanzallamas",
-            "arma2": "Sensores \u00f3pticos avanzados",
-            "razon": "El fuego bloquea la visi\u00f3n de los sensores"
+            "combinacion": ["Lanzallamas", "Sensores \u00f3pticos avanzados"],
+            "razon": "El fuego bloquea la visi\u00f3n de los sensores."
         },
         "2": {
-            "arma1": "Ca\u00f1\u00f3n l\u00e1ser",
-            "arma2": "Generador de niebla",
-            "razon": "La niebla impide la precisi\u00f3n del l\u00e1ser"
+            "combinacion": ["Ca\u00f1\u00f3n l\u00e1ser", "Generador de niebla"],
+            "razon": "La niebla impide la precisi\u00f3n del l\u00e1ser."
         },
         "3": {
-            "arma1": "Martillo hidr\u00e1ulico",
-            "arma2": "Escudo de energ\u00eda",
-            "razon": "El escudo absorbe el impacto, no pueden coexistir"
+            "combinacion": ["Martillo hidr\u00e1ulico", "Escudo de energ\u00eda"],
+            "razon": "El escudo absorbe el impacto, no pueden coexistir."
         },
         "4": {
-            "arma1": "Electroshock",
-            "arma2": "Campo magn\u00e9tico protector",
-            "razon": "El campo anula la descarga el\u00e9ctrica"
+            "combinacion": ["Electroshock", "Campo magn\u00e9tico protector"],
+            "razon": "El campo anula la descarga el\u00e9ctrica."
         },
         "5": {
-            "arma1": "Blindaje reforzado",
-            "arma2": "Sistema de evasi\u00f3n autom\u00e1tica",
-            "razon": "El blindaje pesado impide la agilidad"
+            "combinacion": ["Blindaje reforzado", "Sistema de evasi\u00f3n autom\u00e1tica"],
+            "razon": "El blindaje pesado impide la agilidad."
         },
         "6": {
-            "arma1": "Placas de titanio",
-            "arma2": "Absorci\u00f3n de impactos",
-            "razon": "Ambos ocupan el mismo sistema estructural"
+            "combinacion": ["Placas de titanio", "Absorci\u00f3n de impactos"],
+            "razon": "Ambos ocupan el mismo sistema estructural."
         },
         "7": {
-            "arma1": "Drones de reconocimiento",
-            "arma2": "Iluminaci\u00f3n infrarroja",
-            "razon": "La luz IR interfiere con los drones"
+            "combinacion": ["Drones de reconocimiento", "Iluminaci\u00f3n infrarroja"],
+            "razon": "La luz IR interfiere con los drones."
         },
         "8": {
-            "arma1": "Iluminaci\u00f3n UV",
-            "arma2": "Iluminaci\u00f3n infrarroja",
-            "razon": "Solo puede usarse un tipo de iluminaci\u00f3n a la vez"
+            "combinacion": ["Iluminaci\u00f3n UV", "Iluminaci\u00f3n infrarroja"],
+            "razon": "Solo puede usarse un tipo de iluminaci\u00f3n a la vez."
         }
     }, 
     "arena": {

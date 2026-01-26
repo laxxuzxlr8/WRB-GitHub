@@ -101,7 +101,7 @@ def validar_robot(robot):            # ~ Robot Valido ~ #
                 return False, "Debe llenar todos los campos para que el combate sea justo.", False
             if b[2] == b[3]:
                 return False, "No puede haber armas repetidas, escoja una combinación diferente.", False
-            combinacion_b = set([a[2], a[3]])
+            combinacion_b = set([b[2], b[3]])
             for comb in st.session_state.inventario["combinaciones_no"].values():
                 if combinacion_b == set(comb["combinacion"]):
                     return False, f'Esta combinación de armas no es válida, razón: {comb["razon"]}', True

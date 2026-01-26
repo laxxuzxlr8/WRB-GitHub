@@ -72,33 +72,41 @@ def validar_robot(robot):            # ~ Robot Valido ~ #
         a = ["Equipo_A", robot_a, arma_izq_a, arma_der_a]
         
         if len(st.session_state.combate[a[0]]) == 1 and st.session_state.combate["Modo"] == "Robot vs Robot":
-            return False, "El equipo está lleno."
+            return False, "El equipo está lleno. El modo seleccionado es Robot vs Robot.", False
         
         elif len(st.session_state.combate[a[0]]) == 3 and st.session_state.combate["Modo"] == "Equipo vs Equipo":
-            return False, "El equipo está lleno."
+            return False, "El equipo está lleno. La capacidad máxima es de 3 robots por equipo.", False
         
         else:
             if a[1] == None or a[2] == None or a[3] == None:
-                return False, "Debe llenar todos los campos para que el combate sea justo."
+                return False, "Debe llenar todos los campos para que el combate sea justo.", False
             if a[2] == a[3]:
-                return False, "No puede haber armas repetidas."
+                return False, "No puede haber armas repetidas, escoja una combinación diferente.", False
+            combinacion_a = set([a[2], a[3]])
+            for comb in st.session_state.inventario["combinaciones_no"].values():
+                if combinacion_a == set(comb["combinacion"]):
+                    return False, f'Esta combinación de armas no es válida, razón: {comb["razon"]}', True
     
     if robot == "b":
         b = ["Equipo_B", robot_b, arma_izq_b, arma_der_b]
         
         if len(st.session_state.combate[b[0]]) == 1 and st.session_state.combate["Modo"] == "Robot vs Robot":
-            return False, "El equipo está lleno."
+            return False, "El equipo está lleno. El modo seleccionado es Robot vs Robot.", False
         
         elif len(st.session_state.combate[b[0]]) == 3 and st.session_state.combate["Modo"] == "Equipo vs Equipo":
-            return False, "El equipo está lleno."
+            return False, "El equipo está lleno. La capacidad máxima es de 3 robots por equipo.", False
         
         else:
             if b[1] == None or b[2] == None or b[3] == None:
-                return False, "Debe llenar todos los campos para que el combate sea justo."
+                return False, "Debe llenar todos los campos para que el combate sea justo.", False
             if b[2] == b[3]:
-                return False, "No puede haber armas repetidas."
+                return False, "No puede haber armas repetidas, escoja una combinación diferente.", False
+            combinacion_b = set([a[2], a[3]])
+            for comb in st.session_state.inventario["combinaciones_no"].values():
+                if combinacion_b == set(comb["combinacion"]):
+                    return False, f'Esta combinación de armas no es válida, razón: {comb["razon"]}', True
     
-    return True, ''
+    return True, '', False
 
 def validar_patrocinador():                     # ~ Patrocinador Valido ~ #
     
@@ -377,10 +385,13 @@ with col1:                      # ~ Asignacion Equipo A ~ #
          
     if bt_a:
         if st.session_state.combate["Fecha"] != None:
-            valido_A, mensaje_A = validar_robot("a")      
+            valido_A, mensaje_A, tiempo_A = validar_robot("a")      
             if not valido_A:
                 st.warning(mensaje_A)
-                sleep(1.3)
+                if tiempo_A:
+                    sleep(2.5)
+                else:
+                    sleep(1.5)
                 st.rerun()
             else:
                 st.session_state.combate["Equipo_A"][robot_a] = [arma_izq_a, arma_der_a]
@@ -458,10 +469,13 @@ with col2:                      # ~ Asignacion Equipo B ~ #
                 
     if bt_b:
         if st.session_state.combate["Fecha"] != None:
-            valido_B, mensaje_B = validar_robot("b")      
+            valido_B, mensaje_B, tiempo_B = validar_robot("b")      
             if not valido_B:
                 st.warning(mensaje_B)
-                sleep(1.3)
+                if tiempo_B:
+                    sleep(2.5)
+                else:
+                    sleep(1.5)
                 st.rerun()
             else:
                 st.session_state.combate["Equipo_B"][robot_b] = [arma_izq_b, arma_der_b]

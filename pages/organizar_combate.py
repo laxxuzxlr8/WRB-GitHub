@@ -213,7 +213,7 @@ if Fecha != st.session_state.fecha_anterior:
                 armas_no.append(armas_b[1])
                 
     if len(arena_no) == 0:                                      # ~ Define los recursos disponibles ~ #
-        st.success("Día valido, no hay eventos programados!")   
+        st.success("Día válido, no hay eventos programados!")   
         st.session_state.combate["Fecha"] = str(Fecha)
         st.session_state.disponibles["arena"] = [arena for arena in st.session_state.inventario["arena"]]
         st.session_state.disponibles["robots"] = [robot for robot in st.session_state.inventario["robots"].keys()]
@@ -221,7 +221,7 @@ if Fecha != st.session_state.fecha_anterior:
 
         
     elif len(arena_no) >= len(st.session_state.inventario["arena"]):
-        st.error("Todas las arenas estan ocupadas para ese día, escoja otro.")
+        st.error("Todas las arenas están ocupadas para ese día, escoja otro.")
         st.session_state.combate["Fecha"] = None
         st.session_state.disponibles["arena"] = []
         
@@ -233,7 +233,33 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.combate["Fecha"] = str(Fecha)    
     
     st.session_state.fecha_anterior = str(Fecha)   
+
+elif st.session_state.combate["Fecha"] == None:                         # ~ Recomendacion Proxima fecha disponible ~ # 
+    día_disponible = datetime.datetime.today().date()
+    contador = 0
+    check = False
     
+    while True:
+        
+        for combate in st.session_state.combates_programados.values():
+            
+            if combate["Fecha"] == str(día_disponible):
+                if contador < 2:
+                    contador +=1       
+            
+            if contador == 2:
+                día_disponible = día_disponible + datetime.timedelta(days=1)
+                check = False
+                contador = 0
+                break
+            
+            check = True    
+        
+        if check:
+            break
+        
+    st.info(f"Recomendación de Próxima fecha disponible: {str(día_disponible)}")
+        
 # --- #: Sección Arena :# --- #
 
 Arena = st.selectbox(
@@ -289,7 +315,7 @@ with col1:
             help = "Establece la *distribución de equipos* para el combate: *1vs1* o *3vs3*"
             )
 
-    if st.session_state.combate["Modo"] != st.session_state.modo_anterior:         # ~ Control con cambia de modo ~ #     
+    if st.session_state.combate["Modo"] != st.session_state.modo_anterior:         # ~ Control con cambio de modo ~ #     
         st.session_state.combate["Equipo_A"] = {}
         st.session_state.combate["Equipo_B"] = {}
         st.session_state.len_anterior = {
@@ -552,12 +578,21 @@ col1,col2,col3 = st.columns(
     )
 
 with col2:
-    Patrocinador = st.text_input(
+    if st.session_state.combate["Fecha"] != None:
+        Patrocinador = st.text_input(
             label="**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
             value=st.session_state.combate["Patrocinador"],
             max_chars=20,
             help="*Encargado* o *Responsable* del **combate**.",
+            placeholder="Escriba un nombre."
             )
+    else:
+        Patrocinador = st.text_input(
+            label="**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
+            help="*Encargado* o *Responsable* del **combate**.",
+            disabled=True,
+            placeholder="Seleccione una fecha primero."
+            )    
         
     if Patrocinador:                    # ~ Validacion Patrocinador ~ #
         valid, error = validar_patrocinador()

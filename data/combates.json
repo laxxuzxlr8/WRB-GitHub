@@ -1,39 +1,134 @@
 {
     "combates": {
-        "Wisin": {
-            "Fecha": "2026-01-27",
-            "Arena": "Area con obst\u00e1culos",
-            "Modo": "Equipo vs Equipo",
+        "aaaa": {
+            "Fecha": "2026-02-01",
+            "Arena": "Ring principal",
+            "Modo": "Robot vs Robot",
             "Equipo_A": {
                 "Atom": [
                     "Pu\u00f1os reforzados",
                     "Martillo hidr\u00e1ulico"
+                ]
+            },
+            "Equipo_B": {
+                "Zeus": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Lanzallamas"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "aaaa"
+        },
+        "gggg": {
+            "Fecha": "2026-02-01",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Noisy Boy": [
+                    "Sierra circular",
+                    "Arma de impacto giratorio"
+                ]
+            },
+            "Equipo_B": {
+                "Ambush": [
+                    "Misiles de corto alcance",
+                    "Electroshock"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "gggg"
+        },
+        "adra": {
+            "Fecha": "2026-02-02",
+            "Arena": "Ring principal",
+            "Modo": "Equipo vs Equipo",
+            "Equipo_A": {
+                "Atom": [
+                    "Martillo hidr\u00e1ulico",
+                    "Pu\u00f1os reforzados"
                 ],
                 "Zeus": [
                     "Ca\u00f1\u00f3n l\u00e1ser",
                     "Lanzallamas"
                 ],
                 "Noisy Boy": [
+                    "Sierra circular",
+                    "Arma de impacto giratorio"
+                ]
+            },
+            "Equipo_B": {
+                "Ambush": [
+                    "Misiles de corto alcance",
+                    "Electroshock"
+                ],
+                "Midas": [
+                    "Escudo de energ\u00eda",
+                    "Blindaje reforzado"
+                ],
+                "Metro": [
+                    "Campo magn\u00e9tico protector",
+                    "Placas de titanio"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "adra"
+        },
+        "Mojon": {
+            "Fecha": "2026-02-02",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Fatboy": [
+                    "Detector de energ\u00eda enemiga",
+                    "Generador de niebla"
+                ]
+            },
+            "Equipo_B": {
+                "Twin Cities": [
+                    "Drones de reconocimiento",
+                    "Sistema de hologramas distractores"
+                ]
+            },
+            "Control": "AI Boxing",
+            "Patrocinador": "Mojon"
+        },
+        "malanga": {
+            "Fecha": "2026-02-03",
+            "Arena": "Ring principal",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Atom": [
+                    "Pu\u00f1os reforzados",
+                    "Lanzallamas"
+                ]
+            },
+            "Equipo_B": {
+                "Zeus": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Sierra circular"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "malanga"
+        },
+        "lilililililili": {
+            "Fecha": "2026-02-03",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Ambush": [
                     "Arma de impacto giratorio",
                     "Electroshock"
                 ]
             },
             "Equipo_B": {
-                "Ambush": [
-                    "Escudo de energ\u00eda",
-                    "Sistema de evasi\u00f3n autom\u00e1tica"
-                ],
-                "Midas": [
-                    "Misiles de corto alcance",
-                    "Placas de titanio"
-                ],
-                "Metro": [
-                    "Campo magn\u00e9tico protector",
-                    "Blindaje reforzado"
+                "Noisy Boy": [
+                    "Blindaje reforzado",
+                    "Iluminaci\u00f3n infrarroja"
                 ]
             },
-            "Control": "AI Boxing",
-            "Patrocinador": "Wisin"
+            "Control": "Control Manual",
+            "Patrocinador": "lilililililili"
         }
     }
 }

@@ -28,22 +28,22 @@ acerca_de = st.Page(
 organizar_combates = st.Page(
     page="pages/organizar_combate.py",
     title="Organizar combate",
-    icon=":material/info:"
+    icon=":material/event_upcoming:"
 )
 combates_programados = st.Page(
     page="pages/combates_programados.py",
     title="Combates programados",
-    icon=":material/info:"
+    icon=":material/format_list_bulleted:"
 )
 robots = st.Page(
     page="pages/robots.py",
     title="Robots",
-    icon=":material/info:"
+    icon=":material/robot:"
 )
 armas = st.Page(
     page="pages/armas.py",
     title="Armas",
-    icon=":material/info:"
+    icon=":material/swords:"
 )
 
 # --- #: Menú de Navegación :# --- #

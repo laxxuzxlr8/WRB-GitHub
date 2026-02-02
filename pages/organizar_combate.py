@@ -61,11 +61,6 @@ def resetear_web():                 # ~ Resetea los datos de la web ~ #
     
     st.session_state.modo_anterior = None
     
-def recursos_disponibles():                   # ~ Asigna los recursos disponibles ~ #
-    if st.session_state.usados["robots"] != []:
-        st.session_state.disponibles["robots"] = [robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados["robots"]]
-        st.session_state.disponibles["armas"] = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]]  
-        
 def validar_robot(robot):            # ~ Robot Valido ~ #
 
     if robot == "a":
@@ -115,7 +110,7 @@ def validar_patrocinador():                     # ~ Patrocinador Valido ~ #
             return False, "Ya existe un Patrocinador con este nombre, escriba otro."
     
     if not re.match(r'^[A-Za-z\\\\s-]+$', Patrocinador):
-        return False, "Patrocinador solo debe contener letras, espacios y guiones."
+        return False, "Patrocinador solo debe contener letras y guiones."
     
     if len(Patrocinador) < 2:
         return False, "Patrocinador debe tener al menos 2 caracteres"
@@ -144,9 +139,9 @@ if "combates_programados" not in st.session_state:                  # ~ Combates
 
 if "disponibles" not in st.session_state:              # ~ Recursos disponibles ~ # 
     st.session_state.disponibles = {
-        "robots" : None,
-        "armas" : None,
-        "arena" : None
+        "robots" : [],
+        "armas" : [],
+        "arena" : []
     }
 
 if "usados" not in st.session_state:                # ~ Recursos usados ~ #
@@ -167,7 +162,7 @@ if "len_anterior" not in st.session_state:              # ~ Control robot añadi
 if "modo_anterior" not in st.session_state:               # ~ Control modo ~ #
     st.session_state.modo_anterior = None
 
-# --- #: Panel Principal :# --- #
+# ------------------------------- #: Panel Principal :# ------------------------------- #
 
 st.header("Organizar combate:", 
              text_alignment="center",
@@ -177,7 +172,7 @@ st.header("Organizar combate:",
 # --- #: Sección Fecha y Lugar :# --- #
 
 st.subheader(
-    body="Fechar y lugar:", 
+    body="Fecha y lugar:", 
     text_alignment="center", 
     anchor=False
     )
@@ -185,14 +180,46 @@ st.subheader(
 Fecha = st.date_input(    
     label="**Elija una :violet[Fecha] para el combate:**", 
     min_value="today", 
-    value=st.session_state.combate["Fecha"],
     format="DD/MM/YYYY",
-    help="*Fecha* en la cual se desarrollará el combate."
+    help="*Fecha* en la cual se desarrollará el combate.",
+    value= None
     )
 
 # --- #: Algoritmo de validación de Fecha y eliminacion de recursos :# --- #
 
+if Fecha == None:
+    st.session_state.fecha_anterior = None
+    st.session_state.combate["Fecha"] = None
+    
+    st.session_state.combate["Arena"] = None
+    
+    st.session_state.combate["Equipo_A"] = {}
+    st.session_state.combate["Equipo_B"] = {}
+    
+    st.session_state.len_anterior = {
+        "Equipo_A" : 0,
+        "Equipo_B" : 0,
+    }
+    st.session_state.disponibles["arena"] = []
+    st.session_state.disponibles["armas"] = []
+    st.session_state.disponibles["robots"] = []
+    
+    st.session_state.usados = {
+        "robots" : [],
+        "armas" : []
+    }
+
 if Fecha != st.session_state.fecha_anterior:
+    st.session_state.combate["Equipo_A"] = {}
+    st.session_state.combate["Equipo_B"] = {}
+    st.session_state.len_anterior = {
+        "Equipo_A" : 0,
+        "Equipo_B" : 0,
+    }
+    st.session_state.usados = {
+        "robots" : [],
+        "armas" : []
+    }
 
     st.session_state.combate["Arena"] = None
     
@@ -224,7 +251,9 @@ if Fecha != st.session_state.fecha_anterior:
         st.error("Todas las arenas están ocupadas para ese día, escoja otro.")
         st.session_state.combate["Fecha"] = None
         st.session_state.disponibles["arena"] = []
-        
+        st.session_state.disponibles["armas"] = []
+        st.session_state.disponibles["robots"] = []
+
     else:
         st.info("Se mostrarán solo las arenas, robots y armas disponibles para esa fecha.")
         st.session_state.disponibles["arena"] = [arena for arena in st.session_state.inventario["arena"] if arena not in arena_no]
@@ -232,7 +261,7 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.disponibles["armas"] = [arma for arma in st.session_state.inventario["armas_equipables"].keys() if arma not in armas_no]   
         st.session_state.combate["Fecha"] = str(Fecha)    
     
-    st.session_state.fecha_anterior = str(Fecha)   
+    st.session_state.fecha_anterior = Fecha   
 
 elif st.session_state.combate["Fecha"] == None:                         # ~ Recomendacion Proxima fecha disponible ~ # 
     día_disponible = datetime.datetime.today().date()
@@ -345,7 +374,7 @@ st.subheader(
     anchor=False
     )
  
-recursos_disponibles()
+# recursos_disponibles()
 
 col1, col2 = st.columns(
     2, 
@@ -376,23 +405,20 @@ with col1:                      # ~ Asignacion Equipo A ~ #
                 
         robot_a = st.selectbox(
             "**Escoja un :violet[robot]:**",
-            options=st.session_state.disponibles["robots"],
+            options=[robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
             index=None,
-            on_change= recursos_disponibles()
             )
                 
         arma_izq_a = st.selectbox(
             "**Escoja un :violet[arma] para el brazo izquierdo:**",
-            options=st.session_state.disponibles["armas"],
+            options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index=None,
-            on_change= recursos_disponibles()
             )
                 
         arma_der_a = st.selectbox(
             "**Escoja un :violet[arma] para el brazo derecho:**",
-            options=st.session_state.disponibles["armas"],
+            options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index=None,
-            on_change= recursos_disponibles()
             )
         
         with st.container(
@@ -460,23 +486,20 @@ with col2:                      # ~ Asignacion Equipo B ~ #
                 
         robot_b = st.selectbox(
             "**Escoja un :violet[robot]:**",
-            options=st.session_state.disponibles["robots"],
+            options=[robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
             index=None,
-            on_change= recursos_disponibles()
             )
                 
         arma_izq_b = st.selectbox(
             "**Escoja un :violet[arma] para el brazo izquierdo:**",
-            options=st.session_state.disponibles["armas"],
+            options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index=None,
-            on_change= recursos_disponibles()
             )
                 
         arma_der_b = st.selectbox(
             "**Escoja un :violet[arma] para el brazo derecho:**",
-            options=st.session_state.disponibles["armas"],
+            options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index=None,
-            on_change= recursos_disponibles()
             )
         
         with st.container(

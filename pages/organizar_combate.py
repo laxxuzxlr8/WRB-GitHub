@@ -172,7 +172,7 @@ st.header("Organizar combate:",
 # --- #: Sección Fecha y Lugar :# --- #
 
 st.subheader(
-    body="Fecha y lugar:", 
+    body="📆 Fecha y lugar 🏟️", 
     text_alignment="center", 
     anchor=False
     )
@@ -295,22 +295,23 @@ Arena = st.selectbox(
     label="**Seleccione la :violet[Arena] del combate:**",
     options=st.session_state.disponibles["arena"],
     help="Arena donde se desarrollará el combate: en un *terreno limpio* o en un *espacio con obstáculos*.",
-    index=None, 
+    index=None,
+    key="selectbox_arena" 
     )
 
 if Arena:
     st.session_state.combate["Arena"] = Arena
+else:
+    st.session_state.combate["Arena"] = None
 
-st.write("\n")
-
-if st.session_state.combate["Arena"] == "Ring principal":
+if st.session_state.combate["Arena"] == "Ring principal":               # ~ Imagenes Arenas ~ #
     st.image("images/Gestionar Combate/Ring.png")
 
 elif st.session_state.combate["Arena"] == "Area con obstáculos":
     st.image("images/Gestionar Combate/Obstaculos.jpg")
 
 else:
-    st.session_state.combate["Arena"] = None
+    st.info("Las arenas se utilizan durante 24 horas para organizar un Combate.")
 
 st.write("\n")
 
@@ -319,7 +320,7 @@ st.divider()
 # --- #: Sección Modo de juego :# --- #
 
 st.subheader(
-        "Modo de juego:", 
+        "⚔️ Modo de juego ⚔️", 
         text_alignment="center", 
         anchor=False
         )
@@ -358,7 +359,7 @@ with col1:
         st.session_state.modo_anterior = st.session_state.combate["Modo"]
         st.rerun()
 
-with col2:
+with col2:                                  # ~ Imagenes Modo ~ #
     if st.session_state.combate["Modo"] == "Robot vs Robot":
         st.image("images/Gestionar Combate/1vs1.png")   
     elif st.session_state.combate["Modo"] == "Equipo vs Equipo":
@@ -369,7 +370,7 @@ st.divider()
 # --- #: Sección Equipos :# --- #
 
 st.subheader(
-    body="Gestionar equipos:",
+    body="👾 Gestionar equipos 👾",
     text_alignment="center",
     anchor=False
     )
@@ -386,13 +387,13 @@ with col1:                      # ~ Asignacion Equipo A ~ #
         
     if st.session_state.combate["Modo"] == "Robot vs Robot":  
         st.subheader(
-            body="Combatiente A", 
+            body=":red[Combatiente A]", 
             text_alignment="center",
             anchor=False
             )
     else:
         st.subheader(
-            body="Equipo A", 
+            body=":red[Equipo A]", 
             text_alignment="center",
             anchor=False
             )        
@@ -466,14 +467,14 @@ with col2:                      # ~ Asignacion Equipo B ~ #
         
     if st.session_state.combate["Modo"] == "Robot vs Robot":    
         st.subheader(
-            body="Combatiente B", 
+            body=":blue[Combatiente B]", 
             text_alignment="center",
             anchor=False
             )
         
     else:
         st.subheader(
-            body="Equipo B", 
+            body=":blue[Equipo B]", 
             text_alignment="center",
             anchor=False
             )
@@ -548,7 +549,7 @@ st.divider()
 # --- #: Sección Control :# --- #
 
 st.subheader(
-    body="Tipo de control:",
+    body="🎮 Tipo de control 🎮",
     text_alignment="center",
     anchor=False
 )
@@ -577,7 +578,7 @@ with col1:
 
 with col2:
     
-    if st.session_state.combate["Control"] == "Control Manual":
+    if st.session_state.combate["Control"] == "Control Manual":             # ~ Imagenes Control ~ #
         st.image("images/Gestionar Combate/Manual.png")   
     elif st.session_state.combate["Control"] == "AI Boxing":
         st.image("images/Gestionar Combate/AI.png") 
@@ -587,7 +588,7 @@ st.divider()
 # --- #: Sección Patrocinador :# --- #
     
 st.subheader(
-    body="Patrocinador:",
+    body="👤 Patrocinador 👤",
     text_alignment="center",
     anchor=False
     )

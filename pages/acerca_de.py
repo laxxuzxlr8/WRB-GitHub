@@ -33,7 +33,7 @@ puntos_a_favor = """
 
 - Escenarios complejos: arenas dinámicas con obstáculos y efectos que cambian el rumbo de la pelea.
 
-- Modalidades desafiantes: duelos individuales, batallas por equipos y formatos especiales que elevan la emoción.
+- Modalidades desafiantes: duelos individuales y batallas por equipos.
 
 """
 

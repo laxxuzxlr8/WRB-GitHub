@@ -1,245 +1,112 @@
 {
     "combates": {
-        "gggg": {
-            "Fecha": "2026-02-01",
-            "Arena": "Area con obst\u00e1culos",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Noisy Boy": [
-                    "Sierra circular",
-                    "Arma de impacto giratorio"
-                ]
-            },
-            "Equipo_B": {
-                "Ambush": [
-                    "Misiles de corto alcance",
-                    "Electroshock"
-                ]
-            },
-            "Control": "Control Manual",
-            "Patrocinador": "gggg"
-        },
-        "adra": {
-            "Fecha": "2026-02-02",
+        "Roberto": {
+            "Fecha": "2026-02-20",
             "Arena": "Ring principal",
             "Modo": "Equipo vs Equipo",
             "Equipo_A": {
                 "Atom": [
-                    "Martillo hidr\u00e1ulico",
-                    "Pu\u00f1os reforzados"
-                ],
-                "Zeus": [
-                    "Ca\u00f1\u00f3n l\u00e1ser",
-                    "Lanzallamas"
+                    "Pu\u00f1os reforzados",
+                    "Martillo hidr\u00e1ulico"
                 ],
                 "Noisy Boy": [
                     "Sierra circular",
                     "Arma de impacto giratorio"
-                ]
-            },
-            "Equipo_B": {
-                "Ambush": [
-                    "Misiles de corto alcance",
-                    "Electroshock"
                 ],
                 "Midas": [
                     "Escudo de energ\u00eda",
                     "Blindaje reforzado"
+                ]
+            },
+            "Equipo_B": {
+                "Zeus": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Lanzallamas"
+                ],
+                "Ambush": [
+                    "Misiles de corto alcance",
+                    "Electroshock"
                 ],
                 "Metro": [
                     "Campo magn\u00e9tico protector",
                     "Placas de titanio"
                 ]
             },
-            "Control": "Control Manual",
-            "Patrocinador": "adra"
+            "Control": "AI Boxing",
+            "Patrocinador": "Roberto"
         },
-        "Mojon": {
-            "Fecha": "2026-02-02",
+        "Eduardo": {
+            "Fecha": "2026-02-20",
             "Arena": "Area con obst\u00e1culos",
             "Modo": "Robot vs Robot",
             "Equipo_A": {
-                "Fatboy": [
-                    "Detector de energ\u00eda enemiga",
-                    "Generador de niebla"
-                ]
-            },
-            "Equipo_B": {
                 "Twin Cities": [
-                    "Drones de reconocimiento",
-                    "Sistema de hologramas distractores"
-                ]
-            },
-            "Control": "AI Boxing",
-            "Patrocinador": "Mojon"
-        },
-        "malanga": {
-            "Fecha": "2026-02-03",
-            "Arena": "Ring principal",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Atom": [
-                    "Pu\u00f1os reforzados",
-                    "Lanzallamas"
-                ]
-            },
-            "Equipo_B": {
-                "Zeus": [
-                    "Ca\u00f1\u00f3n l\u00e1ser",
-                    "Sierra circular"
-                ]
-            },
-            "Control": "Control Manual",
-            "Patrocinador": "malanga"
-        },
-        "lilililililili": {
-            "Fecha": "2026-02-03",
-            "Arena": "Area con obst\u00e1culos",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Ambush": [
-                    "Arma de impacto giratorio",
-                    "Electroshock"
-                ]
-            },
-            "Equipo_B": {
-                "Noisy Boy": [
-                    "Blindaje reforzado",
-                    "Iluminaci\u00f3n infrarroja"
-                ]
-            },
-            "Control": "Control Manual",
-            "Patrocinador": "lilililililili"
-        },
-        "Bien": {
-            "Fecha": "2026-02-05",
-            "Arena": "Area con obst\u00e1culos",
-            "Modo": "Equipo vs Equipo",
-            "Equipo_A": {
-                "Atom": [
-                    "Pu\u00f1os reforzados",
-                    "Martillo hidr\u00e1ulico"
-                ],
-                "Noisy Boy": [
-                    "Arma de impacto giratorio",
-                    "Blindaje reforzado"
-                ],
-                "Midas": [
-                    "Misiles de corto alcance",
-                    "Campo magn\u00e9tico protector"
-                ]
-            },
-            "Equipo_B": {
-                "Zeus": [
-                    "Ca\u00f1\u00f3n l\u00e1ser",
-                    "Lanzallamas"
-                ],
-                "Ambush": [
-                    "Electroshock",
-                    "Escudo de energ\u00eda"
-                ],
-                "Metro": [
-                    "Sierra circular",
-                    "Placas de titanio"
-                ]
-            },
-            "Control": "AI Boxing",
-            "Patrocinador": "Bien"
-        },
-        "Papaso": {
-            "Fecha": "2026-02-12",
-            "Arena": "Ring principal",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Atom": [
-                    "Pu\u00f1os reforzados",
-                    "Martillo hidr\u00e1ulico"
-                ]
-            },
-            "Equipo_B": {
-                "Zeus": [
-                    "Ca\u00f1\u00f3n l\u00e1ser",
-                    "Sierra circular"
-                ]
-            },
-            "Control": "Control Manual",
-            "Patrocinador": "Papaso"
-        },
-        "aaqqq": {
-            "Fecha": "2026-02-06",
-            "Arena": "Ring principal",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Atom": [
-                    "Ca\u00f1\u00f3n l\u00e1ser",
-                    "Arma de impacto giratorio"
-                ]
-            },
-            "Equipo_B": {
-                "Ambush": [
-                    "Lanzallamas",
-                    "Escudo de energ\u00eda"
-                ]
-            },
-            "Control": "AI Boxing",
-            "Patrocinador": "aaqqq"
-        },
-        "jijijija": {
-            "Fecha": "2026-02-04",
-            "Arena": "Ring principal",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Tackle": [
-                    "Sierra circular",
-                    "Generador de niebla"
-                ]
-            },
-            "Equipo_B": {
-                "Atom": [
-                    "Martillo hidr\u00e1ulico",
-                    "Drones de reconocimiento"
-                ]
-            },
-            "Control": "AI Boxing",
-            "Patrocinador": "jijijija"
-        },
-        "fernan": {
-            "Fecha": "2026-02-04",
-            "Arena": "Area con obst\u00e1culos",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Bricks": [
-                    "Sistema de c\u00e1maras HD",
-                    "Misiles de corto alcance"
-                ]
-            },
-            "Equipo_B": {
-                "Gridlock": [
-                    "Lanzallamas",
+                    "Sensores \u00f3pticos avanzados",
                     "Detector de energ\u00eda enemiga"
-                ]
-            },
-            "Control": "Control Manual",
-            "Patrocinador": "fernan"
-        },
-        "dgdgsh": {
-            "Fecha": "2026-02-05",
-            "Arena": "Ring principal",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Twin Cities": [
-                    "Absorci\u00f3n de impactos",
-                    "Radar de proximidad"
                 ]
             },
             "Equipo_B": {
                 "Blacktop": [
-                    "Sistema de c\u00e1maras HD",
+                    "Radar de proximidad",
                     "Iluminaci\u00f3n UV"
                 ]
             },
+            "Control": "Control Manual",
+            "Patrocinador": "Eduardo"
+        },
+        "Leonardo": {
+            "Fecha": "2026-02-21",
+            "Arena": "Ring principal",
+            "Modo": "Equipo vs Equipo",
+            "Equipo_A": {
+                "Wheeled Bot": [
+                    "Sistema de hologramas distractores",
+                    "Generador de niebla"
+                ],
+                "Vanda": [
+                    "Iluminaci\u00f3n infrarroja",
+                    "Sistema de c\u00e1maras HD"
+                ],
+                "Tackle": [
+                    "Sensores \u00f3pticos avanzados",
+                    "Absorci\u00f3n de impactos"
+                ]
+            },
+            "Equipo_B": {
+                "Visualizer": [
+                    "Iluminaci\u00f3n UV",
+                    "Detector de energ\u00eda enemiga"
+                ],
+                "Tri-Tip": [
+                    "Drones de reconocimiento",
+                    "Radar de proximidad"
+                ],
+                "Shogun": [
+                    "Sistema de evasi\u00f3n autom\u00e1tica",
+                    "Placas de titanio"
+                ]
+            },
             "Control": "AI Boxing",
-            "Patrocinador": "dgdgsh"
+            "Patrocinador": "Leonardo"
+        },
+        "Diego": {
+            "Fecha": "2026-02-22",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Axelrod": [
+                    "Electroshock",
+                    "Misiles de corto alcance"
+                ]
+            },
+            "Equipo_B": {
+                "Six Shooter": [
+                    "Placas de titanio",
+                    "Ca\u00f1\u00f3n l\u00e1ser"
+                ]
+            },
+            "Control": "Control Manual",
+            "Patrocinador": "Diego"
         }
     }
 }

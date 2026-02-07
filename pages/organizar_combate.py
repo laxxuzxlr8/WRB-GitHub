@@ -177,9 +177,16 @@ st.subheader(
     anchor=False
     )
 
+año = datetime.datetime.today().year
+if (año % 4 == 0 and año % 100 != 0) or (año % 400 == 0):
+    max_value = datetime.datetime.today().date() + datetime.timedelta(days=367)
+else:
+    max_value = datetime.datetime.today().date() + datetime.timedelta(days=366)
+
 Fecha = st.date_input(    
     label="**Elija una :violet[Fecha] para el combate:**", 
-    min_value="today", 
+    min_value=datetime.datetime.today().date() + datetime.timedelta(days=1),
+    max_value=max_value,
     format="DD/MM/YYYY",
     help="*Fecha* en la cual se desarrollará el combate.",
     value= None
@@ -264,28 +271,28 @@ if Fecha != st.session_state.fecha_anterior:
     st.session_state.fecha_anterior = Fecha   
 
 elif st.session_state.combate["Fecha"] == None:                         # ~ Recomendacion Proxima fecha disponible ~ # 
-    día_disponible = datetime.datetime.today().date()
+    día_disponible = datetime.datetime.today().date() + datetime.timedelta(days=1)
     contador = 0
     check = False
-    
-    while True:
-        
-        for combate in st.session_state.combates_programados.values():
+    if len(st.session_state.combates_programados.keys()) != 0:
+        while True:
             
-            if combate["Fecha"] == str(día_disponible):
-                if contador < 2:
-                    contador +=1       
+            for combate in st.session_state.combates_programados.values():
+                
+                if combate["Fecha"] == str(día_disponible):
+                    if contador < 2:
+                        contador +=1       
+                
+                if contador == 2:
+                    día_disponible = día_disponible + datetime.timedelta(days=1)
+                    check = False
+                    contador = 0
+                    break
+                
+                check = True    
             
-            if contador == 2:
-                día_disponible = día_disponible + datetime.timedelta(days=1)
-                check = False
-                contador = 0
+            if check:
                 break
-            
-            check = True    
-        
-        if check:
-            break
         
     st.info(f"Recomendación de Próxima fecha disponible: {str(día_disponible)}")
         

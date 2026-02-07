@@ -7,14 +7,10 @@ import streamlit as st
 RUTA_INVENTARIO = "data/inventario.json"
 RUTA_COMBATES = "data/combates.json"
 
-# --- #: Variables Datos Cargados :# --- #
-
-COMBATES = {}
-INVENTARIO = {}
-
 # --- #: Función Guardar Combates :# --- #
 
 def guardar_combates(combates):           
+    
     data = {
         "combates": combates
     }
@@ -24,7 +20,6 @@ def guardar_combates(combates):
 # --- #: Función Cargar data :# --- #
 
 def cargar_combates():             # Cargar Combates #
-    global COMBATES
     
     if not os.path.exists(RUTA_COMBATES):
         return
@@ -50,12 +45,6 @@ def cargar_inventario():          # Cargar Inventario #
 # --- #: Justificar Texto con sangría :# --- #
 
 def mostrar_texto(texto: str, sangria: str = "40px"):
-    """ 
-    Muestra texto en Streamlit con justificación y sangría. 
-    Args: 
-    texto (str): El contenido que quieres mostrar. 
-    sangria (str): Valor de sangría (ej. '40px', '2em'). Por defecto 40px. 
-    """ 
     html = f""" 
     <p style="text-align: justify; text-indent: {sangria};"> 
     {texto} 

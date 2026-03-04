@@ -1,6 +1,30 @@
 import streamlit as st
+from core import mostrar_texto, cargar_combates, guardar_combates
+import datetime as datetime
 
-from core import mostrar_texto
+# --- #: Algoritmo control de fechas / Inicio primera vez :# --- #
+
+if "combates_programados" not in st.session_state:               
+        st.session_state.combates_programados = cargar_combates()
+
+if "control_fechas" not in st.session_state:            # Variable controladora #
+    st.session_state.control_fechas = True
+
+if st.session_state.control_fechas and len(st.session_state.combates_programados) != 0 :
+    
+    listado_eliminar = []               # Listado eventos a eliminar #
+
+    for patro, data in st.session_state.combates_programados.items():
+        nums = data["Fecha"].replace("-", " ").split()
+        dia = datetime.date(int(nums[0]), int(nums[1]), int(nums[2]))
+        if datetime.date.today() > dia:
+            listado_eliminar.append(patro)
+    
+    for i in listado_eliminar:
+        st.session_state.combates_programados.pop(i)
+    
+    guardar_combates(st.session_state.combates_programados)
+    st.session_state.control_fechas = False 
 
 # --- #: Sección acerca de :# --- #
 

@@ -1,112 +1,42 @@
 {
     "combates": {
-        "Roberto": {
-            "Fecha": "2026-02-20",
+        "Primo": {
+            "Fecha": "2026-03-07",
             "Arena": "Ring principal",
-            "Modo": "Equipo vs Equipo",
-            "Equipo_A": {
-                "Atom": [
-                    "Pu\u00f1os reforzados",
-                    "Martillo hidr\u00e1ulico"
-                ],
-                "Noisy Boy": [
-                    "Sierra circular",
-                    "Arma de impacto giratorio"
-                ],
-                "Midas": [
-                    "Escudo de energ\u00eda",
-                    "Blindaje reforzado"
-                ]
-            },
-            "Equipo_B": {
-                "Zeus": [
-                    "Ca\u00f1\u00f3n l\u00e1ser",
-                    "Lanzallamas"
-                ],
-                "Ambush": [
-                    "Misiles de corto alcance",
-                    "Electroshock"
-                ],
-                "Metro": [
-                    "Campo magn\u00e9tico protector",
-                    "Placas de titanio"
-                ]
-            },
-            "Control": "AI Boxing",
-            "Patrocinador": "Roberto"
-        },
-        "Eduardo": {
-            "Fecha": "2026-02-20",
-            "Arena": "Area con obst\u00e1culos",
             "Modo": "Robot vs Robot",
             "Equipo_A": {
-                "Twin Cities": [
-                    "Sensores \u00f3pticos avanzados",
-                    "Detector de energ\u00eda enemiga"
+                "Noisy Boy": [
+                    "Arma de impacto giratorio",
+                    "Electroshock"
                 ]
             },
             "Equipo_B": {
-                "Blacktop": [
-                    "Radar de proximidad",
-                    "Iluminaci\u00f3n UV"
+                "Atom": [
+                    "Martillo hidr\u00e1ulico",
+                    "Lanzallamas"
                 ]
             },
             "Control": "Control Manual",
-            "Patrocinador": "Eduardo"
+            "Patrocinador": "Primo"
         },
-        "Leonardo": {
-            "Fecha": "2026-02-21",
-            "Arena": "Ring principal",
-            "Modo": "Equipo vs Equipo",
-            "Equipo_A": {
-                "Wheeled Bot": [
-                    "Sistema de hologramas distractores",
-                    "Generador de niebla"
-                ],
-                "Vanda": [
-                    "Iluminaci\u00f3n infrarroja",
-                    "Sistema de c\u00e1maras HD"
-                ],
-                "Tackle": [
-                    "Sensores \u00f3pticos avanzados",
-                    "Absorci\u00f3n de impactos"
-                ]
-            },
-            "Equipo_B": {
-                "Visualizer": [
-                    "Iluminaci\u00f3n UV",
-                    "Detector de energ\u00eda enemiga"
-                ],
-                "Tri-Tip": [
-                    "Drones de reconocimiento",
-                    "Radar de proximidad"
-                ],
-                "Shogun": [
-                    "Sistema de evasi\u00f3n autom\u00e1tica",
-                    "Placas de titanio"
-                ]
-            },
-            "Control": "AI Boxing",
-            "Patrocinador": "Leonardo"
-        },
-        "Diego": {
-            "Fecha": "2026-02-22",
+        "Prima": {
+            "Fecha": "2026-03-07",
             "Arena": "Area con obst\u00e1culos",
             "Modo": "Robot vs Robot",
             "Equipo_A": {
-                "Axelrod": [
-                    "Electroshock",
+                "Midas": [
+                    "Escudo de energ\u00eda",
                     "Misiles de corto alcance"
                 ]
             },
             "Equipo_B": {
-                "Six Shooter": [
-                    "Placas de titanio",
-                    "Ca\u00f1\u00f3n l\u00e1ser"
+                "Zeus": [
+                    "Pu\u00f1os reforzados",
+                    "Sierra circular"
                 ]
             },
-            "Control": "Control Manual",
-            "Patrocinador": "Diego"
+            "Control": "AI Boxing",
+            "Patrocinador": "Prima"
         }
     }
 }

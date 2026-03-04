@@ -253,7 +253,6 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.disponibles["robots"] = [robot for robot in st.session_state.inventario["robots"].keys()]
         st.session_state.disponibles["armas"] = [arma for arma in st.session_state.inventario["armas_equipables"].keys()]
 
-        
     elif len(arena_no) >= len(st.session_state.inventario["arena"]):
         st.error("Todas las arenas están ocupadas para ese día, escoja otro.")
         st.session_state.combate["Fecha"] = None

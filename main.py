@@ -2,7 +2,7 @@ import streamlit as st
 
 # --- #: Fondo Web :# --- #
 
-st.markdown( """ <style> .stApp { background-image: url("https://raw.githubusercontent.com/laxxuzxlr8/Proyecto/main/images/background.png"); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; } </style> """, unsafe_allow_html=True )
+st.markdown( """ <style> .stApp { background-image: url("https://raw.githubusercontent.com/laxxuzxlr8/WRB-GitHub/main/images/background.png"); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; } </style> """, unsafe_allow_html=True )
 
 # --- #: Presentación Lobby :# --- #
 

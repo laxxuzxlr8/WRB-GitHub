@@ -1,42 +1,76 @@
 {
     "combates": {
-        "Primo": {
+        "Sabino": {
             "Fecha": "2026-03-07",
             "Arena": "Ring principal",
-            "Modo": "Robot vs Robot",
+            "Modo": "Equipo vs Equipo",
             "Equipo_A": {
-                "Noisy Boy": [
-                    "Arma de impacto giratorio",
-                    "Electroshock"
-                ]
-            },
-            "Equipo_B": {
                 "Atom": [
-                    "Martillo hidr\u00e1ulico",
-                    "Lanzallamas"
-                ]
-            },
-            "Control": "Control Manual",
-            "Patrocinador": "Primo"
-        },
-        "Prima": {
-            "Fecha": "2026-03-07",
-            "Arena": "Area con obst\u00e1culos",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
+                    "Pu\u00f1os reforzados",
+                    "Sierra circular"
+                ],
+                "Noisy Boy": [
+                    "Motosierra",
+                    "Sistema de evasi\u00f3n autom\u00e1tica"
+                ],
                 "Midas": [
-                    "Escudo de energ\u00eda",
-                    "Misiles de corto alcance"
+                    "Misiles de corto alcance",
+                    "Drones de reconocimiento"
                 ]
             },
             "Equipo_B": {
                 "Zeus": [
-                    "Pu\u00f1os reforzados",
-                    "Sierra circular"
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Escudo de energ\u00eda"
+                ],
+                "Ambush": [
+                    "Absorci\u00f3n de impactos",
+                    "Sistema de hologramas distractores"
+                ],
+                "Metro": [
+                    "Lanzallamas",
+                    "Iluminaci\u00f3n UV"
                 ]
             },
-            "Control": "AI Boxing",
-            "Patrocinador": "Prima"
+            "C/E": 2525,
+            "Control": "Control Manual",
+            "Patrocinador": "Sabino"
+        },
+        "Joya": {
+            "Fecha": "2026-03-07",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Equipo vs Equipo",
+            "Equipo_A": {
+                "Twin Cities": [
+                    "Generador de niebla",
+                    "Blindaje reforzado"
+                ],
+                "Blacktop": [
+                    "Arma de impacto giratorio",
+                    "Sensores \u00f3pticos avanzados"
+                ],
+                "Axelrod": [
+                    "Electroshock",
+                    "Sistema de c\u00e1maras HD"
+                ]
+            },
+            "Equipo_B": {
+                "Six Shooter": [
+                    "Campo magn\u00e9tico protector",
+                    "Detector de energ\u00eda enemiga"
+                ],
+                "Bricks": [
+                    "Radar de proximidad",
+                    "Iluminaci\u00f3n infrarroja"
+                ],
+                "Blue Bot": [
+                    "Martillo hidr\u00e1ulico",
+                    "Placas de titanio"
+                ]
+            },
+            "C/E": 2475,
+            "Control": "Control Manual",
+            "Patrocinador": "Joya"
         }
     }
 }

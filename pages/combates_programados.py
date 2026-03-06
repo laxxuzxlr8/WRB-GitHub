@@ -45,17 +45,17 @@ if len(st.session_state.combates_programados) > 0:
             
             evento = st.session_state.combates_programados[st.session_state.lista_patrocinadores.iloc[st.session_state.seleccion[0][0]]]
             
-            st.dataframe(                                   # ~ Listado con fecha, arena, modo, control ~ #
+            st.dataframe(                                   # ~ Listado con fecha, arena, modo, celulas de energia, control ~ #
                 [evento],
-                column_order=["Fecha", "Arena", "Modo", "Control"],
+                column_order=["Fecha", "Arena", "Modo", "Control", "C/E"]
                 )
             
             col1,col2 = st.columns(
                 [0.5, 1.5]
             )
             
-            with col1:
-                                                                # ~ Listado de Equipos(Robots) ~ #
+            with col1:                                          # ~ Listado de Equipos(Robots) ~ #
+                                                                
                 st.dataframe(                                   
                     pd.Series(evento["Equipo_A"].keys(), name="Equipo A" if evento["Modo"] == "Equipo vs Equipo" else "Combatiente A"),
                     hide_index=True
@@ -66,8 +66,8 @@ if len(st.session_state.combates_programados) > 0:
                     hide_index=True
                     )
                 
-            with col2:
-                                                                # ~ Listado de Equipos(Armas) ~ #
+            with col2:                                          # ~ Listado de Equipos(Armas) ~ #
+                                                                
                 st.dataframe(
                     pd.Series(evento["Equipo_A"].values(), name="Armas Equipadas Equipo A" if evento["Modo"] == "Equipo vs Equipo" else "Armas Equipadas Combatiente A"),
                     hide_index=True
@@ -77,7 +77,7 @@ if len(st.session_state.combates_programados) > 0:
                     pd.Series(evento["Equipo_B"].values(), name="Armas Equipadas Equipo B" if evento["Modo"] == "Equipo vs Equipo" else "Armas Equipadas Combatiente B"),
                     hide_index=True
                    )
-
+                
     st.divider()
 
 # --- #: Seccion Eliminar Combate :# --- #
@@ -141,6 +141,7 @@ else:
         st.info("No hay *Combates Programados*, diríjase a **Organizar** un *Combate*. ")
         
         st.write("\n")
+        
         with st.container(
             horizontal_alignment="center"
         ):

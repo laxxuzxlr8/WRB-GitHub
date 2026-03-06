@@ -3,7 +3,7 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-Latest-purple.svg)
 ![License](https://img.shields.io/badge/License-CC-green.svg)
 
-# 🤖 ¡World Robot Boxing! 🥊
+# ¡World Robot Boxing!
 
 ## Tema Seleccionado
 **Planificador de combates entre Robots de la WRB.**
@@ -18,45 +18,59 @@
 - [Tecnologías Utilizadas](#-tecnologías-utilizadas)
 - [Licencia y Agradecimientos Especiales](#-licencia)
 
-## 📖 Descripción del Proyecto
+## Descripción del Proyecto
 ¡El Deporte más famoso del Futuro ya está aquí! El combate entre Robots siempre ha sido uno de los deseos más ambiciosos del ser humano: Metal vs Metal, un hito inalcanzable decían algunos excéntricos de los últimos tiempos. Pero gracias a **@laxxuzxlr8** y a su Proyecto estrella: La **World Robot Boxing**(**WRB**), ahora es posible organizar estos asaltos legendarios entre **Gigantes de Acero**. Con una amplia gama de Robots, Armas, Arenas y Restricciones, esta aplicación Web te permitirá organizar Combates inolvidables a tú manera, almacenándolos en nuestro **Sistema de Almacenamiento Json** para que no te pierdas ninguna presentación de tu Combatiente favorito.
 
-## ✅ Características Principales
+## Características Principales
 
 Esta aplicación Web cuenta con varios Módulos que te permitirán:
 
-*   **🏟️ Ver Información de la WRB**: Conoce acerca de la WRB, qué es y todo lo que puede llegar a ofrecer.
-*   **⚔️ Organizar Combates**: ¡El suelo tiembla ante la dominación del Metal! Organiza combates personalizados entre Robots de tu preferencia, con armas de todo tipo de calibre y restricciones específicas establecidas por este Sistema. Selecciona, entre las opciones disponibles, de manera rápida y sin colisiones entre Combates y Recursos, una configuración que mejor se ajuste a tus gustos: Fecha, Arena, Modo, Equipos, Control, así como el Patrocinador encargado de gestionar el encuentro planificado. 
-*   **📋 Listar Combates Programados**: Revisa el listado de todos los combates organizados hasta el momento, así como todas sus especificaciones y recursos que requiere.
-*   **🗑️ Eliminar un Combate**: La aplicación Web tiene un sistema de borrado fácil y rápido para que descartes todo tipo de encuentros que ya no sean de tu interés.
-*   **🤖 Ver Robots del Ranking Mundial**: Descubre cuáles son los Robots más exitosos de este deporte mediante una serie de imágenes de ellos.
-*   🗡 **Ver Armas y Accesorios de la WRB**: Navega a través del catálogo de armas y accesorios de la WRB para que conozcas con qué combinar a tus robots favoritos.
+*   **Ver Información de la WRB**: Conoce acerca de la WRB, qué es y todo lo que puede llegar a ofrecer.
+*   **Organizar Combates**: ¡El suelo tiembla ante la dominación del Metal! Organiza combates personalizados entre Robots de tu preferencia, con armas de todo tipo de calibre y restricciones específicas establecidas por este Sistema. Selecciona, entre las opciones disponibles, de manera rápida y sin colisiones entre Combates y Recursos, una configuración que mejor se ajuste a tus gustos: Fecha, Arena, Modo, Equipos, Control, así como el Patrocinador encargado de gestionar el encuentro planificado. 
+*   **Listar Combates Programados**: Revisa el listado de todos los combates organizados hasta el momento, así como todas sus especificaciones y recursos que requiere.
+*   **Eliminar un Combate**: La aplicación Web tiene un sistema de borrado fácil y rápido para que descartes todo tipo de encuentros que ya no sean de tu interés.
+*   **Ver Robots del Ranking Mundial**: Descubre cuáles son los Robots más exitosos de este deporte mediante una serie de imágenes de ellos.
+*   **Ver Armas y Accesorios de la WRB**: Navega a través del catálogo de armas y accesorios de la WRB para que conozcas con qué combinar a tus robots favoritos.
 
-## 👾 Funciones Auxiliares
+## Funciones Auxiliares
 
-Este proyecto cuenta también con varias funciones auxiliares que apoyan el código de la aplicación Web:
+Este proyecto cuenta también con varias funciones auxiliares que apoyan el código de la Aplicación Web:
 
-*   **📅 Recomendación de Hueco disponible**: Ten referencia del próximo día disponible para la organización de un combate en la WRB.
-*   **📦 Repartición de Recursos**: El sistema reconoce los recursos empleados en el día seleccionado y muestra solo los recursos disponibles para poder organizar otro combate.
-*   🖥 **Panel de Previsualización de Equipos**: Previsualiza en tiempo real como están quedando los equipos formados en el combate.
-*   **📜 Comprobación de Datos Necesarios**: Automáticamente el sistema reconoce si faltan campos por llenar antes de confirmar la organización de un combate y los da a conocer.
-*   **✔️ Confirmación y Cancelación del Combate**: La aplicación Web cuenta con botones de Confirmación, para comprobar la integridad de los datos necesarios y Cancelación, para borrar algunos datos entrados, como la distribución de los equipos formados. 
-*   **ℹ️ Sistema de Ayuda**: Cada menú de la aplicación cuenta con un panel de ayuda explicando para que es cada campo de entrada.
+*   **Recomendación de Hueco disponible**: Ten referencia del próximo día disponible para la organización de un combate en la WRB.
+*   **Repartición de Recursos**: El sistema reconoce los recursos empleados en el día seleccionado y muestra solo los recursos disponibles para poder organizar otro combate.
+*   **Panel de Previsualización de Equipos**: Previsualiza en tiempo real cómo están quedando los equipos formados y modifica los establecidos hasta el momento.
+*   **Comprobación de Datos Necesarios**: Automáticamente el sistema reconoce si faltan campos por llenar antes de confirmar la organización de un combate y los da a conocer.
+*   **Confirmación y Cancelación del Combate**: La aplicación Web cuenta con botones de Confirmación, para comprobar la integridad de los datos necesarios y Cancelación, para borrar algunos datos entrados, como la distribución de los equipos formados. 
+*   **Verificación de disponibilidad de Células de Energía**: Ante la confirmación de un evento, el sistema calcula la disponibilidad y el requerimiento de C/E pre-establecido en la base de datos de la Aplicación Web.
+*   **Controlador de Eventos Completados**: Al iniciar la app, todo evento programado, que se haya realizado hasta la fecha actual, es eliminado de la base de datos del sistema de manera automática.
+*   **Sistema de Ayuda**: Cada menú de la aplicación cuenta con un panel de ayuda explicando para que es cada campo de entrada.
 
-## 🛑 Restricciones de la WRB
+
+## Restricciones de la WRB
 
 Como parte de la organización de combates, la WRB ha establecido un conjunto de restricciones, que la aplicación Web hace cumplir, para una mejor planificación de estos:
 
 ### Restricción de Co-requisito
 
-*   **Regla**: Un Robot requiere de dos armas, una para cada brazo, para ser válido.  
+*   **Regla**: Un Robot requiere de dos armas, una para cada brazo, para ser válido. 
     **Explicación**: Para que los combates sean más emocionantes y variados, cada robot debe estar equipado, obligatoriamente, con dos armas diferentes, posibilitando una mayor dificultad de su control.
+
+*   **Regla**: Un robot requiere de una cantidad pre-establecida de Células de Energía para poder combatir.\
+    **Explicación**: Se ha desarrollado un Sistema de Células de Energía en el cual cada robot depende de una cantidad fija de estas células para su óptimo y completo funcionamiento, durante todo el evento.\
+    **Sistema de Células de Energía**:
+      | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
+      | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
+      | Atom | 350 | Metro | 420 | Six Shooter | 390 | Gridlock | 425 | Tri-Tip | 470 |
+      | Zeus | 550 | Twin Cities | 435 | Blue Bot | 415 | HollowJack | 385 | Vanda | 490 |
+      | Noisy Boy | 395 | Blacktop | 395 | Fatboy | 480 | Nitro | 420 | Visualizer | 325 |
+      | Ambush | 410 | Axelrod | 400 | Albino | 375 | Shogun | 410 | Wheeled Bot | 415 |
+      | Midas | 400 | Bash | 430 | Bricks | 440 | Tackle | 435 | Gambit | 365 |   
 
 ### Restricción de Exclusión Mutua
 
 *   **Regla**: Diferentes tipos de armas no pueden coexistir con otras.\
-    **Explicación**: Por razones de incompatibilidad entre armas, ciertas combinaciones de armamento no pueden establecerse en un mismo robot. Estas combinaciones son:
-
+    **Explicación**: Por razones de incompatibilidad entre armas, ciertas combinaciones de armamento no pueden establecerse en un mismo robot.\
+    **Combinaciones**:
     * **Combinación**: Lanzallamas, Sensores ópticos avanzados.\
       **Razón**: El fuego bloquea la visión de los sensores.
         
@@ -69,7 +83,7 @@ Como parte de la organización de combates, la WRB ha establecido un conjunto de
     * **Combinación**: Electroshock, Campo magnético protector.\
       **Razón**: El campo anula la descarga eléctrica.
         
-    * **Combinación**: Blindaje reforzado, Sistema de evasión automática.\
+    * **Combinación**: Blindaje reforzado, Sistema de evasión     automática.\
       **Razón**: El blindaje pesado impide la agilidad.
         
     * **Combinación**: Placas de titanio, Absorción de impactos.\
@@ -92,7 +106,7 @@ Como parte de la organización de combates, la WRB ha establecido un conjunto de
 ## Requisitos
 
 Asegurece de tener instalado en su sistema:
-*   **Python 3.7 o superior**
+*   **Python 3.8 o superior**
 *   **Git**
 *   **pip** (generalmente viene con Python)
 
@@ -132,14 +146,14 @@ Para la Instalación y Ejecución de esta aplicación Web siga las indicaciones 
     streamlit run main.py
     ```
     
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 WRB-GitHub/
 ├── main.py                         # Archivo principal de la aplicación Web
 ├── core.py                         # Algunas funciones de la aplicación Web
 ├── requirements.txt                # Lista de dependencias para instalación fácil
-├── data/                           # Carpeta de archivos json (datos de la Aplicación Web)
+├── data/                           # Carpeta de archivos json (base de datos de la Aplicación Web)
 │   ├── inventario.json             # Registro del inventario de recursos de la WRB
 │   └── combates.json               # Registro de combates planificados de la WRB
 ├── images/                         # Carpeta de imágenes de la aplicación Web
@@ -152,19 +166,19 @@ WRB-GitHub/
 └── README.md                       # Este archivo
 ```
 
-## 🦾 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 *   **[Streamlit](https://streamlit.io/)**: Framework para crear aplicaciones web interactivas en Python de manera rápida.
 *   **[Pandas](https://pandas.pydata.org/)**: Biblioteca para manipulación y análisis de datos, ideal para gestionar listas de héroes y combates.
-*   **Python**: Lenguaje de programación principal.
+*   **[Python](https://www.python.org/)**: Lenguaje de programación principal.
 
-## 📄 Licencia y Agradecimientos Especiales
+## Licencia y Agradecimientos Especiales
 
 Este proyecto fue creado como Primer Proyecto Evaluativo para la Carrera de Ciencias de la Computación de la Universidad de la Habana; 1er año, Curso: 2025-2026.
 
 **Agradecimiento especial a [ClaudiaHdezPerez](https://github.com/ClaudiaHdezPerez) por amadrinar este Proyecto.**
 
-Además, este proyecto fue inspirado por el mundo de **Gigantes de Acero**. Si te gusta el lore de esta gran historia puedes buscar información en su Wiki:
+Además, este proyecto fue inspirado por el mundo de **Gigantes de Acero**. Si te gusta el lore de esta gran historia puedes buscar información en su Wiki Oficial:
 * [Fandom Gigantes de Acero](https://gigantes-de-acero.fandom.com/es/wiki/Wiki_Gigantes_de_Acero)
 
 También puedes ver La película oficial protagonizada por **Hugh Jackman**, una historia llena de pasión y éxitos:

@@ -1,76 +1,76 @@
 {
     "combates": {
-        "Sabino": {
+        "Prueba": {
             "Fecha": "2026-03-07",
             "Arena": "Ring principal",
             "Modo": "Equipo vs Equipo",
             "Equipo_A": {
                 "Atom": [
                     "Pu\u00f1os reforzados",
-                    "Sierra circular"
+                    "Detector de energ\u00eda enemiga"
                 ],
-                "Noisy Boy": [
+                "Metro": [
                     "Motosierra",
-                    "Sistema de evasi\u00f3n autom\u00e1tica"
+                    "Electroshock"
                 ],
-                "Midas": [
-                    "Misiles de corto alcance",
-                    "Drones de reconocimiento"
+                "Zeus": [
+                    "Cuchilla guillotina vertical",
+                    "Barreras de energ\u00eda pulsante"
                 ]
             },
             "Equipo_B": {
-                "Zeus": [
-                    "Ca\u00f1\u00f3n l\u00e1ser",
-                    "Escudo de energ\u00eda"
+                "Noisy Boy": [
+                    "Lanza\u2013chispas de arco el\u00e9ctrico",
+                    "Iluminaci\u00f3n UV"
                 ],
                 "Ambush": [
-                    "Absorci\u00f3n de impactos",
-                    "Sistema de hologramas distractores"
+                    "Misiles de corto alcance",
+                    "Aplastador neum\u00e1tico"
                 ],
-                "Metro": [
-                    "Lanzallamas",
-                    "Iluminaci\u00f3n UV"
+                "Midas": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Absorci\u00f3n de impactos"
                 ]
             },
             "C/E": 2525,
             "Control": "Control Manual",
-            "Patrocinador": "Sabino"
+            "Patrocinador": "Prueba"
         },
-        "Joya": {
+        "prueba": {
             "Fecha": "2026-03-07",
             "Arena": "Area con obst\u00e1culos",
             "Modo": "Equipo vs Equipo",
             "Equipo_A": {
-                "Twin Cities": [
-                    "Generador de niebla",
-                    "Blindaje reforzado"
+                "Axelrod": [
+                    "Lanzallamas",
+                    "Placas de titanio"
+                ],
+                "Six Shooter": [
+                    "Revestimiento anti-impactos avanzado",
+                    "Campo el\u00e9ctrico disipador"
                 ],
                 "Blacktop": [
-                    "Arma de impacto giratorio",
-                    "Sensores \u00f3pticos avanzados"
-                ],
-                "Axelrod": [
-                    "Electroshock",
-                    "Sistema de c\u00e1maras HD"
+                    "Taladro percutor industrial",
+                    "Lanzador de proyectiles met\u00e1licos"
                 ]
             },
             "Equipo_B": {
-                "Six Shooter": [
-                    "Campo magn\u00e9tico protector",
-                    "Detector de energ\u00eda enemiga"
+                "Albino": [
+                    "Martillo hidr\u00e1ulico",
+                    "Radar de proximidad"
                 ],
-                "Bricks": [
-                    "Radar de proximidad",
+                "Tackle": [
+                    "Ca\u00f1\u00f3n de plasma de baja potencia",
                     "Iluminaci\u00f3n infrarroja"
                 ],
                 "Blue Bot": [
-                    "Martillo hidr\u00e1ulico",
-                    "Placas de titanio"
+                    "Maza electromagn\u00e1tica",
+                    "Ca\u00f1\u00f3n de microondas"
                 ]
             },
-            "C/E": 2475,
-            "Control": "Control Manual",
-            "Patrocinador": "Joya"
+            "C/E": 2410,
+            "Control": "AI Boxing",
+            "Patrocinador": "prueba"
         }
     }
 }

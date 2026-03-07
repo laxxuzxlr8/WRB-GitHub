@@ -1,58 +1,87 @@
 {
     "robots": {
-	    "Atom": 350,
-        "Zeus": 550,
-        "Noisy Boy": 395,
+        
+        "Albino": 375,        
         "Ambush": 410,
-        "Midas": 400,
-        "Metro": 420,
-        "Twin Cities": 435,
-        "Blacktop": 395,
+        "Atom": 350,
         "Axelrod": 400,
-        "Six Shooter": 390,
-        "Blue Bot": 415,
-        "Fatboy": 480,
-        "Albino": 375,
         "Bash": 430,
+        "Blacktop": 395,
+        "Blue Bot": 415,
         "Bricks": 440,
+        "Fatboy": 480,
         "Gambit": 365,
         "Gridlock": 425,
         "HollowJack": 385,
-        "Nitro": 420,
+        "Metro": 420,
+        "Midas": 400,
+        "Nitro": 420,        
+        "Noisy Boy": 395,
         "Shogun": 410,
+        "Six Shooter": 390,
         "Tackle": 435,
         "Tri-Tip": 470,
+        "Twin Cities": 435,
         "Vanda": 490,
         "Visualizer": 325,
-        "Wheeled Bot": 415
+        "Wheeled Bot": 415,
+        "Zeus": 550
+    
     },
+
     "armas_equipables": {
-        "Pu\u00f1os reforzados": "ofensivo",
-        "Martillo hidr\u00e1ulico": "ofensivo",
-        "Motosierra": "ofensivo",
-        "Ca\u00f1\u00f3n l\u00e1ser": "ofensivo",
-        "Lanzallamas": "ofensivo",
-        "Sierra circular": "ofensivo",
-        "Arma de impacto giratorio": "ofensivo",
-        "Misiles de corto alcance": "ofensivo",
+        
+        "Aplastador neum\u00e1tico": "ofensivo",
+        "Ca\u00f1\u00f3n de microondas": "ofensivo",
+        "Ca\u00f1\u00f3n de plasma de baja potencia": "ofensivo",
+        "Ca\u00f1\u00f3n s\u00f3nico": "ofensivo",
+        "Ca\u00f1\u00f3n l\u00e1ser": "ofensivo",        
+        "Cuchilla guillotina vertical": "ofensivo",
+        "Cuchillas retr\u00e1ctiles de tungsteno": "ofensivo",
         "Electroshock": "ofensivo",
-        "Escudo de energ\u00eda": "defensivo",
-        "Blindaje reforzado": "defensivo",
-        "Campo magn\u00e9tico protector": "defensivo",
-        "Placas de titanio": "defensivo",
-        "Sistema de evasi\u00f3n autom\u00e1tica": "defensivo",
+        "Garra prensil aplastante": "ofensivo",
+        "Lanzador de proyectiles met\u00e1licos": "ofensivo",
+        "Lanzallamas": "ofensivo",
+        "Lanza\u2013arp\u00f3n motorizado": "ofensivo",
+        "Lanza\u2013chispas de arco el\u00e9ctrico": "ofensivo",
+        "Martillo hidr\u00e1ulico": "ofensivo",
+        "Martillo rotatorio de impacto": "ofensivo",
+        "Maza electromagn\u00e1tica": "ofensivo",
+        "Misiles de corto alcance": "ofensivo",
+        "Motosierra": "ofensivo",
+        "Pu\u00f1os reforzados": "ofensivo",
+        "Sierra de cadena doble": "ofensivo",
+        "Taladro percutor industrial": "ofensivo",
+
         "Absorci\u00f3n de impactos": "defensivo",
-        "Sensores \u00f3pticos avanzados": "soporte",
-        "Radar de proximidad": "soporte",
-        "Sistema de c\u00e1maras HD": "soporte",
-        "Drones de reconocimiento": "soporte",
+        "Barreras de energ\u00eda pulsante": "defensivo",
+        "Blindaje \u00f3seo sint\u00e9tico": "defensivo",
+        "Blindaje reforzado": "defensivo",
+        "Campo el\u00e9ctrico disipador": "defensivo",
+        "Campo magn\u00e9tico protector": "defensivo",
+        "Escudo de energ\u00eda": "defensivo",
+        "Escudo \u00f3ptico reforzado": "defensivo",
+        "Placas de carburo endurecido": "defensivo",
+        "Placas de titanio": "defensivo",
+        "Revestimiento anti-impactos avanzado": "defensivo",
+        "Sistema de absorci\u00f3n cin\u00e9tica": "defensivo",
+        "Sistema de evasi\u00f3n autom\u00e1tica": "defensivo",
+
         "Detector de energ\u00eda enemiga": "soporte",
-        "Iluminaci\u00f3n UV": "especial",
-        "Iluminaci\u00f3n infrarroja": "especial",
+        "Drones de reconocimiento": "soporte",
+        "Radar de proximidad": "soporte",
+        "Sensores \u00f3pticos avanzados": "soporte",
+        "Sistema de c\u00e1maras HD": "soporte",
+
         "Generador de niebla": "especial",
+        "Iluminaci\u00f3n infrarroja": "especial",
+        "Iluminaci\u00f3n UV": "especial",
         "Sistema de hologramas distractores": "especial"
+    
     },
+    
     "combinaciones_no": {
+        
         "1": {
             "combinacion": ["Lanzallamas", "Sensores \u00f3pticos avanzados"],
             "razon": "El fuego bloquea la visi\u00f3n de los sensores."
@@ -84,11 +113,45 @@
         "8": {
             "combinacion": ["Iluminaci\u00f3n UV", "Iluminaci\u00f3n infrarroja"],
             "razon": "Solo puede usarse un tipo de iluminaci\u00f3n a la vez."
+        },
+        "9": {
+            "combinacion": ["Maza electromagn\u00e1tica", "Campo magn\u00e9tico protector"],
+            "razon": "Ambos generan campos que se anulan entre s\u00ed dentro del mismo robot."
+        },
+        "10": {
+            "combinacion": ["Lanzador de proyectiles met\u00e1licos", "Placas de carburo endurecido"],
+            "razon": "Las placas desv\u00edan los proyectiles al salir, causando fallos internos."
+        },
+        "11": {
+            "combinacion": ["Cuchilla guillotina vertical", "Sistema de evasi\u00f3n autom\u00e1tica"],
+            "razon": "El movimiento evasivo impide la estabilidad necesaria para la guillotina."
+        },
+        "12": {
+            "combinacion": ["Garra prensil aplastante", "Escudo \u00f3ptico reforzado"],
+            "razon": "La garra no puede operar sin obstruir el campo visual del escudo."
+        },
+        "13": {
+            "combinacion": ["Lanza\u2013chispas de arco el\u00e9ctrico", "Campo el\u00e9ctrico disipador"],
+            "razon": "El campo disipador neutraliza el arco el\u00e9ctrico del arma."
+        },
+        "14": {
+            "combinacion": ["Sierra de cadena doble", "Blindaje \u00f3seo sint\u00e9tico"],
+            "razon": "El blindaje desprende residuos que atascan la doble cadena."
+        },
+        "15": {
+            "combinacion": ["Ca\u00f1\u00f3n s\u00f3nico", "Detector de energ\u00eda enemiga"],
+            "razon": "Las ondas s\u00f3nicas saturan los sensores del detector."
         }
-    }, 
+    
+    },
+    
     "arena": {
+        
         "Ring principal" : "Arena principal de combates WRB.",
         "Area con obst\u00e1culos": "Terreno para combates con riesgo. "
+    
     },
+    
     "celulas_energia": 5000
+    
 }

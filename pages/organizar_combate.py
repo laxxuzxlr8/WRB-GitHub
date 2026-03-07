@@ -487,7 +487,7 @@ with col1:                      # ~ Asignacion Equipo A ~ #
             placeholder="Armas y Accesorios",
             help=
             """
-            **Listado de armas-accesorios con su tipo**:
+            **Listado de armas-accesorios y su tipo**:
             | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
             | :--- | :---: | :--- | :---: | :--- | :---: |
             | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
@@ -512,9 +512,30 @@ with col1:                      # ~ Asignacion Equipo A ~ #
             "**Escoja un :violet[arma] para el brazo derecho:**",
             options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index=None,
-            placeholder="Armas y Accesorios"
+            placeholder="Armas y Accesorios",
+            help = 
+            """
+            **Listado de incompatibilidades entre armas-accesorios y la razón de incompatibilidad**:
+            | Arma-Accesorio 1 | Arma-Accesorio 2 | Razón |
+            | :--- | :--- | :--- |
+            | Lanzallamas | Sensores ópticos avanzados | El fuego bloquea la visión de los sensores |
+            | Cañón láser | Generador de niebla | La niebla impide la precisión del láser |
+            | Martillo hidráulico | Escudo de energía | El escudo absorbe el impacto, no pueden coexistir |
+            | Electroshock | Campo magnético protector | El campo anula la descarga eléctrica |
+            | Blindaje reforzado | Sistema de evasión automática | El blindaje pesado impide la agilidad |
+            | Placas de titanio | Absorción de impactos | Ambos ocupan el mismo sistema estructural |
+            | Drones de reconocimiento | Iluminación infrarroja | La luz IR interfiere con los drones |
+            | Iluminación UV | Iluminación infrarroja | Solo puede usarse un tipo de iluminación a la vez |
+            | Maza electromagnética | Campo magnético protector | Ambos generan campos que se anulan entre sí dentro del mismo robot |
+            | Lanzador de proyectiles metálicos | Placas de carburo endurecido | Las placas desvían los proyectiles al salir, causando fallos internos |
+            | Cuchilla guillotina vertical | Sistema de evasión automática | El movimiento evasivo impide la estabilidad necesaria para la guillotina |
+            | Garra prensil aplastante | Escudo óptico reforzado | La garra no puede operar sin obstruir el campo visual del escudo |
+            | Radar de proximidad | Campo eléctrico disipador | El campo disipador neutraliza el arco eléctrico del arma |
+            | Sierra de cadena doble | Blindaje óseo sintético | El blindaje desprende residuos que atascan la doble cadena |
+            | Cañón sónico | Detector de energía enemiga | Las ondas sónicas saturan los sensores del detector |
+            """
             )
-        
+            
         with st.container(
             horizontal_alignment="center"
         ):        
@@ -635,7 +656,7 @@ with col2:                      # ~ Asignacion Equipo B ~ #
             placeholder="Armas y Accesorios",
             help=
             """
-            **Listado de armas-accesorios con su tipo**:
+            **Listado de armas-accesorios y su tipo**:
             | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
             | :--- | :---: | :--- | :---: | :--- | :---: |
             | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
@@ -660,7 +681,28 @@ with col2:                      # ~ Asignacion Equipo B ~ #
             "**Escoja un :violet[arma] para el brazo derecho:**",
             options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index=None,
-            placeholder="Armas y Accesorios"
+            placeholder="Armas y Accesorios",
+            help = 
+            """
+            **Listado de incompatibilidades entre armas-accesorios y la razón de incompatibilidad**:
+            | Arma-Accesorio 1 | Arma-Accesorio 2 | Razón |
+            | :--- | :--- | :--- |
+            | Lanzallamas | Sensores ópticos avanzados | El fuego bloquea la visión de los sensores |
+            | Cañón láser | Generador de niebla | La niebla impide la precisión del láser |
+            | Martillo hidráulico | Escudo de energía | El escudo absorbe el impacto, no pueden coexistir |
+            | Electroshock | Campo magnético protector | El campo anula la descarga eléctrica |
+            | Blindaje reforzado | Sistema de evasión automática | El blindaje pesado impide la agilidad |
+            | Placas de titanio | Absorción de impactos | Ambos ocupan el mismo sistema estructural |
+            | Drones de reconocimiento | Iluminación infrarroja | La luz IR interfiere con los drones |
+            | Iluminación UV | Iluminación infrarroja | Solo puede usarse un tipo de iluminación a la vez |
+            | Maza electromagnética | Campo magnético protector | Ambos generan campos que se anulan entre sí dentro del mismo robot |
+            | Lanzador de proyectiles metálicos | Placas de carburo endurecido | Las placas desvían los proyectiles al salir, causando fallos internos |
+            | Cuchilla guillotina vertical | Sistema de evasión automática | El movimiento evasivo impide la estabilidad necesaria para la guillotina |
+            | Garra prensil aplastante | Escudo óptico reforzado | La garra no puede operar sin obstruir el campo visual del escudo |
+            | Radar de proximidad | Campo eléctrico disipador | El campo disipador neutraliza el arco eléctrico del arma |
+            | Sierra de cadena doble | Blindaje óseo sintético | El blindaje desprende residuos que atascan la doble cadena |
+            | Cañón sónico | Detector de energía enemiga | Las ondas sónicas saturan los sensores del detector |
+            """
             )
         
         with st.container(

@@ -6,6 +6,7 @@
 # ¡World Robot Boxing!
 
 ## Tema Seleccionado
+
 **Planificador de combates entre Robots de la WRB.**
 
 ## Tabla de Contenidos
@@ -19,6 +20,7 @@
 - [Licencia y Agradecimientos Especiales](#licencia-y-agradecimientos-especiales)
 
 ## Descripción del Proyecto
+
 ¡El Deporte más famoso del Futuro ya está aquí! El combate entre Robots siempre ha sido uno de los deseos más ambiciosos del ser humano: Metal vs Metal, un hito inalcanzable decían algunos excéntricos de los últimos tiempos. Pero gracias a **@laxxuzxlr8** y a su Proyecto estrella: La **World Robot Boxing**(**WRB**), ahora es posible organizar estos asaltos legendarios entre **Gigantes de Acero**. Con una amplia gama de Robots, Armas, Arenas y Restricciones, esta aplicación Web te permitirá organizar Combates inolvidables a tú manera, almacenándolos en nuestro **Sistema de Almacenamiento Json** para que no te pierdas ninguna presentación de tu Combatiente favorito.
 
 ## Características Principales
@@ -34,7 +36,7 @@ Esta aplicación Web cuenta con varios Módulos que te permitirán:
 
 ## Funciones Auxiliares
 
-Este proyecto cuenta también con varias funciones auxiliares que apoyan el código de la Aplicación Web:
+Este proyecto cuenta también con algunas funciones auxiliares que apoyan el código de la Aplicación Web:
 
 *   **Recomendación de Hueco disponible**: Ten referencia del próximo día disponible para la organización de un combate en la WRB.
 *   **Repartición de Recursos**: El sistema reconoce los recursos empleados en el día seleccionado y muestra solo los recursos disponibles para poder organizar otro combate.
@@ -53,8 +55,10 @@ Como parte de la organización de combates, la WRB ha establecido un conjunto de
 ### Restricción de Co-requisito
 
 *   **Regla**: Un robot requiere de una cantidad pre-establecida de Células de Energía para poder combatir.\
-    **Explicación**: Se ha desarrollado un Sistema de Células de Energía en el cual cada robot depende de una cantidad fija de estas células para su óptimo y completo funcionamiento, durante todo el evento.\
+    **Explicación**: Se ha desarrollado un Sistema de Células de Energía en el cual cada robot depende de una cantidad fija de estas células para su óptimo y completo funcionamiento, durante todo el evento.
+    
     **Sistema de Células de Energía**:
+      
       | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
       | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
       | Albino | 375 | Ambush | 410 | Atom | 350 | Axelrod | 400 | Bash | 430 |
@@ -64,8 +68,10 @@ Como parte de la organización de combates, la WRB ha establecido un conjunto de
       | Twin Cities | 435 | Vanda | 490 | Visualizer | 325 | Wheeled Bot | 415 | Zeus | 550 |
 
 *   **Regla**: Un Robot requiere de dos armas, una para cada brazo, para ser válido.\
-    **Explicación**: Para que los combates sean más emocionantes y variados, cada robot debe estar equipado, obligatoriamente, con dos armas diferentes, posibilitando una mayor dificultad de su control.\
+    **Explicación**: Para que los combates sean más emocionantes y variados, cada robot debe estar equipado, obligatoriamente, con dos armas diferentes, posibilitando una mayor dificultad de su control.
+    
     **Armamento**:
+    
     | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
     | :--- | :---: | :--- | :---: | :--- | :---: |
     | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
@@ -122,7 +128,7 @@ Como parte de la organización de combates, la WRB ha establecido un conjunto de
       **Razón**: Las placas desvían los proyectiles al salir, causando fallos internos.
     
     * **Combinación**: Cuchilla guillotina vertical, Sistema de evasión automática.\
-      **Razón**: "El movimiento evasivo impide la estabilidad necesaria para la guillotina.
+      **Razón**: El movimiento evasivo impide la estabilidad necesaria para la guillotina.
     
     * **Combinación**: Garra prensil aplastante, Escudo óptico reforzado.\
       **Razón**: La garra no puede operar sin obstruir el campo visual del escudo.
@@ -193,11 +199,10 @@ Para la Instalación y Ejecución de esta aplicación Web siga las indicaciones 
     
 ## Estructura del Proyecto
 
+Visualización de la estructura de los archivos del Proyecto:
+
 ```
 WRB-GitHub/
-├── main.py                         # Archivo principal de la aplicación Web
-├── core.py                         # Algunas funciones de la aplicación Web
-├── requirements.txt                # Lista de dependencias para instalación fácil
 ├── data/                           # Carpeta de archivos json (base de datos de la Aplicación Web)
 │   ├── inventario.json             # Registro del inventario de recursos de la WRB
 │   └── combates.json               # Registro de combates planificados de la WRB
@@ -208,10 +213,15 @@ WRB-GitHub/
 │   ├── combates_organizados.py     # Página para listar combates programados de la WRB
 │   ├── robots.py                   # Página de Ranking Mundial de robots de la WRB
 │   └── armas.py                    # Página de catálogo de armas y accesorios
-└── README.md                       # Este archivo
+├── core.py                         # Algunas funciones de la aplicación Web
+├── main.py                         # Archivo principal de la aplicación Web
+├── README.md                       # Este archivo
+└── requirements.txt                # Lista de dependencias para instalación fácil
 ```
 
 ## Tecnologías Utilizadas
+
+Lenguaje de Programación y Librerías utilizadas para la creación de esta Web:
 
 *   **[Streamlit](https://streamlit.io/)**: Framework para crear aplicaciones web interactivas en Python de manera rápida.
 *   **[Pandas](https://pandas.pydata.org/)**: Biblioteca para manipulación y análisis de datos, ideal para gestionar listas de héroes y combates.

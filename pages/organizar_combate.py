@@ -208,7 +208,7 @@ Fecha = st.date_input(
     min_value=datetime.datetime.today().date() + datetime.timedelta(days=1),
     max_value=max_value,
     format="DD/MM/YYYY",
-    help="*Fecha* en la cual se desarrollará el combate.",
+    help="Fecha en la cual se desarrollará el combate.",
     value= None
     )
 
@@ -290,7 +290,7 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.disponibles["celulas"] = 0
 
     else:
-        st.info("Se mostrarán solo las arenas, robots y armas disponibles para esa fecha.")
+        st.info("Se mostrarán solo las arenas, robots, armas-accesorios y células de energía disponibles para la fecha seleccionada.")
         st.session_state.disponibles["arena"] = [arena for arena in st.session_state.inventario["arena"] if arena not in arena_no]
         st.session_state.disponibles["robots"] = [robot for robot in st.session_state.inventario["robots"].keys() if robot not in robot_no]
         st.session_state.disponibles["armas"] = [arma for arma in st.session_state.inventario["armas_equipables"].keys() if arma not in armas_no]   
@@ -330,7 +330,7 @@ elif st.session_state.combate["Fecha"] == None:                         # ~ Reco
 Arena = st.selectbox(
     label="**Seleccione la :violet[Arena] del combate:**",
     options=st.session_state.disponibles["arena"],
-    help="Arena donde se desarrollará el combate: en un *terreno limpio* o en un *espacio con obstáculos*.",
+    help="Arena donde se desarrollará el combate.",
     index=None,
     key="selectbox_arena" 
     )
@@ -340,14 +340,22 @@ if Arena:
 else:
     st.session_state.combate["Arena"] = None
 
-if st.session_state.combate["Arena"] == "Ring principal":               # ~ Imagenes Arenas ~ #
+if st.session_state.combate["Arena"] == "Ring de pelea principal":               # ~ Imagenes Arenas ~ #
     st.image("images/Gestionar Combate/Ring.png")
+    st.caption(
+        body = "**Arena principal de combates WRB**", 
+        text_alignment = "center"
+        )
 
 elif st.session_state.combate["Arena"] == "Area con obstáculos":
     st.image("images/Gestionar Combate/Obstaculos.jpg")
+    st.caption(
+        body = "**Terreno para combates con riesgo**",
+        text_alignment = "center"
+        )
 
 else:
-    st.info("Las arenas se utilizan durante 24 horas para organizar un Combate.")
+    st.info("Los eventos se programan con un día de diferencia debido a la preparación de las arenas y a la carga de las Células de Energía.")
 
 st.write("\n")
 
@@ -362,8 +370,6 @@ st.subheader(
         )
 
 st.write("\n")
-
-energia = st.session_state.usados["celulas"]
 
 col1,col2 = st.columns(
     [0.7, 1.3],
@@ -380,7 +386,7 @@ with col1:
         st.session_state.combate["Modo"] = st.radio(
             label="**Escoja un :violet[Modo de juego]:**",
             options=["Robot vs Robot", "Equipo vs Equipo"],
-            help = "Establece la *distribución de equipos* para el combate: *1vs1* o *3vs3*"
+            help = "Establece la distribución de equipos para el combate: [1 vs 1] o [3 vs 3]"
             )
 
     if st.session_state.combate["Modo"] != st.session_state.modo_anterior:         # ~ Control con cambio de modo ~ #     
@@ -400,14 +406,28 @@ with col1:
         st.rerun()
 
 with col2:                                  # ~ Imagenes Modo ~ #
+    
     if st.session_state.combate["Modo"] == "Robot vs Robot":
-        st.image("images/Gestionar Combate/1vs1.png")   
+        st.image("images/Gestionar Combate/1vs1.png")
+        st.write("\n")
+        st.caption(
+            body="**Combate frenético en solitario**",
+            text_alignment="center"
+        )
+    
     elif st.session_state.combate["Modo"] == "Equipo vs Equipo":
         st.image("images/Gestionar Combate/3vs3.png") 
+        st.write("\n")
+        st.caption(
+            body="**Lluvia de golpes en grupo**",
+            text_alignment="center"
+        )
 
 st.divider()
 
 # --- #: Sección Equipos :# --- #
+
+energia = st.session_state.usados["celulas"]
 
 st.subheader(
     body="👾 Gestionar equipos 👾",
@@ -446,14 +466,46 @@ with col1:                      # ~ Asignacion Equipo A ~ #
             "**Escoja un :violet[robot]:**",
             options=[robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
             index=None,
-            placeholder="Robots"
+            placeholder="Robots",
+            help =
+            """
+            **Listado de robots con las C/E requeridas por robot**:
+            | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
+            | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
+            | Atom | 350 | Metro | 420 | Six Shooter | 390 | Gridlock | 425 | Tri-Tip | 470 |
+            | Zeus | 550 | Twin Cities | 435 | Blue Bot | 415 | HollowJack | 385 | Vanda | 490 |
+            | Noisy Boy | 395 | Blacktop | 395 | Fatboy | 480 | Nitro | 420 | Visualizer | 325 |
+            | Ambush | 410 | Axelrod | 400 | Albino | 375 | Shogun | 410 | Wheeled Bot | 415 |
+            | Midas | 400 | Bash | 430 | Bricks | 440 | Tackle | 435 | Gambit | 365 | 
+            """
             )
 
         arma_izq_a = st.selectbox(
             "**Escoja un :violet[arma] para el brazo izquierdo:**",
             options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index=None,
-            placeholder="Armas y Accesorios"
+            placeholder="Armas y Accesorios",
+            help=
+            """
+            **Listado de armas-accesorios con su tipo**:
+            | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
+            | :--- | :---: | :--- | :---: | :--- | :---: |
+            | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
+            | Cañón sónico | Ofensivo | Cañón láser | Ofensivo | Cuchilla guillotina vertical | Ofensivo |
+            | Cuchillas retráctiles de tungsteno | Ofensivo | Electroshock | Ofensivo | Garra prensil aplastante | Ofensivo |
+            | Lanzador de proyectiles metálicos | Ofensivo | Lanzallamas | Ofensivo | Lanza-arpón motorizado | Ofensivo |
+            | Lanza-chispas de arco eléctrico | Ofensivo | Martillo hidráulico | Ofensivo | Martillo rotatorio de impacto | Ofensivo |
+            | Maza electromagnática | Ofensivo | Misiles de corto alcance | Ofensivo | Motosierra | Ofensivo |
+            | Puños reforzados | Ofensivo | Sierra de cadena doble | Ofensivo | Taladro percutor industrial | Ofensivo |
+            | Absorción de impactos | Defensivo | Barreras de energía pulsante | Defensivo | Blindaje óseo sintético | Defensivo |
+            | Blindaje reforzado | Defensivo | Campo eléctrico disipador | Defensivo | Campo magnético protector | Defensivo |
+            | Escudo de energía | Defensivo | Escudo óptico reforzado | Defensivo | Placas de carburo endurecido | Defensivo |
+            | Placas de titanio | Defensivo | Revestimiento anti-impactos avanzado | Defensivo | Sistema de absorción cinética | Defensivo |
+            | Sistema de evasión automática | Defensivo | Detector de energía enemiga | Soporte | Drones de reconocimiento | Soporte |
+            | Radar de proximidad | Soporte | Sensores ópticos avanzados | Soporte | Sistema de cámaras HD | Soporte |
+            | Generador de niebla | Especial | Iluminación infrarroja | Especial | Iluminación UV | Especial |
+            | Sistema de hologramas distractores | Especial | --- | --- | --- | --- |            
+            """
             )
                 
         arma_der_a = st.selectbox(
@@ -469,7 +521,7 @@ with col1:                      # ~ Asignacion Equipo A ~ #
         
             bt_a = st.form_submit_button(
                 label="**:green[Agregar] Robot**",
-                help="Agrega un *robot* al **Equipo A**. El robot debe estar *equipado* completamente para ser *válido*."
+                help="Agrega un robot al Equipo A. El robot debe estar equipado completamente para ser válido."
                 )
     
     col3, col4, col5 = st.columns([1.0,0.5,0.5], vertical_alignment="center")                           # ~ Previsualizador Equipo A ~ #
@@ -562,14 +614,46 @@ with col2:                      # ~ Asignacion Equipo B ~ #
             "**Escoja un :violet[robot]:**",
             options=[robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
             index=None,
-            placeholder="Robots"
+            placeholder="Robots",
+            help =
+            """
+            **Listado de robots con las C/E requeridas por robot**:
+            | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
+            | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
+            | Atom | 350 | Metro | 420 | Six Shooter | 390 | Gridlock | 425 | Tri-Tip | 470 |
+            | Zeus | 550 | Twin Cities | 435 | Blue Bot | 415 | HollowJack | 385 | Vanda | 490 |
+            | Noisy Boy | 395 | Blacktop | 395 | Fatboy | 480 | Nitro | 420 | Visualizer | 325 |
+            | Ambush | 410 | Axelrod | 400 | Albino | 375 | Shogun | 410 | Wheeled Bot | 415 |
+            | Midas | 400 | Bash | 430 | Bricks | 440 | Tackle | 435 | Gambit | 365 | 
+            """
             )
                 
         arma_izq_b = st.selectbox(
             "**Escoja un :violet[arma] para el brazo izquierdo:**",
             options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index=None,
-            placeholder="Armas y Accesorios"
+            placeholder="Armas y Accesorios",
+            help=
+            """
+            **Listado de armas-accesorios con su tipo**:
+            | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
+            | :--- | :---: | :--- | :---: | :--- | :---: |
+            | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
+            | Cañón sónico | Ofensivo | Cañón láser | Ofensivo | Cuchilla guillotina vertical | Ofensivo |
+            | Cuchillas retráctiles de tungsteno | Ofensivo | Electroshock | Ofensivo | Garra prensil aplastante | Ofensivo |
+            | Lanzador de proyectiles metálicos | Ofensivo | Lanzallamas | Ofensivo | Lanza-arpón motorizado | Ofensivo |
+            | Lanza-chispas de arco eléctrico | Ofensivo | Martillo hidráulico | Ofensivo | Martillo rotatorio de impacto | Ofensivo |
+            | Maza electromagnática | Ofensivo | Misiles de corto alcance | Ofensivo | Motosierra | Ofensivo |
+            | Puños reforzados | Ofensivo | Sierra de cadena doble | Ofensivo | Taladro percutor industrial | Ofensivo |
+            | Absorción de impactos | Defensivo | Barreras de energía pulsante | Defensivo | Blindaje óseo sintético | Defensivo |
+            | Blindaje reforzado | Defensivo | Campo eléctrico disipador | Defensivo | Campo magnético protector | Defensivo |
+            | Escudo de energía | Defensivo | Escudo óptico reforzado | Defensivo | Placas de carburo endurecido | Defensivo |
+            | Placas de titanio | Defensivo | Revestimiento anti-impactos avanzado | Defensivo | Sistema de absorción cinética | Defensivo |
+            | Sistema de evasión automática | Defensivo | Detector de energía enemiga | Soporte | Drones de reconocimiento | Soporte |
+            | Radar de proximidad | Soporte | Sensores ópticos avanzados | Soporte | Sistema de cámaras HD | Soporte |
+            | Generador de niebla | Especial | Iluminación infrarroja | Especial | Iluminación UV | Especial |
+            | Sistema de hologramas distractores | Especial | --- | --- | --- | --- |            
+            """
             )
                 
         arma_der_b = st.selectbox(
@@ -585,7 +669,7 @@ with col2:                      # ~ Asignacion Equipo B ~ #
                 
             bt_b = st.form_submit_button(
                 label="**:green[Agregar] Robot**",
-                help="Agrega un *robot* al **Equipo B**. El robot debe estar *equipado* completamente para ser *válido*."
+                help="Agrega un robot al Equipo B. El robot debe estar equipado completamente para ser válido."
                 )
      
     col3, col4, col5 = st.columns([1.0,0.5,0.5], vertical_alignment="center")                           # ~ Previsualizador Equipo B ~ #
@@ -662,7 +746,7 @@ with col2:                                                  # ~ Menú Distribuci
             st.markdown(
                 body = ":yellow[Células de Energía]", 
                 text_alignment = "center",
-                help = "Menú de distribución de Células de Energía."                
+                help = "Menú de distribución de Células de Energía. Escoja una fecha para más información sobre el Sistema de Energía."                
                 )
         else:
             st.markdown(
@@ -700,15 +784,26 @@ with col1:
             options=["Control Manual", "AI Boxing"],
             index=0,
             horizontal=False,
-            help="Escoger entre controlar a los robots *manualmente* o con *IA Boxing*."
+            help="Escoger entre controlar a los robots Manualmente o con IA Boxing."
             )
 
 with col2:
     
     if st.session_state.combate["Control"] == "Control Manual":             # ~ Imagenes Control ~ #
-        st.image("images/Gestionar Combate/Manual.png")   
+        st.image("images/Gestionar Combate/Manual.png")
+        st.write("\n")
+        st.caption(
+        body = "**Controlador libre**",
+        text_alignment = "center"
+        )
+           
     elif st.session_state.combate["Control"] == "AI Boxing":
         st.image("images/Gestionar Combate/AI.png") 
+        st.write("\n")
+        st.caption(
+        body = "**Movimiento automático**",
+        text_alignment = "center"
+        )
     
 st.divider()    
        
@@ -734,13 +829,13 @@ with col2:
             label="**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
             value=st.session_state.combate["Patrocinador"],
             max_chars=20,
-            help="*Encargado* o *Responsable* del **combate**.",
+            help="Encargado o Responsable de la planificación del combate.",
             placeholder="Escriba un nombre."
             )
     else:
         Patrocinador = st.text_input(
             label="**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
-            help="*Encargado* o *Responsable* del **combate**.",
+            help="Encargado o Responsable de la planificación del combate.",
             disabled=True,
             placeholder="Seleccione una fecha primero."
             )    
@@ -795,7 +890,7 @@ with col2:
                 
                 bt_confirmar = st.button(
                     label = "**:green[Confirmar] evento**",
-                    help = "**Confirma** el *combate* que estaba planificando. No se *agregará* hasta que todos los *campos* sean **válidos**."
+                    help = "Confirma el combate que estaba planificando. No se agregará hasta que todos los campos sean válidos."
                     )
 
         with col2:                  # ~ Boton para cancelar ~ #
@@ -806,7 +901,7 @@ with col2:
                 
                 bt_cancelar = st.button(
                     label = "**:red[Cancelar] evento**",
-                    help = "**Cancela** el *combate* que estaba *planificando*."
+                    help = "Cancela el combate que estaba planificando."
                     )
 
         st.write("\n")
@@ -836,7 +931,7 @@ if bt_confirmar:
           
 if bt_cancelar:
     
-    st.info("El combate que estaba organizando a sido cancelado. Gracias por su atención!")
+    st.info("El combate que estaba organizando a sido cancelado. ¡Gracias por su atención!")
     resetear_web()
     sleep(2)
     st.rerun()      

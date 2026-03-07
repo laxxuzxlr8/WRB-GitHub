@@ -9,14 +9,14 @@
 **Planificador de combates entre Robots de la WRB.**
 
 ## Tabla de Contenidos
-- [Descripción](#-descripción-del-proyecto)
-- [Características](#-características-principales)
-- [Funciones](#-funciones-auxiliares)
-- [Restricciones](#-restricciones-de-la-wrb)
+- [Descripción](#descripción-del-proyecto)
+- [Características](#características-principales)
+- [Funciones](#funciones-auxiliares)
+- [Restricciones](#restricciones-de-la-wrb)
 - [Instalación y Ejecución](#instalación-y-ejecución)
-- [Estructura](#-estructura-del-proyecto)
-- [Tecnologías Utilizadas](#-tecnologías-utilizadas)
-- [Licencia y Agradecimientos Especiales](#-licencia)
+- [Estructura](#estructura-del-proyecto)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Licencia y Agradecimientos Especiales](#licencia-y-agradecimientos-especiales)
 
 ## Descripción del Proyecto
 ¡El Deporte más famoso del Futuro ya está aquí! El combate entre Robots siempre ha sido uno de los deseos más ambiciosos del ser humano: Metal vs Metal, un hito inalcanzable decían algunos excéntricos de los últimos tiempos. Pero gracias a **@laxxuzxlr8** y a su Proyecto estrella: La **World Robot Boxing**(**WRB**), ahora es posible organizar estos asaltos legendarios entre **Gigantes de Acero**. Con una amplia gama de Robots, Armas, Arenas y Restricciones, esta aplicación Web te permitirá organizar Combates inolvidables a tú manera, almacenándolos en nuestro **Sistema de Almacenamiento Json** para que no te pierdas ninguna presentación de tu Combatiente favorito.
@@ -52,24 +52,44 @@ Como parte de la organización de combates, la WRB ha establecido un conjunto de
 
 ### Restricción de Co-requisito
 
-*   **Regla**: Un Robot requiere de dos armas, una para cada brazo, para ser válido. 
-    **Explicación**: Para que los combates sean más emocionantes y variados, cada robot debe estar equipado, obligatoriamente, con dos armas diferentes, posibilitando una mayor dificultad de su control.
-
 *   **Regla**: Un robot requiere de una cantidad pre-establecida de Células de Energía para poder combatir.\
     **Explicación**: Se ha desarrollado un Sistema de Células de Energía en el cual cada robot depende de una cantidad fija de estas células para su óptimo y completo funcionamiento, durante todo el evento.\
     **Sistema de Células de Energía**:
       | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
       | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
-      | Atom | 350 | Metro | 420 | Six Shooter | 390 | Gridlock | 425 | Tri-Tip | 470 |
-      | Zeus | 550 | Twin Cities | 435 | Blue Bot | 415 | HollowJack | 385 | Vanda | 490 |
-      | Noisy Boy | 395 | Blacktop | 395 | Fatboy | 480 | Nitro | 420 | Visualizer | 325 |
-      | Ambush | 410 | Axelrod | 400 | Albino | 375 | Shogun | 410 | Wheeled Bot | 415 |
-      | Midas | 400 | Bash | 430 | Bricks | 440 | Tackle | 435 | Gambit | 365 |   
+      | Albino | 375 | Ambush | 410 | Atom | 350 | Axelrod | 400 | Bash | 430 |
+      | Blacktop | 395 | Blue Bot | 415 | Bricks | 440 | Fatboy | 480 | Gambit | 365 |
+      | Gridlock | 425 | HollowJack | 385 | Metro | 420 | Midas | 400 | Nitro | 420 |
+      | Noisy Boy | 395 | Shogun | 410 | Six Shooter | 390 | Tackle | 435 | Tri-Tip | 470 |
+      | Twin Cities | 435 | Vanda | 490 | Visualizer | 325 | Wheeled Bot | 415 | Zeus | 550 |
+
+*   **Regla**: Un Robot requiere de dos armas, una para cada brazo, para ser válido.\
+    **Explicación**: Para que los combates sean más emocionantes y variados, cada robot debe estar equipado, obligatoriamente, con dos armas diferentes, posibilitando una mayor dificultad de su control.\
+    **Armamento**:
+    | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
+    | :--- | :---: | :--- | :---: | :--- | :---: |
+    | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
+    | Cañón sónico | Ofensivo | Cañón láser | Ofensivo | Cuchilla guillotina vertical | Ofensivo |
+    | Cuchillas retráctiles de tungsteno | Ofensivo | Electroshock | Ofensivo | Garra prensil aplastante | Ofensivo |
+    | Lanzador de proyectiles metálicos | Ofensivo | Lanzallamas | Ofensivo | Lanza-arpón motorizado | Ofensivo |
+    | Lanza-chispas de arco eléctrico | Ofensivo | Martillo hidráulico | Ofensivo | Martillo rotatorio de impacto | Ofensivo |
+    | Maza electromagnática | Ofensivo | Misiles de corto alcance | Ofensivo | Motosierra | Ofensivo |
+    | Puños reforzados | Ofensivo | Sierra de cadena doble | Ofensivo | Taladro percutor industrial | Ofensivo |
+    | Absorción de impactos | Defensivo | Barreras de energía pulsante | Defensivo | Blindaje óseo sintético | Defensivo |
+    | Blindaje reforzado | Defensivo | Campo eléctrico disipador | Defensivo | Campo magnético protector | Defensivo |
+    | Escudo de energía | Defensivo | Escudo óptico reforzado | Defensivo | Placas de carburo endurecido | Defensivo |
+    | Placas de titanio | Defensivo | Revestimiento anti-impactos avanzado | Defensivo | Sistema de absorción cinética | Defensivo |
+    | Sistema de evasión automática | Defensivo | Detector de energía enemiga | Soporte | Drones de reconocimiento | Soporte |
+    | Radar de proximidad | Soporte | Sensores ópticos avanzados | Soporte | Sistema de cámaras HD | Soporte |
+    | Generador de niebla | Especial | Iluminación infrarroja | Especial | Iluminación UV | Especial |
+    | Sistema de hologramas distractores | Especial | --- | --- | --- | --- |   
 
 ### Restricción de Exclusión Mutua
 
 *   **Regla**: Diferentes tipos de armas no pueden coexistir con otras.\
     **Explicación**: Por razones de incompatibilidad entre armas, ciertas combinaciones de armamento no pueden establecerse en un mismo robot.\
+    
+    
     **Combinaciones**:
     * **Combinación**: Lanzallamas, Sensores ópticos avanzados.\
       **Razón**: El fuego bloquea la visión de los sensores.
@@ -94,11 +114,36 @@ Como parte de la organización de combates, la WRB ha establecido un conjunto de
         
     * **Combinación**: Iluminación UV, Iluminación infrarroja.\
       **Razón**: Solo puede usarse un tipo de iluminación a la vez.
-        
+    
+    * **Combinación**: Maza electromagnética, Campo magnético protector.\
+      **Razón**: Ambos generan campos que se anulan entre sí dentro del mismo robot.
+    
+    * **Combinación**: Lanzador de proyectiles metálicos, Placas de carburo endurecido.\
+      **Razón**: Las placas desvían los proyectiles al salir, causando fallos internos.
+    
+    * **Combinación**: Cuchilla guillotina vertical, Sistema de evasión automática.\
+      **Razón**: "El movimiento evasivo impide la estabilidad necesaria para la guillotina.
+    
+    * **Combinación**: Garra prensil aplastante, Escudo óptico reforzado.\
+      **Razón**: La garra no puede operar sin obstruir el campo visual del escudo.
+    
+    * **Combinación**: Lanza-chispas de arco eléctrico, Campo eléctrico disipador.\
+      **Razón**: El campo disipador neutraliza el arco eléctrico del arma.
+    
+    * **Combinación**: Sierra de cadena doble, Blindaje óseo sintético.\
+      **Razón**: El blindaje desprende residuos que atascan la doble cadena.
+    
+    * **Combinación**: Cañón sónico, Detector de energía enemiga.\
+      **Razón**: Las ondas sónicas saturan los sensores del detector.
+
 ### Otras Restricciones
 
 *   **Regla**: Las arenas se requieren durante 24 horas.\
     **Explicación**: Durante la gestión de eventos, es necesario preparar las arenas para la realización del combate, por lo que no se pueden programar diversos combates en una misma arena, el mismo día.
+
+*   **Regla**: Las células de energía se cargan durante una noche completa.\
+    **Explicación**: El buen funcionamiento de un robot depende de la totalidad de carga de sus células de energía, por lo que estas deben estar en perfecto estado ante cada combate.
+    En otras palabras, si una célula es usada un día, no puede ser usada hasta el próximo día.
 
 *   **Regla**: Todos los campos son obligatorios.\
     **Explicación**: La validez de un combate depende del llenado correcto de todos sus campos. Para una mayor organización del Proyecto, es obligatoria la entrada de todos los datos del evento.

@@ -46,7 +46,7 @@
         "Lanza\u2013chispas de arco el\u00e9ctrico": "ofensivo",
         "Martillo hidr\u00e1ulico": "ofensivo",
         "Martillo rotatorio de impacto": "ofensivo",
-        "Maza electromagn\u00e1tica": "ofensivo",
+        "Maza electromagn\u00e9tica": "ofensivo",
         "Misiles de corto alcance": "ofensivo",
         "Motosierra": "ofensivo",
         "Pu\u00f1os reforzados": "ofensivo",
@@ -115,7 +115,7 @@
             "razon": "Solo puede usarse un tipo de iluminaci\u00f3n a la vez."
         },
         "9": {
-            "combinacion": ["Maza electromagn\u00e1tica", "Campo magn\u00e9tico protector"],
+            "combinacion": ["Maza electromagn\u00e9tica", "Campo magn\u00e9tico protector"],
             "razon": "Ambos generan campos que se anulan entre s\u00ed dentro del mismo robot."
         },
         "10": {
@@ -145,13 +145,13 @@
     
     },
     
-    "arena": {
+    "arena": [
         
-        "Ring principal" : "Arena principal de combates WRB.",
-        "Area con obst\u00e1culos": "Terreno para combates con riesgo. "
+        "Area con obst\u00e1culos",
+        "Ring de pelea principal"
     
-    },
-    
+    ],
+        
     "celulas_energia": 5000
     
 }

@@ -1,3 +1,60 @@
 {
-    "combates": {}
+    "combates": {
+        "Prueba": {
+            "Fecha": "2026-05-31",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Equipo vs Equipo",
+            "Equipo_A": {
+                "Albino": [
+                    "Aplastador neum\u00e1tico",
+                    "Sistema de hologramas distractores"
+                ],
+                "Atom": [
+                    "Ca\u00f1\u00f3n de plasma de baja potencia",
+                    "Iluminaci\u00f3n infrarroja"
+                ],
+                "Bash": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Sistema de c\u00e1maras HD"
+                ]
+            },
+            "Equipo_B": {
+                "Ambush": [
+                    "Ca\u00f1\u00f3n de microondas",
+                    "Iluminaci\u00f3n UV"
+                ],
+                "Axelrod": [
+                    "Ca\u00f1\u00f3n s\u00f3nico",
+                    "Generador de niebla"
+                ],
+                "Blacktop": [
+                    "Cuchilla guillotina vertical",
+                    "Sensores \u00f3pticos avanzados"
+                ]
+            },
+            "C/E": 2360,
+            "Control": "AI Boxing",
+            "Patrocinador": "Prueba"
+        },
+        "prueba": {
+            "Fecha": "2026-05-31",
+            "Arena": "Ring de pelea principal",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Zeus": [
+                    "Cuchillas retr\u00e1ctiles de tungsteno",
+                    "Radar de proximidad"
+                ]
+            },
+            "Equipo_B": {
+                "Twin Cities": [
+                    "Electroshock",
+                    "Drones de reconocimiento"
+                ]
+            },
+            "C/E": 985,
+            "Control": "Control Manual",
+            "Patrocinador": "prueba"
+        }
+    }
 }

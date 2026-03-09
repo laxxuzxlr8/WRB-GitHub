@@ -36,7 +36,7 @@ mostrar_texto(texto_info_1)
 st.write("\n")
 
 st.image(
-    image="images/pelea_robots.png"
+    image="images/pelea_robots.jpg"
     )
 
 st.write("\n")
@@ -76,7 +76,7 @@ with col1:
     mostrar_texto(texto_final)
 
 with col2:
-    st.image("images/ciberboxing.png")
+    st.image("images/ciberboxing.jpg")
 
 with col3:
     texto_copa = "Si quiere conocer más acerca de este mundo y del robot boxeador más famoso de la WRB, puedes ver la película que inspira esta WEB: Gigantes de acero:"    

@@ -53,7 +53,7 @@ with col1:
     
     st.write("\n")
     
-    st.image("images/robots/Shooter.png")
+    st.image("images/robots/Shooter.jpg")
     st.subheader("*:gray[Six Shooter]*")
     st.write("**Rapidez y ataques múltiples.**")
     

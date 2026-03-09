@@ -2,7 +2,7 @@ import streamlit as st
 
 # --- #: Fondo Web :# --- #
 
-st.markdown( """ <style> .stApp { background-image: url("https://raw.githubusercontent.com/laxxuzxlr8/WRB-GitHub/main/images/background.png"); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; } </style> """, unsafe_allow_html=True )
+st.markdown( """ <style> .stApp { background-image: url("https://raw.githubusercontent.com/laxxuzxlr8/WRB-GitHub/main/images/background.jpg"); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; } </style> """, unsafe_allow_html=True )
 
 # --- #: Presentación Lobby :# --- #
 
@@ -48,7 +48,7 @@ armas = st.Page(
 
 # --- #: Menú de Navegación :# --- #
 
-st.logo("images/logo.png", size="large", link="https://gigantes-de-acero.fandom.com/es/wiki/World_Robot_Boxing#:~:text=World%20Robot%20Boxing%20es%20una,los%20que%20participan%20los%20robots.")
+st.logo("images/logo.jpg", size="large", link="https://gigantes-de-acero.fandom.com/es/wiki/World_Robot_Boxing#:~:text=World%20Robot%20Boxing%20es%20una,los%20que%20participan%20los%20robots.")
 
 navegacion = st.navigation({
     "Info": [acerca_de],

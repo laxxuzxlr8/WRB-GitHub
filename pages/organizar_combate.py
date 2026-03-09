@@ -341,7 +341,7 @@ else:
     st.session_state.combate["Arena"] = None
 
 if st.session_state.combate["Arena"] == "Ring de pelea principal":               # ~ Imagenes Arenas ~ #
-    st.image("images/Gestionar Combate/Ring.png")
+    st.image("images/Gestionar Combate/Ring.jpg")
     st.caption(
         body = "**Arena principal de combates WRB**", 
         text_alignment = "center"
@@ -408,7 +408,7 @@ with col1:
 with col2:                                  # ~ Imagenes Modo ~ #
     
     if st.session_state.combate["Modo"] == "Robot vs Robot":
-        st.image("images/Gestionar Combate/1vs1.png")
+        st.image("images/Gestionar Combate/1vs1.jpg")
         st.write("\n")
         st.caption(
             body="**Combate frenético en solitario**",
@@ -416,7 +416,7 @@ with col2:                                  # ~ Imagenes Modo ~ #
         )
     
     elif st.session_state.combate["Modo"] == "Equipo vs Equipo":
-        st.image("images/Gestionar Combate/3vs3.png") 
+        st.image("images/Gestionar Combate/3vs3.jpg") 
         st.write("\n")
         st.caption(
             body="**Lluvia de golpes en grupo**",
@@ -832,7 +832,7 @@ with col1:
 with col2:
     
     if st.session_state.combate["Control"] == "Control Manual":             # ~ Imagenes Control ~ #
-        st.image("images/Gestionar Combate/Manual.png")
+        st.image("images/Gestionar Combate/Manual.jpg")
         st.write("\n")
         st.caption(
         body = "**Controlador libre**",
@@ -840,7 +840,7 @@ with col2:
         )
            
     elif st.session_state.combate["Control"] == "AI Boxing":
-        st.image("images/Gestionar Combate/AI.png") 
+        st.image("images/Gestionar Combate/AI.jpg") 
         st.write("\n")
         st.caption(
         body = "**Movimiento automático**",

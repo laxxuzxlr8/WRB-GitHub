@@ -35,9 +35,7 @@ mostrar_texto(texto_info_1)
 
 st.write("\n")
 
-st.image(
-    image="images/pelea_robots.jpg"
-    )
+st.image("images/pelea_robots.jpg")
 
 st.write("\n")
 
@@ -61,7 +59,9 @@ puntos_a_favor = """
 
 """
 
-with st.expander(label="Lo mejor de lo mejor en tecnología robótica:"):
+with st.expander(
+    label = "Lo mejor de lo mejor en tecnología robótica:"
+    ):
     mostrar_texto(puntos_a_favor)
 
 st.divider()
@@ -69,10 +69,14 @@ st.divider()
 # --- #: Sección info adicional :# --- #
 
 st.write("\n")
-col1,col2,col3 = st.columns([1.1,0.8,1.1], gap="small", vertical_alignment="top")
+col1,col2,col3 = st.columns(
+    spec = [1.1,0.8,1.1], 
+    gap = "small", 
+    vertical_alignment = "top"
+    )
 
 with col1: 
-    texto_final ="Bienvenido al corazón del acero. Aquí no hay segundas oportunidades. Solo circuitos quemados, gloria mecánica y el rugido de la multitud que ansía ver quién se queda con el mayor de los trofeos: la copa CiberBoxing."         
+    texto_final = "Bienvenido al corazón del acero. Aquí no hay segundas oportunidades. Solo circuitos quemados, gloria mecánica y el rugido de la multitud que ansía ver quién se queda con el mayor de los trofeos: la copa CiberBoxing."         
     mostrar_texto(texto_final)
 
 with col2:
@@ -82,4 +86,8 @@ with col3:
     texto_copa = "Si quiere conocer más acerca de este mundo y del robot boxeador más famoso de la WRB, puedes ver la película que inspira esta WEB: Gigantes de acero:"    
     mostrar_texto(texto_copa)
     
-    st.link_button("Pulsa aquí", url="https://www.youtube.com/watch?v=DebFX7MC0vE", use_container_width=True)
+    st.link_button(
+        label = "Pulsa aquí", 
+        url = "https://www.youtube.com/watch?v=DebFX7MC0vE", 
+        use_container_width = True
+        )

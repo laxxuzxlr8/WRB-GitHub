@@ -35,26 +35,6 @@
             "C/E": 2360,
             "Control": "AI Boxing",
             "Patrocinador": "Prueba"
-        },
-        "prueba": {
-            "Fecha": "2026-05-31",
-            "Arena": "Ring de pelea principal",
-            "Modo": "Robot vs Robot",
-            "Equipo_A": {
-                "Zeus": [
-                    "Cuchillas retr\u00e1ctiles de tungsteno",
-                    "Radar de proximidad"
-                ]
-            },
-            "Equipo_B": {
-                "Twin Cities": [
-                    "Electroshock",
-                    "Drones de reconocimiento"
-                ]
-            },
-            "C/E": 985,
-            "Control": "Control Manual",
-            "Patrocinador": "prueba"
         }
     }
 }

@@ -184,37 +184,40 @@ if "robot_seleccionado" not in st.session_state:
 
 # ------------------------------- #: Panel Principal :# ------------------------------- #
 
-st.header("Organizar combate:", 
-             text_alignment="center",
-             anchor=False
-             )
+st.header(
+    body = "Organizar combate:", 
+    text_alignment = "center",
+    anchor = False
+    )
 
 # --- #: Sección Fecha y Lugar :# --- #
 
 st.subheader(
-    body="📆 Fecha y lugar 🏟️", 
-    text_alignment="center", 
-    anchor=False
+    body = "📆 Fecha y lugar 🏟️", 
+    text_alignment = "center", 
+    anchor = False
     )
 
 año = datetime.datetime.today().year
+
 if (año % 4 == 0 and año % 100 != 0) or (año % 400 == 0):
     max_value = datetime.datetime.today().date() + datetime.timedelta(days=367)
 else:
     max_value = datetime.datetime.today().date() + datetime.timedelta(days=366)
 
 Fecha = st.date_input(    
-    label="**Elija una :violet[Fecha] para el combate:**", 
-    min_value=datetime.datetime.today().date() + datetime.timedelta(days=1),
-    max_value=max_value,
-    format="DD/MM/YYYY",
-    help="Fecha en la cual se desarrollará el combate.",
-    value= None
+    label = "**Elija una :violet[Fecha] para el combate:**", 
+    min_value = datetime.datetime.today().date() + datetime.timedelta(days=1),
+    max_value = max_value,
+    format = "DD/MM/YYYY",
+    help = "Fecha en la cual se desarrollará el combate.",
+    value = None
     )
 
 # --- #: Algoritmo de validación de Fecha y eliminacion de recursos :# --- #
 
 if Fecha == None:
+    
     st.session_state.fecha_anterior = None
     st.session_state.combate["Fecha"] = None
     
@@ -240,6 +243,7 @@ if Fecha == None:
     }
 
 if Fecha != st.session_state.fecha_anterior:
+    
     st.session_state.combate["Equipo_A"] = {}
     st.session_state.combate["Equipo_B"] = {}
     st.session_state.combate["C/E"] = 0
@@ -261,7 +265,9 @@ if Fecha != st.session_state.fecha_anterior:
     celulas_no = 0
 
     for evento in st.session_state.combates_programados.values():           # ~ Selecciona recursos de fechas iguales ~ #
+        
         if evento["Fecha"] == str(Fecha):
+            
             arena_no.append(evento["Arena"])
             for rob_a, armas_a in evento["Equipo_A"].items():
                 robot_no.append(rob_a)
@@ -274,6 +280,7 @@ if Fecha != st.session_state.fecha_anterior:
             celulas_no += evento["C/E"]
                 
     if len(arena_no) == 0:                                      # ~ Define los recursos disponibles ~ #
+        
         st.success("Día válido, no hay eventos programados!")   
         st.session_state.combate["Fecha"] = str(Fecha)
         st.session_state.disponibles["arena"] = [arena for arena in st.session_state.inventario["arena"]]
@@ -282,6 +289,7 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.disponibles["celulas"] = st.session_state.inventario["celulas_energia"]
 
     elif len(arena_no) >= len(st.session_state.inventario["arena"]):
+        
         st.error("Todas las arenas están ocupadas para ese día, escoja otro.")
         st.session_state.combate["Fecha"] = None
         st.session_state.disponibles["arena"] = []
@@ -290,6 +298,7 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.disponibles["celulas"] = 0
 
     else:
+        
         st.info("Se mostrarán solo las arenas, robots, armas-accesorios y células de energía disponibles para la fecha seleccionada.")
         st.session_state.disponibles["arena"] = [arena for arena in st.session_state.inventario["arena"] if arena not in arena_no]
         st.session_state.disponibles["robots"] = [robot for robot in st.session_state.inventario["robots"].keys() if robot not in robot_no]
@@ -300,9 +309,11 @@ if Fecha != st.session_state.fecha_anterior:
     st.session_state.fecha_anterior = Fecha   
 
 elif st.session_state.combate["Fecha"] == None:                         # ~ Recomendacion Proxima fecha disponible ~ # 
+    
     día_disponible = datetime.datetime.today().date() + datetime.timedelta(days=1)
     contador = 0
     check = False
+    
     if len(st.session_state.combates_programados.keys()) != 0:
         while True:
             
@@ -323,16 +334,18 @@ elif st.session_state.combate["Fecha"] == None:                         # ~ Reco
             if check:
                 break
         
-    st.info(f"Recomendación de Próxima fecha disponible: {str(día_disponible)}")
+    st.info(
+        body = f"Recomendación de Próxima fecha disponible: {str(día_disponible)}"
+        )
         
 # --- #: Sección Arena :# --- #
 
 Arena = st.selectbox(
-    label="**Seleccione la :violet[Arena] del combate:**",
-    options=st.session_state.disponibles["arena"],
-    help="Arena donde se desarrollará el combate.",
-    index=None,
-    key="selectbox_arena" 
+    label = "**Seleccione la :violet[Arena] del combate:**",
+    options = st.session_state.disponibles["arena"],
+    help = "Arena donde se desarrollará el combate.",
+    index = None,
+    key = "selectbox_arena" 
     )
 
 if Arena:
@@ -341,6 +354,7 @@ else:
     st.session_state.combate["Arena"] = None
 
 if st.session_state.combate["Arena"] == "Ring de pelea principal":               # ~ Imagenes Arenas ~ #
+    
     st.image("images/Gestionar Combate/Ring.jpg")
     st.caption(
         body = "**Arena principal de combates WRB**", 
@@ -348,6 +362,7 @@ if st.session_state.combate["Arena"] == "Ring de pelea principal":              
         )
 
 elif st.session_state.combate["Arena"] == "Area con obstáculos":
+    
     st.image("images/Gestionar Combate/Obstaculos.jpg")
     st.caption(
         body = "**Terreno para combates con riesgo**",
@@ -355,7 +370,10 @@ elif st.session_state.combate["Arena"] == "Area con obstáculos":
         )
 
 else:
-    st.info("Los eventos se programan con un día de diferencia debido a la preparación de las arenas y a la carga de las Células de Energía.")
+    
+    st.info(
+        body = "Los eventos se programan con un día de diferencia debido a la preparación de las arenas y a la carga de las Células de Energía."
+        )
 
 st.write("\n")
 
@@ -364,32 +382,34 @@ st.divider()
 # --- #: Sección Modo de juego :# --- #
 
 st.subheader(
-        "⚔️ Modo de juego ⚔️", 
-        text_alignment="center", 
-        anchor=False
+        body = "⚔️ Modo de juego ⚔️", 
+        text_alignment = "center", 
+        anchor = False
         )
 
 st.write("\n")
 
 col1,col2 = st.columns(
-    [0.7, 1.3],
+    spec = [0.7, 1.3],
     gap = "small",
-    vertical_alignment='center')
+    vertical_alignment = 'center'
+    )
 
 with col1:
 
     with st.container(
-        key="Modo", 
-        horizontal_alignment="center"
+        key = "Modo", 
+        horizontal_alignment = "center"
         ):
         
         st.session_state.combate["Modo"] = st.radio(
-            label="**Escoja un :violet[Modo de juego]:**",
-            options=["Robot vs Robot", "Equipo vs Equipo"],
+            label = "**Escoja un :violet[Modo de juego]:**",
+            options = ["Robot vs Robot", "Equipo vs Equipo"],
             help = "Establece la distribución de equipos para el combate: [1 vs 1] o [3 vs 3]"
             )
 
     if st.session_state.combate["Modo"] != st.session_state.modo_anterior:         # ~ Control con cambio de modo ~ #     
+        
         st.session_state.combate["Equipo_A"] = {}
         st.session_state.combate["Equipo_B"] = {}
         st.session_state.combate["C/E"] = 0
@@ -408,19 +428,21 @@ with col1:
 with col2:                                  # ~ Imagenes Modo ~ #
     
     if st.session_state.combate["Modo"] == "Robot vs Robot":
+        
         st.image("images/Gestionar Combate/1vs1.jpg")
         st.write("\n")
         st.caption(
-            body="**Combate frenético en solitario**",
-            text_alignment="center"
+            body = "**Combate frenético en solitario**",
+            text_alignment = "center"
         )
     
     elif st.session_state.combate["Modo"] == "Equipo vs Equipo":
+        
         st.image("images/Gestionar Combate/3vs3.jpg") 
         st.write("\n")
         st.caption(
-            body="**Lluvia de golpes en grupo**",
-            text_alignment="center"
+            body = "**Lluvia de golpes en grupo**",
+            text_alignment = "center"
         )
 
 st.divider()
@@ -430,43 +452,44 @@ st.divider()
 energia = st.session_state.usados["celulas"]
 
 st.subheader(
-    body="👾 Gestionar equipos 👾",
-    text_alignment="center",
-    anchor=False
+    body = "👾 Gestionar equipos 👾",
+    text_alignment = "center",
+    anchor = False
     )
  
 col1, col2 = st.columns(
-    2, 
+    spec = 2, 
     gap = "large", 
-    vertical_alignment="center"
+    vertical_alignment = "center"
     )
 
 with col1:                      # ~ Asignacion Equipo A ~ #
         
     if st.session_state.combate["Modo"] == "Robot vs Robot":  
+        
         st.subheader(
-            body=":red[Combatiente A]", 
-            text_alignment="center",
-            anchor=False
+            body = ":red[Combatiente A]", 
+            text_alignment = "center",
+            anchor = False
             )
     else:
+        
         st.subheader(
-            body=":red[Equipo A]", 
-            text_alignment="center",
-            anchor=False
+            body = ":red[Equipo A]", 
+            text_alignment = "center",
+            anchor = False
             )        
     
     with st.form(
-        key="form_robot_a",
-        clear_on_submit=True,
-        enter_to_submit=True,
+        key = "form_robot_a",
+        clear_on_submit = True,
+        enter_to_submit = True,
         ):
 
         robot_a = st.selectbox(
-            "**Escoja un :violet[robot]:**",
-            options=[robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
-            index=None,
-            placeholder="Robots",
+            label = "**Escoja un :violet[robot]:**",
+            options = [robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
+            index = None,
             help =
             """
             **Listado de robots con las C/E requeridas por robot**:
@@ -481,11 +504,10 @@ with col1:                      # ~ Asignacion Equipo A ~ #
             )
 
         arma_izq_a = st.selectbox(
-            "**Escoja un :violet[arma] para el brazo izquierdo:**",
-            options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
-            index=None,
-            placeholder="Armas y Accesorios",
-            help=
+            label = "**Escoja un :violet[arma] para el brazo izquierdo:**",
+            options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
+            index = None,
+            help =
             """
             **Listado de armas-accesorios y su tipo**:
             | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
@@ -509,10 +531,9 @@ with col1:                      # ~ Asignacion Equipo A ~ #
             )
                 
         arma_der_a = st.selectbox(
-            "**Escoja un :violet[arma] para el brazo derecho:**",
-            options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
-            index=None,
-            placeholder="Armas y Accesorios",
+            label = "**Escoja un :violet[arma] para el brazo derecho:**",
+            options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
+            index = None,
             help = 
             """
             **Listado de incompatibilidades entre armas-accesorios y la razón de incompatibilidad**:
@@ -537,37 +558,48 @@ with col1:                      # ~ Asignacion Equipo A ~ #
             )
             
         with st.container(
-            horizontal_alignment="center"
+            horizontal_alignment = "center"
         ):        
         
             bt_a = st.form_submit_button(
-                label="**:green[Agregar] Robot**",
-                help="Agrega un robot al Equipo A. El robot debe estar equipado completamente para ser válido."
+                label = "**:green[Agregar] Robot**",
+                help = "Agrega un robot al Equipo A. El robot debe estar equipado completamente para ser válido."
                 )
     
-    col3, col4, col5 = st.columns([1.0,0.5,0.5], vertical_alignment="center")                           # ~ Previsualizador Equipo A ~ #
+    col3, col4, col5 = st.columns(
+        spec = [1.0,0.5,0.5], 
+        vertical_alignment = "center",
+        gap = "small"
+        )                           # ~ Previsualizador Equipo A ~ #
     
     with col3:
         st.dataframe(
-            pd.Series([robot for robot in st.session_state.combate["Equipo_A"].keys()], name = "Equipo A" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente A"),
-            hide_index=True
-            )
+            pd.Series(
+                data = [robot for robot in st.session_state.combate["Equipo_A"].keys()], 
+                name = "Equipo A" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente A"),
+                hide_index = True
+                )
     
     with col4:
         st.dataframe(
-            pd.Series([f"⚡️{st.session_state.inventario["robots"][robot]}" for robot in st.session_state.combate["Equipo_A"].keys()], name = "C/E"),
-            hide_index=True
+            pd.Series(
+                data = [f"⚡️{st.session_state.inventario["robots"][robot]}" for robot in st.session_state.combate["Equipo_A"].keys()], 
+                name = "C/E"),
+            hide_index = True
             )
     
     with col5:
         st.session_state.robot_seleccionado["A"] = st.dataframe(
-            pd.Series([1 + robot for robot in range(len(st.session_state.combate["Equipo_A"].keys()))], name = "Borrar A"),
-            hide_index=True,
-            on_select="rerun",
-            selection_mode="single-cell",
+            pd.Series(
+                data =[1 + robot for robot in range(len(st.session_state.combate["Equipo_A"].keys()))], 
+                name = "Borrar A"),
+            hide_index = True,
+            on_select = "rerun",
+            selection_mode = "single-cell",
             )
     
     if st.session_state.robot_seleccionado["A"]["selection"]["cells"] != []:
+        
         for num, robot in enumerate(st.session_state.combate["Equipo_A"]):
             if num == st.session_state.robot_seleccionado["A"]["selection"]["cells"][0][0]:
                 st.session_state.usados["armas"].remove(st.session_state.combate["Equipo_A"][robot][0])
@@ -612,30 +644,31 @@ with col1:                      # ~ Asignacion Equipo A ~ #
 with col2:                      # ~ Asignacion Equipo B ~ #
         
     if st.session_state.combate["Modo"] == "Robot vs Robot":    
+        
         st.subheader(
-            body=":blue[Combatiente B]", 
-            text_alignment="center",
-            anchor=False
+            body = ":blue[Combatiente B]", 
+            text_alignment = "center",
+            anchor = False
             )
         
     else:
+        
         st.subheader(
-            body=":blue[Equipo B]", 
-            text_alignment="center",
-            anchor=False
+            body = ":blue[Equipo B]", 
+            text_alignment = "center",
+            anchor = False
             )
             
     with st.form(
-        key="form_robot_b",
-        clear_on_submit=True,
-        enter_to_submit=True
+        key = "form_robot_b",
+        clear_on_submit = True,
+        enter_to_submit = True
         ):
                 
         robot_b = st.selectbox(
-            "**Escoja un :violet[robot]:**",
-            options=[robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
-            index=None,
-            placeholder="Robots",
+            label = "**Escoja un :violet[robot]:**",
+            options = [robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
+            index = None,
             help =
             """
             **Listado de robots con las C/E requeridas por robot**:
@@ -650,11 +683,10 @@ with col2:                      # ~ Asignacion Equipo B ~ #
             )
                 
         arma_izq_b = st.selectbox(
-            "**Escoja un :violet[arma] para el brazo izquierdo:**",
-            options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
-            index=None,
-            placeholder="Armas y Accesorios",
-            help=
+            label = "**Escoja un :violet[arma] para el brazo izquierdo:**",
+            options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
+            index = None,
+            help =
             """
             **Listado de armas-accesorios y su tipo**:
             | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
@@ -678,10 +710,9 @@ with col2:                      # ~ Asignacion Equipo B ~ #
             )
                 
         arma_der_b = st.selectbox(
-            "**Escoja un :violet[arma] para el brazo derecho:**",
-            options=[arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
-            index=None,
-            placeholder="Armas y Accesorios",
+            label = "**Escoja un :violet[arma] para el brazo derecho:**",
+            options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
+            index = None,
             help = 
             """
             **Listado de incompatibilidades entre armas-accesorios y la razón de incompatibilidad**:
@@ -710,33 +741,40 @@ with col2:                      # ~ Asignacion Equipo B ~ #
         ):
                 
             bt_b = st.form_submit_button(
-                label="**:green[Agregar] Robot**",
-                help="Agrega un robot al Equipo B. El robot debe estar equipado completamente para ser válido."
+                label = "**:green[Agregar] Robot**",
+                help = "Agrega un robot al Equipo B. El robot debe estar equipado completamente para ser válido."
                 )
      
     col3, col4, col5 = st.columns([1.0,0.5,0.5], vertical_alignment="center")                           # ~ Previsualizador Equipo B ~ #
     
     with col3:
         st.dataframe(
-            pd.Series([robot for robot in st.session_state.combate["Equipo_B"].keys()], name = "Equipo B" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente B"),
-            hide_index=True
+            pd.Series(
+                data = [robot for robot in st.session_state.combate["Equipo_B"].keys()], 
+                name = "Equipo B" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente B"),
+            hide_index = True
             )
     
     with col4:
         st.dataframe(
-            pd.Series([f"⚡️{st.session_state.inventario["robots"][robot]}" for robot in st.session_state.combate["Equipo_B"].keys()], name = "C/E"),
-            hide_index=True
+            pd.Series(
+                data = [f"⚡️{st.session_state.inventario["robots"][robot]}" for robot in st.session_state.combate["Equipo_B"].keys()], 
+                name = "C/E"),
+            hide_index = True
             )
     
     with col5:
         st.session_state.robot_seleccionado["B"] = st.dataframe(
-            pd.Series([1 + robot for robot in range(len(st.session_state.combate["Equipo_B"].keys()))], name = "Borrar B"),
-            hide_index=True,
-            on_select="rerun",
-            selection_mode="single-cell",
+            pd.Series(
+                data = [1 + robot for robot in range(len(st.session_state.combate["Equipo_B"].keys()))], 
+                name = "Borrar B"),
+            hide_index = True,
+            on_select = "rerun",
+            selection_mode = "single-cell",
             )
     
     if st.session_state.robot_seleccionado["B"]["selection"]["cells"] != []:
+        
         for num, robot in enumerate(st.session_state.combate["Equipo_B"]):
             if num == st.session_state.robot_seleccionado["B"]["selection"]["cells"][0][0]:
                 st.session_state.usados["armas"].remove(st.session_state.combate["Equipo_B"][robot][0])
@@ -778,19 +816,27 @@ with col2:                      # ~ Asignacion Equipo B ~ #
         sleep(1.3)
         st.rerun()   
 
-col1,col2,col3 = st.columns([0.3,1.4,0.3], vertical_alignment="center",gap="small")
+col1,col2,col3 = st.columns(
+    spec = [0.3,1.4,0.3], 
+    vertical_alignment = "center",
+    gap = "small"
+    )
 
 with col2:                                                  # ~ Menú Distribución C/E ~ #
     
-    with st.container(border=True):
+    with st.container(
+        border = True
+        ):
         
         if not st.session_state.combate["Fecha"]:
+            
             st.markdown(
                 body = ":yellow[Células de Energía]", 
                 text_alignment = "center",
                 help = "Menú de distribución de Células de Energía. Escoja una fecha para más información sobre el Sistema de Energía."                
                 )
         else:
+            
             st.markdown(
                 body = f":violet[Células] disponibles: ⚡️:yellow[{st.session_state.disponibles["celulas"]}]  /  :violet[Células] requeridas: ⚡️:yellow[{energia}]", 
                 text_alignment = "center",
@@ -802,36 +848,37 @@ st.divider()
 # --- #: Sección Control :# --- #
 
 st.subheader(
-    body="🎮 Tipo de control 🎮",
-    text_alignment="center",
-    anchor=False
+    body = "🎮 Tipo de control 🎮",
+    text_alignment = "center",
+    anchor = False
 )
 
 st.write("\n")
 
 col1,col2 = st.columns(
-    [0.7, 1.3],
+    spec = [0.7, 1.3],
     gap = "small",
-    vertical_alignment='center')
+    vertical_alignment = 'center')
 
 with col1:                      
     
     with st.container(
-        key="final", 
-        horizontal_alignment="center",
+        key = "final", 
+        horizontal_alignment = "center",
         ):
         
         st.session_state.combate["Control"] = st.radio(
-            label="**Escoja un tipo de :violet[Control]:**",
-            options=["Control Manual", "AI Boxing"],
-            index=0,
-            horizontal=False,
-            help="Escoger entre controlar a los robots Manualmente o con IA Boxing."
+            label = "**Escoja un tipo de :violet[Control]:**",
+            options = ["Control Manual", "AI Boxing"],
+            index = 0,
+            horizontal = False,
+            help = "Escoger entre controlar a los robots Manualmente o con IA Boxing."
             )
 
 with col2:
     
     if st.session_state.combate["Control"] == "Control Manual":             # ~ Imagenes Control ~ #
+        
         st.image("images/Gestionar Combate/Manual.jpg")
         st.write("\n")
         st.caption(
@@ -840,6 +887,7 @@ with col2:
         )
            
     elif st.session_state.combate["Control"] == "AI Boxing":
+        
         st.image("images/Gestionar Combate/AI.jpg") 
         st.write("\n")
         st.caption(
@@ -852,37 +900,41 @@ st.divider()
 # --- #: Sección Patrocinador :# --- #
     
 st.subheader(
-    body="👤 Patrocinador 👤",
-    text_alignment="center",
-    anchor=False
+    body = "👤 Patrocinador 👤",
+    text_alignment = "center",
+    anchor = False
     )
 
 st.write("\n")
 
 col1,col2,col3 = st.columns(
-    [0.3, 1.4, 0.3],
+    spec = [0.3, 1.4, 0.3],
     gap = "small",
-    vertical_alignment="center"
+    vertical_alignment = "center"
     )
 
 with col2:
+    
     if st.session_state.combate["Fecha"] != None:
+        
         Patrocinador = st.text_input(
-            label="**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
-            value=st.session_state.combate["Patrocinador"],
-            max_chars=20,
-            help="Encargado o Responsable de la planificación del combate.",
-            placeholder="Escriba un nombre."
+            label = "**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
+            value = st.session_state.combate["Patrocinador"],
+            max_chars = 20,
+            help = "Encargado o Responsable de la planificación del combate.",
+            placeholder = "Escriba un nombre."
             )
     else:
+        
         Patrocinador = st.text_input(
-            label="**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
-            help="Encargado o Responsable de la planificación del combate.",
-            disabled=True,
-            placeholder="Seleccione una fecha primero."
+            label = "**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
+            help = "Encargado o Responsable de la planificación del combate.",
+            disabled = True,
+            placeholder = "Seleccione una fecha primero."
             )    
         
     if Patrocinador:                    # ~ Validacion Patrocinador ~ #
+        
         valid, error = validar_patrocinador()
         if not valid:
             st.error(error)
@@ -899,35 +951,36 @@ st.write("\n")
 # --- #: Confirmar/Cancelar evento :# --- #
 
 col1, col2, col3 = st.columns(
-    [0.3, 1.4, 0.3], 
-    gap="small",
-    vertical_alignment="bottom"
+    spec = [0.3, 1.4, 0.3], 
+    gap = "small",
+    vertical_alignment = "bottom"
 )
 
 with col2:                      
     
     with st.container(
-        border=True,
-        key= "Menu_Botones",
-        vertical_alignment="center"
+        border = True,
+        key = "Menu_Botones",
+        vertical_alignment = "center"
     ):
         
         st.subheader(
             body = "Finalizar evento:",
-            text_alignment="center",
-            anchor=False
+            text_alignment = "center",
+            anchor = False
             )
         
         col1, col2 = st.columns(
-            2,
-            gap="small",
-            vertical_alignment="center",
+            spec = 2,
+            gap = "small",
+            vertical_alignment = "center",
         )
         
         with col1:                  # ~ Boton para confirmar ~ #
+            
             with st.container(
-                key="button_confirm",
-                horizontal_alignment="center"
+                key = "button_confirm",
+                horizontal_alignment = "center"
                 ):    
                 
                 bt_confirmar = st.button(
@@ -936,9 +989,10 @@ with col2:
                     )
 
         with col2:                  # ~ Boton para cancelar ~ #
+            
             with st.container(                          
-                key="button_cancel",
-                horizontal_alignment="center"
+                key = "button_cancel",
+                horizontal_alignment = "center"
                 ):    
                 
                 bt_cancelar = st.button(

@@ -31,7 +31,7 @@ Esta aplicación Web cuenta con varios Módulos que te permitirán:
 *   **Organizar Combates**: ¡El suelo tiembla ante la dominación del Metal! Organiza combates personalizados entre Robots de tu preferencia, con armas de todo tipo de calibre y restricciones específicas establecidas por este Sistema. Selecciona, entre las opciones disponibles, de manera rápida y sin colisiones entre Combates y Recursos, una configuración que mejor se ajuste a tus gustos: Fecha, Arena, Modo, Equipos, Control, así como el Patrocinador encargado de gestionar el encuentro planificado. 
 *   **Listar Combates Programados**: Revisa el listado de todos los combates organizados hasta el momento, así como todas sus especificaciones y recursos que requiere.
 *   **Eliminar un Combate**: La aplicación Web tiene un sistema de borrado fácil y rápido para que descartes todo tipo de encuentros que ya no sean de tu interés.
-*   **Ver Robots del Ranking Mundial**: Descubre cuáles son los Robots más exitosos de este deporte mediante una serie de imágenes de ellos.
+*   **Ver Robots de la WRB**: Descubre cuáles son los Robots más exitosos de este deporte mediante una serie de imágenes de ellos.
 *   **Ver Armas y Accesorios de la WRB**: Navega a través del catálogo de armas y accesorios de la WRB para que conozcas con qué combinar a tus robots favoritos.
 
 ## Funciones Auxiliares
@@ -231,7 +231,8 @@ Lenguaje de Programación y Librerías utilizadas para la creación de esta Web:
 
 Este proyecto fue creado como Primer Proyecto Evaluativo para la Carrera de Ciencias de la Computación de la Universidad de la Habana; 1er año, Curso: 2025-2026.
 
-**Agradecimiento especial a [ClaudiaHdezPerez](https://github.com/ClaudiaHdezPerez) por amadrinar este Proyecto.**
+**Agradecimiento especial a [@ClaudiaHdezPerez](https://github.com/ClaudiaHdezPerez) por amadrinar este Proyecto.**
+**Agradecimiento especial a [@siro__d](https://instagram.com/siro__d), diseñador del catálogo de armas y accesorios del Proyecto.**
 
 Además, este proyecto fue inspirado por el mundo de **Gigantes de Acero**. Si te gusta el lore de esta gran historia puedes buscar información en su Wiki Oficial:
 * [Fandom Gigantes de Acero](https://gigantes-de-acero.fandom.com/es/wiki/Wiki_Gigantes_de_Acero)

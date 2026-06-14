@@ -95,7 +95,6 @@ Como parte de la organización de combates, la WRB ha establecido un conjunto de
 *   **Regla**: Diferentes tipos de armas no pueden coexistir con otras.\
     **Explicación**: Por razones de incompatibilidad entre armas, ciertas combinaciones de armamento no pueden establecerse en un mismo robot.\
     
-    
     **Combinaciones**:
     * **Combinación**: Lanzallamas, Sensores ópticos avanzados.\
       **Razón**: El fuego bloquea la visión de los sensores.
@@ -231,7 +230,7 @@ Lenguaje de Programación y Librerías utilizadas para la creación de esta Web:
 
 Este proyecto fue creado como Primer Proyecto Evaluativo para la Carrera de Ciencias de la Computación de la Universidad de la Habana; 1er año, Curso: 2025-2026.
 
-**Agradecimiento especial a [@ClaudiaHdezPerez](https://github.com/ClaudiaHdezPerez) por amadrinar este Proyecto.**
+**Agradecimiento especial a [@ClaudiaHdezPerez](https://github.com/ClaudiaHdezPerez) por amadrinar este Proyecto.**\
 **Agradecimiento especial a [@siro__d](https://instagram.com/siro__d), diseñador del catálogo de armas y accesorios del Proyecto.**
 
 Además, este proyecto fue inspirado por el mundo de **Gigantes de Acero**. Si te gusta el lore de esta gran historia puedes buscar información en su Wiki Oficial:

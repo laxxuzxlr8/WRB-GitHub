@@ -140,6 +140,8 @@ if len(st.session_state.combates_programados) > 0:
             if combate_eliminado:
                 st.session_state.combates_programados.pop(combate_eliminado)
                 guardar_combates(st.session_state.get("combates_programados"))
+                st.session_state.seleccion = []
+                st.session_state.lista_patrocinadores = None
                 st.success("El Combate ha sido eliminado exitosamente.")
                 sleep(1.3)
                 st.rerun()

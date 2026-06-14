@@ -33,11 +33,10 @@ def resetear_web():                 # ~ Resetea los datos de la web ~ #
     st.session_state.combate.update({
         "Fecha": None,
         "Arena": None,
-        "Modo": None,
+        "Modo": "Robot vs Robot",
         "Equipo_A": {},
         "Equipo_B": {},
         "C/E": 0,
-        "Control": None,
         "Patrocinador": ""
         })
     
@@ -58,6 +57,8 @@ def resetear_web():                 # ~ Resetea los datos de la web ~ #
         "celulas": 0
     }
     
+    st.session_state.reset_fecha = True
+    
     st.session_state.fecha_anterior = None
     
     st.session_state.len_anterior = {
@@ -72,61 +73,82 @@ def resetear_web():                 # ~ Resetea los datos de la web ~ #
         "B": None
     }
     
-def validar_robot(robot):            # ~ Robot Valido ~ #
+    st.session_state.reset_control = True 
+    
+    st.session_state.reset_patrocinador = True
+    
+def validar_robot(equipo, robot_sel, arma_izq, arma_der):            # ~ Robot Valido ~ #
 
-    if robot == "a":
-        a = ["Equipo_A", robot_a, arma_izq_a, arma_der_a]
+    if equipo == "a":
+        key_equipo = "Equipo_A"
         
-        if len(st.session_state.combate[a[0]]) == 1 and st.session_state.combate["Modo"] == "Robot vs Robot":
+        if len(st.session_state.combate[key_equipo]) == 1 and st.session_state.combate["Modo"] == "Robot vs Robot":
             return False, "El equipo está lleno. El modo seleccionado es Robot vs Robot.", False
         
-        elif len(st.session_state.combate[a[0]]) == 3 and st.session_state.combate["Modo"] == "Equipo vs Equipo":
+        elif len(st.session_state.combate[key_equipo]) == 3 and st.session_state.combate["Modo"] == "Equipo vs Equipo":
             return False, "El equipo está lleno. La capacidad máxima es de 3 robots por equipo.", False
         
         else:
-            if a[1] == None or a[2] == None or a[3] == None:
+            if robot_sel == None or arma_izq == None or arma_der == None:
                 return False, "Debe llenar todos los campos para que el combate sea justo.", False
-            if a[2] == a[3]:
+            if arma_izq == arma_der:
                 return False, "No puede haber armas repetidas, escoja una combinación diferente.", False
-            combinacion_a = set([a[2], a[3]])
+            combinacion_a = set([arma_izq, arma_der])
             for comb in st.session_state.inventario["combinaciones_no"].values():
                 if combinacion_a == set(comb["combinacion"]):
                     return False, f'Esta combinación de armas no es válida, razón: {comb["razon"]}', True
     
-    if robot == "b":
-        b = ["Equipo_B", robot_b, arma_izq_b, arma_der_b]
+    if equipo == "b":
+        key_equipo = "Equipo_B"
         
-        if len(st.session_state.combate[b[0]]) == 1 and st.session_state.combate["Modo"] == "Robot vs Robot":
+        if len(st.session_state.combate[key_equipo]) == 1 and st.session_state.combate["Modo"] == "Robot vs Robot":
             return False, "El equipo está lleno. El modo seleccionado es Robot vs Robot.", False
         
-        elif len(st.session_state.combate[b[0]]) == 3 and st.session_state.combate["Modo"] == "Equipo vs Equipo":
+        elif len(st.session_state.combate[key_equipo]) == 3 and st.session_state.combate["Modo"] == "Equipo vs Equipo":
             return False, "El equipo está lleno. La capacidad máxima es de 3 robots por equipo.", False
         
         else:
-            if b[1] == None or b[2] == None or b[3] == None:
+            if robot_sel == None or arma_izq == None or arma_der == None:
                 return False, "Debe llenar todos los campos para que el combate sea justo.", False
-            if b[2] == b[3]:
+            if arma_izq == arma_der:
                 return False, "No puede haber armas repetidas, escoja una combinación diferente.", False
-            combinacion_b = set([b[2], b[3]])
+            combinacion_b = set([arma_izq, arma_der])
             for comb in st.session_state.inventario["combinaciones_no"].values():
                 if combinacion_b == set(comb["combinacion"]):
                     return False, f'Esta combinación de armas no es válida, razón: {comb["razon"]}', True
     
     return True, '', False
 
-def validar_patrocinador():                     # ~ Patrocinador Valido ~ #
+def validar_patrocinador(patrocinador):                     # ~ Patrocinador Valido ~ #
     
     for patro in st.session_state.combates_programados:
-        if Patrocinador == patro:
+        if patrocinador == patro:
             return False, "Ya existe un Patrocinador con este nombre, escriba otro."
     
-    if not re.match(r'^[A-Za-z\\\\s-]+$', Patrocinador):
+    if not re.match(r'^[A-Za-z\s-]+$', patrocinador):
         return False, "Patrocinador solo debe contener letras y guiones."
     
-    if len(Patrocinador) < 2:
+    if len(patrocinador) < 2:
         return False, "Patrocinador debe tener al menos 2 caracteres"
     
     return True, ""
+
+def recomendar_fecha():
+    día_disponible = datetime.datetime.today().date() + datetime.timedelta(days=1)
+    
+    if len(st.session_state.combates_programados.keys()) != 0:
+        while True:
+            combates_ese_dia = sum(
+                1 for combate in st.session_state.combates_programados.values() if combate["Fecha"] == str(día_disponible)
+            )
+                   
+            if combates_ese_dia < len(st.session_state.inventario["arena"]):
+                break
+            día_disponible += datetime.timedelta(days=1)
+        
+    st.info(
+        body = f"Próxima fecha disponible: {str(día_disponible)}"
+        )
 
 # --- #: Creacióon del session_state :# --- #
 
@@ -134,12 +156,12 @@ if "combate" not in st.session_state:           # ~ Creacion del combate ~ #
     st.session_state.combate = {
         "Fecha": None,
         "Arena": None,
-        "Modo": None,
+        "Modo": "Robot vs Robot",
         "Equipo_A": {},
         "Equipo_B": {},
         "C/E": 0,
-        "Control": None,
-        "Patrocinador": None
+        "Control": "Control Manual",
+        "Patrocinador": ""
         }
 
 if "inventario" not in st.session_state:           # ~ Inventario ~ #
@@ -164,7 +186,13 @@ if "usados" not in st.session_state:                # ~ Recursos usados ~ #
         "celulas": 0
     }
 
-if "fecha_anterior" not in st.session_state:            # ~ Control reset con cambio de fecha ~ #
+if "reset_fecha" not in st.session_state:            # ~ Control reset fecha ~ #
+    st.session_state.reset_fecha = False
+
+if "input_fecha" not in st.session_state:            # ~ Control input fecha ~ #
+    st.session_state.input_fecha = None
+
+if "fecha_anterior" not in st.session_state:            # ~ Control fecha anterior ~ #
     st.session_state.fecha_anterior = None
     
 if "len_anterior" not in st.session_state:              # ~ Control robot añadido ~ #
@@ -181,6 +209,18 @@ if "robot_seleccionado" not in st.session_state:
         "A": None,
         "B": None
     }
+
+if "input_control" not in st.session_state:                 # ~ Control reset ~ #
+    st.session_state.input_control = st.session_state.combate.get("Control", "Contro Manual")
+
+if "reset_control" not in st.session_state:
+    st.session_state.reset_control = False
+
+if "input_patrocinador" not in st.session_state:               # ~ Control input del patrocinador ~ #
+    st.session_state.input_patrocinador = "" 
+    
+if "reset_patrocinador" not in st.session_state:               # ~ Control reset del patrocinador ~ #
+    st.session_state.reset_patrocinador = False 
 
 # ------------------------------- #: Panel Principal :# ------------------------------- #
 
@@ -205,13 +245,17 @@ if (año % 4 == 0 and año % 100 != 0) or (año % 400 == 0):
 else:
     max_value = datetime.datetime.today().date() + datetime.timedelta(days=366)
 
+if st.session_state.reset_fecha:
+    st.session_state.reset_fecha = False
+    st.session_state.input_fecha = None
+
 Fecha = st.date_input(    
     label = "**Elija una :violet[Fecha] para el combate:**", 
     min_value = datetime.datetime.today().date() + datetime.timedelta(days=1),
     max_value = max_value,
     format = "DD/MM/YYYY",
     help = "Fecha en la cual se desarrollará el combate.",
-    value = None
+    key = "input_fecha"
     )
 
 # --- #: Algoritmo de validación de Fecha y eliminacion de recursos :# --- #
@@ -297,6 +341,8 @@ if Fecha != st.session_state.fecha_anterior:
         st.session_state.disponibles["robots"] = []
         st.session_state.disponibles["celulas"] = 0
 
+        recomendar_fecha()
+
     else:
         
         st.info("Se mostrarán solo las arenas, robots, armas-accesorios y células de energía disponibles para la fecha seleccionada.")
@@ -308,35 +354,8 @@ if Fecha != st.session_state.fecha_anterior:
     
     st.session_state.fecha_anterior = Fecha   
 
-elif st.session_state.combate["Fecha"] == None:                         # ~ Recomendacion Proxima fecha disponible ~ # 
-    
-    día_disponible = datetime.datetime.today().date() + datetime.timedelta(days=1)
-    contador = 0
-    check = False
-    
-    if len(st.session_state.combates_programados.keys()) != 0:
-        while True:
-            
-            for combate in st.session_state.combates_programados.values():
-                
-                if combate["Fecha"] == str(día_disponible):
-                    if contador < 2:
-                        contador +=1       
-                
-                if contador == 2:
-                    día_disponible = día_disponible + datetime.timedelta(days=1)
-                    check = False
-                    contador = 0
-                    break
-                
-                check = True    
-            
-            if check:
-                break
-        
-    st.info(
-        body = f"Recomendación de Próxima fecha disponible: {str(día_disponible)}"
-        )
+elif st.session_state.combate["Fecha"] == None:                         # ~ Recomendación Próxima fecha disponible ~ # 
+    recomendar_fecha()
         
 # --- #: Sección Arena :# --- #
 
@@ -401,10 +420,12 @@ with col1:
         key = "Modo", 
         horizontal_alignment = "center"
         ):
+        opciones_modo = ["Robot vs Robot", "Equipo vs Equipo"]
         
         st.session_state.combate["Modo"] = st.radio(
             label = "**Escoja un :violet[Modo de juego]:**",
-            options = ["Robot vs Robot", "Equipo vs Equipo"],
+            options = opciones_modo,
+            index = opciones_modo.index(st.session_state.combate["Modo"]) if st.session_state.combate["Modo"] in opciones_modo else 0,
             help = "Establece la distribución de equipos para el combate: [1 vs 1] o [3 vs 3]"
             )
 
@@ -463,6 +484,59 @@ col1, col2 = st.columns(
     vertical_alignment = "center"
     )
 
+panel_robot = """
+            **Listado de robots con las C/E requeridas por robot**:
+            | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
+            | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
+            | Atom | 350 | Metro | 420 | Six Shooter | 390 | Gridlock | 425 | Tri-Tip | 470 |
+            | Zeus | 550 | Twin Cities | 435 | Blue Bot | 415 | HollowJack | 385 | Vanda | 490 |
+            | Noisy Boy | 395 | Blacktop | 395 | Fatboy | 480 | Nitro | 420 | Visualizer | 325 |
+            | Ambush | 410 | Axelrod | 400 | Albino | 375 | Shogun | 410 | Wheeled Bot | 415 |
+            | Midas | 400 | Bash | 430 | Bricks | 440 | Tackle | 435 | Gambit | 365 | 
+            """
+
+panel_armas = """
+            **Listado de armas-accesorios y su tipo**:
+            | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
+            | :--- | :---: | :--- | :---: | :--- | :---: |
+            | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
+            | Cañón sónico | Ofensivo | Cañón láser | Ofensivo | Cuchilla guillotina vertical | Ofensivo |
+            | Cuchillas retráctiles de tungsteno | Ofensivo | Electroshock | Ofensivo | Garra prensil aplastante | Ofensivo |
+            | Lanzador de proyectiles metálicos | Ofensivo | Lanzallamas | Ofensivo | Lanza-arpón motorizado | Ofensivo |
+            | Lanza-chispas de arco eléctrico | Ofensivo | Martillo hidráulico | Ofensivo | Martillo rotatorio de impacto | Ofensivo |
+            | Maza electromagnática | Ofensivo | Misiles de corto alcance | Ofensivo | Motosierra | Ofensivo |
+            | Puños reforzados | Ofensivo | Sierra de cadena doble | Ofensivo | Taladro percutor industrial | Ofensivo |
+            | Absorción de impactos | Defensivo | Barreras de energía pulsante | Defensivo | Blindaje óseo sintético | Defensivo |
+            | Blindaje reforzado | Defensivo | Campo eléctrico disipador | Defensivo | Campo magnético protector | Defensivo |
+            | Escudo de energía | Defensivo | Escudo óptico reforzado | Defensivo | Placas de carburo endurecido | Defensivo |
+            | Placas de titanio | Defensivo | Revestimiento anti-impactos avanzado | Defensivo | Sistema de absorción cinética | Defensivo |
+            | Sistema de evasión automática | Defensivo | Detector de energía enemiga | Soporte | Drones de reconocimiento | Soporte |
+            | Radar de proximidad | Soporte | Sensores ópticos avanzados | Soporte | Sistema de cámaras HD | Soporte |
+            | Generador de niebla | Especial | Iluminación infrarroja | Especial | Iluminación UV | Especial |
+            | Sistema de hologramas distractores | Especial | --- | --- | --- | --- |            
+            """
+            
+panel_incomp = """
+            **Listado de incompatibilidades entre armas-accesorios y la razón de incompatibilidad**:
+            | Arma-Accesorio 1 | Arma-Accesorio 2 | Razón |
+            | :--- | :--- | :--- |
+            | Lanzallamas | Sensores ópticos avanzados | El fuego bloquea la visión de los sensores |
+            | Cañón láser | Generador de niebla | La niebla impide la precisión del láser |
+            | Martillo hidráulico | Escudo de energía | El escudo absorbe el impacto, no pueden coexistir |
+            | Electroshock | Campo magnético protector | El campo anula la descarga eléctrica |
+            | Blindaje reforzado | Sistema de evasión automática | El blindaje pesado impide la agilidad |
+            | Placas de titanio | Absorción de impactos | Ambos ocupan el mismo sistema estructural |
+            | Drones de reconocimiento | Iluminación infrarroja | La luz IR interfiere con los drones |
+            | Iluminación UV | Iluminación infrarroja | Solo puede usarse un tipo de iluminación a la vez |
+            | Maza electromagnética | Campo magnético protector | Ambos generan campos que se anulan entre sí dentro del mismo robot |
+            | Lanzador de proyectiles metálicos | Placas de carburo endurecido | Las placas desvían los proyectiles al salir, causando fallos internos |
+            | Cuchilla guillotina vertical | Sistema de evasión automática | El movimiento evasivo impide la estabilidad necesaria para la guillotina |
+            | Garra prensil aplastante | Escudo óptico reforzado | La garra no puede operar sin obstruir el campo visual del escudo |
+            | Radar de proximidad | Campo eléctrico disipador | El campo disipador neutraliza el arco eléctrico del arma |
+            | Sierra de cadena doble | Blindaje óseo sintético | El blindaje desprende residuos que atascan la doble cadena |
+            | Cañón sónico | Detector de energía enemiga | Las ondas sónicas saturan los sensores del detector |
+            """
+
 with col1:                      # ~ Asignacion Equipo A ~ #
         
     if st.session_state.combate["Modo"] == "Robot vs Robot":  
@@ -490,71 +564,21 @@ with col1:                      # ~ Asignacion Equipo A ~ #
             label = "**Escoja un :violet[robot]:**",
             options = [robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
             index = None,
-            help =
-            """
-            **Listado de robots con las C/E requeridas por robot**:
-            | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
-            | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
-            | Atom | 350 | Metro | 420 | Six Shooter | 390 | Gridlock | 425 | Tri-Tip | 470 |
-            | Zeus | 550 | Twin Cities | 435 | Blue Bot | 415 | HollowJack | 385 | Vanda | 490 |
-            | Noisy Boy | 395 | Blacktop | 395 | Fatboy | 480 | Nitro | 420 | Visualizer | 325 |
-            | Ambush | 410 | Axelrod | 400 | Albino | 375 | Shogun | 410 | Wheeled Bot | 415 |
-            | Midas | 400 | Bash | 430 | Bricks | 440 | Tackle | 435 | Gambit | 365 | 
-            """
+            help = panel_robot
             )
 
         arma_izq_a = st.selectbox(
             label = "**Escoja un :violet[arma] para el brazo izquierdo:**",
             options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index = None,
-            help =
-            """
-            **Listado de armas-accesorios y su tipo**:
-            | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
-            | :--- | :---: | :--- | :---: | :--- | :---: |
-            | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
-            | Cañón sónico | Ofensivo | Cañón láser | Ofensivo | Cuchilla guillotina vertical | Ofensivo |
-            | Cuchillas retráctiles de tungsteno | Ofensivo | Electroshock | Ofensivo | Garra prensil aplastante | Ofensivo |
-            | Lanzador de proyectiles metálicos | Ofensivo | Lanzallamas | Ofensivo | Lanza-arpón motorizado | Ofensivo |
-            | Lanza-chispas de arco eléctrico | Ofensivo | Martillo hidráulico | Ofensivo | Martillo rotatorio de impacto | Ofensivo |
-            | Maza electromagnática | Ofensivo | Misiles de corto alcance | Ofensivo | Motosierra | Ofensivo |
-            | Puños reforzados | Ofensivo | Sierra de cadena doble | Ofensivo | Taladro percutor industrial | Ofensivo |
-            | Absorción de impactos | Defensivo | Barreras de energía pulsante | Defensivo | Blindaje óseo sintético | Defensivo |
-            | Blindaje reforzado | Defensivo | Campo eléctrico disipador | Defensivo | Campo magnético protector | Defensivo |
-            | Escudo de energía | Defensivo | Escudo óptico reforzado | Defensivo | Placas de carburo endurecido | Defensivo |
-            | Placas de titanio | Defensivo | Revestimiento anti-impactos avanzado | Defensivo | Sistema de absorción cinética | Defensivo |
-            | Sistema de evasión automática | Defensivo | Detector de energía enemiga | Soporte | Drones de reconocimiento | Soporte |
-            | Radar de proximidad | Soporte | Sensores ópticos avanzados | Soporte | Sistema de cámaras HD | Soporte |
-            | Generador de niebla | Especial | Iluminación infrarroja | Especial | Iluminación UV | Especial |
-            | Sistema de hologramas distractores | Especial | --- | --- | --- | --- |            
-            """
+            help = panel_armas
             )
                 
         arma_der_a = st.selectbox(
             label = "**Escoja un :violet[arma] para el brazo derecho:**",
             options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index = None,
-            help = 
-            """
-            **Listado de incompatibilidades entre armas-accesorios y la razón de incompatibilidad**:
-            | Arma-Accesorio 1 | Arma-Accesorio 2 | Razón |
-            | :--- | :--- | :--- |
-            | Lanzallamas | Sensores ópticos avanzados | El fuego bloquea la visión de los sensores |
-            | Cañón láser | Generador de niebla | La niebla impide la precisión del láser |
-            | Martillo hidráulico | Escudo de energía | El escudo absorbe el impacto, no pueden coexistir |
-            | Electroshock | Campo magnético protector | El campo anula la descarga eléctrica |
-            | Blindaje reforzado | Sistema de evasión automática | El blindaje pesado impide la agilidad |
-            | Placas de titanio | Absorción de impactos | Ambos ocupan el mismo sistema estructural |
-            | Drones de reconocimiento | Iluminación infrarroja | La luz IR interfiere con los drones |
-            | Iluminación UV | Iluminación infrarroja | Solo puede usarse un tipo de iluminación a la vez |
-            | Maza electromagnética | Campo magnético protector | Ambos generan campos que se anulan entre sí dentro del mismo robot |
-            | Lanzador de proyectiles metálicos | Placas de carburo endurecido | Las placas desvían los proyectiles al salir, causando fallos internos |
-            | Cuchilla guillotina vertical | Sistema de evasión automática | El movimiento evasivo impide la estabilidad necesaria para la guillotina |
-            | Garra prensil aplastante | Escudo óptico reforzado | La garra no puede operar sin obstruir el campo visual del escudo |
-            | Radar de proximidad | Campo eléctrico disipador | El campo disipador neutraliza el arco eléctrico del arma |
-            | Sierra de cadena doble | Blindaje óseo sintético | El blindaje desprende residuos que atascan la doble cadena |
-            | Cañón sónico | Detector de energía enemiga | Las ondas sónicas saturan los sensores del detector |
-            """
+            help = panel_incomp
             )
             
         with st.container(
@@ -570,7 +594,9 @@ with col1:                      # ~ Asignacion Equipo A ~ #
         spec = [1.0,0.5,0.5], 
         vertical_alignment = "center",
         gap = "small"
-        )                           # ~ Previsualizador Equipo A ~ #
+        )                           
+    
+    # ~ Previsualizador Equipo A ~ #
     
     with col3:
         st.dataframe(
@@ -614,7 +640,7 @@ with col1:                      # ~ Asignacion Equipo A ~ #
 
     if bt_a:
         if st.session_state.combate["Fecha"] != None:
-            valido_A, mensaje_A, tiempo_A = validar_robot("a")      
+            valido_A, mensaje_A, tiempo_A = validar_robot("a", robot_a, arma_izq_a, arma_der_a)      
             if not valido_A:
                 st.warning(mensaje_A)
                 if tiempo_A:
@@ -669,71 +695,21 @@ with col2:                      # ~ Asignacion Equipo B ~ #
             label = "**Escoja un :violet[robot]:**",
             options = [robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
             index = None,
-            help =
-            """
-            **Listado de robots con las C/E requeridas por robot**:
-            | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
-            | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
-            | Atom | 350 | Metro | 420 | Six Shooter | 390 | Gridlock | 425 | Tri-Tip | 470 |
-            | Zeus | 550 | Twin Cities | 435 | Blue Bot | 415 | HollowJack | 385 | Vanda | 490 |
-            | Noisy Boy | 395 | Blacktop | 395 | Fatboy | 480 | Nitro | 420 | Visualizer | 325 |
-            | Ambush | 410 | Axelrod | 400 | Albino | 375 | Shogun | 410 | Wheeled Bot | 415 |
-            | Midas | 400 | Bash | 430 | Bricks | 440 | Tackle | 435 | Gambit | 365 | 
-            """
+            help = panel_robot
             )
                 
         arma_izq_b = st.selectbox(
             label = "**Escoja un :violet[arma] para el brazo izquierdo:**",
             options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index = None,
-            help =
-            """
-            **Listado de armas-accesorios y su tipo**:
-            | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo | Arma-Accesorio | Tipo |
-            | :--- | :---: | :--- | :---: | :--- | :---: |
-            | Aplastador neumático | Ofensivo | Cañón de microondas | Ofensivo | Cañón de plasma de baja potencia | Ofensivo |
-            | Cañón sónico | Ofensivo | Cañón láser | Ofensivo | Cuchilla guillotina vertical | Ofensivo |
-            | Cuchillas retráctiles de tungsteno | Ofensivo | Electroshock | Ofensivo | Garra prensil aplastante | Ofensivo |
-            | Lanzador de proyectiles metálicos | Ofensivo | Lanzallamas | Ofensivo | Lanza-arpón motorizado | Ofensivo |
-            | Lanza-chispas de arco eléctrico | Ofensivo | Martillo hidráulico | Ofensivo | Martillo rotatorio de impacto | Ofensivo |
-            | Maza electromagnática | Ofensivo | Misiles de corto alcance | Ofensivo | Motosierra | Ofensivo |
-            | Puños reforzados | Ofensivo | Sierra de cadena doble | Ofensivo | Taladro percutor industrial | Ofensivo |
-            | Absorción de impactos | Defensivo | Barreras de energía pulsante | Defensivo | Blindaje óseo sintético | Defensivo |
-            | Blindaje reforzado | Defensivo | Campo eléctrico disipador | Defensivo | Campo magnético protector | Defensivo |
-            | Escudo de energía | Defensivo | Escudo óptico reforzado | Defensivo | Placas de carburo endurecido | Defensivo |
-            | Placas de titanio | Defensivo | Revestimiento anti-impactos avanzado | Defensivo | Sistema de absorción cinética | Defensivo |
-            | Sistema de evasión automática | Defensivo | Detector de energía enemiga | Soporte | Drones de reconocimiento | Soporte |
-            | Radar de proximidad | Soporte | Sensores ópticos avanzados | Soporte | Sistema de cámaras HD | Soporte |
-            | Generador de niebla | Especial | Iluminación infrarroja | Especial | Iluminación UV | Especial |
-            | Sistema de hologramas distractores | Especial | --- | --- | --- | --- |            
-            """
+            help = panel_armas
             )
                 
         arma_der_b = st.selectbox(
             label = "**Escoja un :violet[arma] para el brazo derecho:**",
             options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
             index = None,
-            help = 
-            """
-            **Listado de incompatibilidades entre armas-accesorios y la razón de incompatibilidad**:
-            | Arma-Accesorio 1 | Arma-Accesorio 2 | Razón |
-            | :--- | :--- | :--- |
-            | Lanzallamas | Sensores ópticos avanzados | El fuego bloquea la visión de los sensores |
-            | Cañón láser | Generador de niebla | La niebla impide la precisión del láser |
-            | Martillo hidráulico | Escudo de energía | El escudo absorbe el impacto, no pueden coexistir |
-            | Electroshock | Campo magnético protector | El campo anula la descarga eléctrica |
-            | Blindaje reforzado | Sistema de evasión automática | El blindaje pesado impide la agilidad |
-            | Placas de titanio | Absorción de impactos | Ambos ocupan el mismo sistema estructural |
-            | Drones de reconocimiento | Iluminación infrarroja | La luz IR interfiere con los drones |
-            | Iluminación UV | Iluminación infrarroja | Solo puede usarse un tipo de iluminación a la vez |
-            | Maza electromagnética | Campo magnético protector | Ambos generan campos que se anulan entre sí dentro del mismo robot |
-            | Lanzador de proyectiles metálicos | Placas de carburo endurecido | Las placas desvían los proyectiles al salir, causando fallos internos |
-            | Cuchilla guillotina vertical | Sistema de evasión automática | El movimiento evasivo impide la estabilidad necesaria para la guillotina |
-            | Garra prensil aplastante | Escudo óptico reforzado | La garra no puede operar sin obstruir el campo visual del escudo |
-            | Radar de proximidad | Campo eléctrico disipador | El campo disipador neutraliza el arco eléctrico del arma |
-            | Sierra de cadena doble | Blindaje óseo sintético | El blindaje desprende residuos que atascan la doble cadena |
-            | Cañón sónico | Detector de energía enemiga | Las ondas sónicas saturan los sensores del detector |
-            """
+            help = panel_incomp
             )
         
         with st.container(
@@ -745,7 +721,13 @@ with col2:                      # ~ Asignacion Equipo B ~ #
                 help = "Agrega un robot al Equipo B. El robot debe estar equipado completamente para ser válido."
                 )
      
-    col3, col4, col5 = st.columns([1.0,0.5,0.5], vertical_alignment="center")                           # ~ Previsualizador Equipo B ~ #
+    col3, col4, col5 = st.columns(
+        spec = [1.0,0.5,0.5], 
+        vertical_alignment = "center",
+        gap = "small"
+        )                           
+    
+    # ~ Previsualizador Equipo B ~ #
     
     with col3:
         st.dataframe(
@@ -789,7 +771,7 @@ with col2:                      # ~ Asignacion Equipo B ~ #
     
     if bt_b:
         if st.session_state.combate["Fecha"] != None:
-            valido_B, mensaje_B, tiempo_B = validar_robot("b")      
+            valido_B, mensaje_B, tiempo_B = validar_robot("b", robot_b, arma_izq_b, arma_der_b)      
             if not valido_B:
                 st.warning(mensaje_B)
                 if tiempo_B:
@@ -866,11 +848,16 @@ with col1:
         key = "final", 
         horizontal_alignment = "center",
         ):
+        opciones_control = ["Control Manual", "AI Boxing"]
+                
+        if st.session_state.reset_control:
+            st.session_state.reset_control = False
+            st.session_state.input_control = "Control Manual"
         
         st.session_state.combate["Control"] = st.radio(
             label = "**Escoja un tipo de :violet[Control]:**",
-            options = ["Control Manual", "AI Boxing"],
-            index = 0,
+            options = opciones_control,
+            key = "input_control",
             horizontal = False,
             help = "Escoger entre controlar a los robots Manualmente o con IA Boxing."
             )
@@ -917,9 +904,13 @@ with col2:
     
     if st.session_state.combate["Fecha"] != None:
         
+        if st.session_state.reset_patrocinador:
+            st.session_state.reset_patrocinador = False
+            st.session_state.input_patrocinador = ""
+        
         Patrocinador = st.text_input(
             label = "**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
-            value = st.session_state.combate["Patrocinador"],
+            key = "input_patrocinador",
             max_chars = 20,
             help = "Encargado o Responsable de la planificación del combate.",
             placeholder = "Escriba un nombre."
@@ -935,14 +926,17 @@ with col2:
         
     if Patrocinador:                    # ~ Validacion Patrocinador ~ #
         
-        valid, error = validar_patrocinador()
+        valid, error = validar_patrocinador(Patrocinador)
         if not valid:
             st.error(error)
-            st.session_state.combate["Patrocinador"] = None
+            st.session_state.combate["Patrocinador"] = ""
         
         else:
             st.session_state.combate["Patrocinador"] = Patrocinador
             st.success("Patrocinador Válido.")   
+    
+    else:
+        st.session_state.combate["Patrocinador"] = ""
             
 st.divider()
 
@@ -1019,7 +1013,7 @@ if bt_confirmar:
     
     else:
         st.success("El combate ha sido programado, que gane el mejor!")
-        st.session_state.combates_programados[st.session_state.combate["Patrocinador"]] = st.session_state.combate
+        st.session_state.combates_programados[st.session_state.combate["Patrocinador"]] = st.session_state.combate.copy()
         guardar_combates(st.session_state.get("combates_programados"))
         resetear_web()
         sleep(2)

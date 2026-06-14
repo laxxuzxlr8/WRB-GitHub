@@ -22,25 +22,27 @@ def guardar_combates(combates):
 def cargar_combates():             # Cargar Combates #
     
     if not os.path.exists(RUTA_COMBATES):
-        return
+        return {}
     try:
         with open(RUTA_COMBATES, "r") as f:
             COMBATES = json.load(f)   
             COMBATES = COMBATES.get("combates")
-            return COMBATES
+            return COMBATES if COMBATES is not None else {}
     except Exception as e:
         print(f'Error al cargar datos: {e}')
+        return {}
         
 def cargar_inventario():          # Cargar Inventario #
     
     if not os.path.exists(RUTA_INVENTARIO):
-        return
+        return {}
     try:
         with open(RUTA_INVENTARIO, "r") as f:
             data = json.load(f)
             return data
     except Exception as e:
         print(f'Error al cargar datos: {e}')
+        return {}
         
 # --- #: Justificar Texto con sangría :# --- #
 

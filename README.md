@@ -1,4 +1,3 @@
-
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![Streamlit](https://img.shields.io/badge/Streamlit-Latest-purple.svg)
 ![License](https://img.shields.io/badge/License-CC-green.svg)
@@ -42,7 +41,7 @@ Este proyecto cuenta también con algunas funciones auxiliares que apoyan el có
 *   **Repartición de Recursos**: El sistema reconoce los recursos empleados en el día seleccionado y muestra solo los recursos disponibles para poder organizar otro combate.
 *   **Panel de Previsualización de Equipos**: Previsualiza en tiempo real cómo están quedando los equipos formados y modifica los establecidos hasta el momento.
 *   **Comprobación de Datos Necesarios**: Automáticamente el sistema reconoce si faltan campos por llenar antes de confirmar la organización de un combate y los da a conocer.
-*   **Confirmación y Cancelación del Combate**: La aplicación Web cuenta con botones de Confirmación, para comprobar la integridad de los datos necesarios y Cancelación, para borrar algunos datos entrados, como la distribución de los equipos formados. 
+*   **Confirmación y Cancelación del Combate**: La aplicación Web cuenta con botones de Confirmación, para comprobar la integridad de los datos necesarios y Cancelación, para eliminar toda configuración ya seleccionada y comenzar desde cero.
 *   **Verificación de disponibilidad de Células de Energía**: Ante la confirmación de un evento, el sistema calcula la disponibilidad y el requerimiento de C/E pre-establecido en la base de datos de la Aplicación Web.
 *   **Controlador de Eventos Completados**: Al iniciar la app, todo evento programado, que se haya realizado hasta la fecha actual, es eliminado de la base de datos del sistema de manera automática.
 *   **Sistema de Ayuda**: Cada menú de la aplicación cuenta con un panel de ayuda explicando para que es cada campo de entrada.
@@ -228,7 +227,7 @@ Lenguaje de Programación y Librerías utilizadas para la creación de esta Web:
 
 ## Licencia y Agradecimientos Especiales
 
-Este proyecto fue creado como Primer Proyecto Evaluativo para la Carrera de Ciencias de la Computación de la Universidad de la Habana; 1er año, Curso: 2025-2026.
+Este proyecto fue creado como Primer Proyecto Evaluativo de Programación para la Carrera de Ciencias de la Computación de la Universidad de la Habana; 1er año, Curso: 2025-2026.
 
 **Agradecimiento especial a [@ClaudiaHdezPerez](https://github.com/ClaudiaHdezPerez) por amadrinar este Proyecto.**\
 **Agradecimiento especial a [@siro__d](https://instagram.com/siro__d), diseñador del catálogo de armas y accesorios del Proyecto.**

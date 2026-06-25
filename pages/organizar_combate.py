@@ -126,7 +126,7 @@ def validar_patrocinador(patrocinador):                     # ~ Patrocinador Val
             return False, "Ya existe un Patrocinador con este nombre, escriba otro."
     
     if not re.match(r'^[A-Za-z\s-]+$', patrocinador):
-        return False, "Patrocinador solo debe contener letras y guiones."
+        return False, "Patrocinador solo debe contener letras, espacios y guiones."
     
     if len(patrocinador) < 2:
         return False, "Patrocinador debe tener al menos 2 caracteres"
@@ -241,9 +241,9 @@ st.subheader(
 año = datetime.datetime.today().year
 
 if (año % 4 == 0 and año % 100 != 0) or (año % 400 == 0):
-    max_value = datetime.datetime.today().date() + datetime.timedelta(days=367)
-else:
     max_value = datetime.datetime.today().date() + datetime.timedelta(days=366)
+else:
+    max_value = datetime.datetime.today().date() + datetime.timedelta(days=365)
 
 if st.session_state.reset_fecha:
     st.session_state.reset_fecha = False

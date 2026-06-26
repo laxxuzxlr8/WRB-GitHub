@@ -488,11 +488,11 @@ panel_robot = """
             **Listado de robots con las C/E requeridas por robot**:
             | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E | Robots | C/E |
             | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: | :--- | :---: |
-            | Atom | 350 | Metro | 420 | Six Shooter | 390 | Gridlock | 425 | Tri-Tip | 470 |
-            | Zeus | 550 | Twin Cities | 435 | Blue Bot | 415 | HollowJack | 385 | Vanda | 490 |
-            | Noisy Boy | 395 | Blacktop | 395 | Fatboy | 480 | Nitro | 420 | Visualizer | 325 |
-            | Ambush | 410 | Axelrod | 400 | Albino | 375 | Shogun | 410 | Wheeled Bot | 415 |
-            | Midas | 400 | Bash | 430 | Bricks | 440 | Tackle | 435 | Gambit | 365 | 
+            | Albino | 375 | Ambush | 410 | Atom | 350 | Axelrod | 400 | Bash | 430 |
+            | Blacktop | 395 | Blue Bot | 415 | Bricks | 440 | Fatboy | 480 | Gambit | 365 |
+            | Gridlock | 425 | HollowJack | 385 | Metro | 420 | Midas | 400 | Nitro | 420 |
+            | Noisy Boy | 395 | Shogun | 410 | Six Shooter | 390 | Tackle | 435 | Tri-Tip | 470 |
+            | Twin Cities | 435 | Vanda | 490 | Visualizer | 325 | Wheeled Bot | 415 | Zeus | 550 | 
             """
 
 panel_armas = """

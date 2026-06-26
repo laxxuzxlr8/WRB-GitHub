@@ -1,3 +1,96 @@
 {
-    "combates": {}
+    "combates": {
+        "Lucy": {
+            "Fecha": "2026-07-10",
+            "Arena": "Area con obst\u00e1culos",
+            "Modo": "Equipo vs Equipo",
+            "Equipo_A": {
+                "Albino": [
+                    "Aplastador neum\u00e1tico",
+                    "Cuchillas retr\u00e1ctiles de tungsteno"
+                ],
+                "Atom": [
+                    "Ca\u00f1\u00f3n de microondas",
+                    "Lanzador de proyectiles met\u00e1licos"
+                ],
+                "Bash": [
+                    "Electroshock",
+                    "Martillo rotatorio de impacto"
+                ]
+            },
+            "Equipo_B": {
+                "Ambush": [
+                    "Ca\u00f1\u00f3n s\u00f3nico",
+                    "Garra prensil aplastante"
+                ],
+                "Axelrod": [
+                    "Ca\u00f1\u00f3n l\u00e1ser",
+                    "Martillo hidr\u00e1ulico"
+                ],
+                "Blacktop": [
+                    "Cuchilla guillotina vertical",
+                    "Misiles de corto alcance"
+                ]
+            },
+            "C/E": 2360,
+            "Control": "Control Manual",
+            "Patrocinador": "Lucy"
+        },
+        "Elfo": {
+            "Fecha": "2026-07-10",
+            "Arena": "Ring de pelea principal",
+            "Modo": "Equipo vs Equipo",
+            "Equipo_A": {
+                "Fatboy": [
+                    "Lanza\u2013arp\u00f3n motorizado",
+                    "Motosierra"
+                ],
+                "Bricks": [
+                    "Lanzallamas",
+                    "Absorci\u00f3n de impactos"
+                ],
+                "Blue Bot": [
+                    "Pu\u00f1os reforzados",
+                    "Escudo de energ\u00eda"
+                ]
+            },
+            "Equipo_B": {
+                "Vanda": [
+                    "Lanza\u2013chispas de arco el\u00e9ctrico",
+                    "Taladro percutor industrial"
+                ],
+                "Gridlock": [
+                    "Sierra de cadena doble",
+                    "Campo el\u00e9ctrico disipador"
+                ],
+                "Gambit": [
+                    "Ca\u00f1\u00f3n de plasma de baja potencia",
+                    "Maza electromagn\u00e9tica"
+                ]
+            },
+            "C/E": 2615,
+            "Control": "AI Boxing",
+            "Patrocinador": "Elfo"
+        },
+        "Binn": {
+            "Fecha": "2026-07-11",
+            "Arena": "Ring de pelea principal",
+            "Modo": "Robot vs Robot",
+            "Equipo_A": {
+                "Zeus": [
+                    "Aplastador neum\u00e1tico",
+                    "Blindaje reforzado"
+                ]
+            },
+            "Equipo_B": {
+                "Atom": [
+                    "Pu\u00f1os reforzados",
+                    "Placas de titanio"
+                ]
+            },
+            "C/E": 900,
+            "Control": "Control Manual",
+            "Patrocinador": "Binn"
+        }
+    }
 }

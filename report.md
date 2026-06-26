@@ -36,11 +36,17 @@ Primero que todo, esta web tiene conceptos fundamentales que se repiten a lo lar
 ## Session State
 
 El proyecto tiene diversas variables inicializadas en el session_state de Streamlit de las que se apoya. Algunas de estas son:
+
 - combate: contiene toda la información del combate que se está creando.
+
 - inventario: contiene el inventario de recursos.
+
 - disponibles: contiene los recursos disponibles para la fecha seleccionada.
+
 - usados: contiene los recursos que se van a utilizar en el evento que se está creando (es una especie de almacenamiento en tiempo real).
+
 - fecha_anterior: guarda la fecha que se puso anteriormente en caso de cambio de fecha
+
 - modo_anterior: guarda el modo anterior en caso de cambio.
 
 Además existen otras variables en el session_state encargadas de controlar inputs y resets de campos de entrada como fecha, control y patrocinador, relacionadas con el vaciado de los de estos cuando se resetea la WEB.
@@ -70,6 +76,7 @@ No obstante esta página cumple una función muy importante, controla el flujo d
     guardar_combates(st.session_state.combates_programados)
     st.session_state.control_fechas = False 
 ```
+
 Al ser la primera página en ejecutarse, tiene prioridad sobre el código, inicia una variable de control en el session_state en True, la cual da paso a que inicie un bucle que recorre todos los eventos programados, en el caso de que exista al menos uno y compara su fecha con la del día actual para ver si ya se cumplió. En caso afirmativo, añade este a una lista filtro de combates a eliminar y los borra de la base de datos. Una vez finalizado este proceso, la variable de control de fechas del session_state pasa a ser False y no se vuelve a ejecutar hasta que se vuelva a abrir la WEB.
 
 ## Sección Combates
@@ -79,6 +86,7 @@ Al ser la primera página en ejecutarse, tiene prioridad sobre el código, inici
 La siguiente página (Organiza Combate) está relacionada con todo el proceso de gestionar, organizar y configurar la forma en la que quieres que se efectúe el combate que quieras crear. Es la página más importante y compleja del proyecto, pues contiene la mayor parte de lógica y funcionalidades que brinda este proyecto.
 
 Funciones principales utilizadas:
+
 - resetear_web(): encargada de eliminar todos los cambios realizados en el session_state relacionados con la gestion de un combate, los resetea a su estado original.
 
 - validar_combate(): revisa que todos los requisitos para coder confirmar un combate se cumplan, es decir, tengan un valor correcto asignado.
@@ -106,7 +114,9 @@ Arena = st.selectbox(
     key = "selectbox_arena" 
     )
 ```
+
 - Modo de juego: regla fundamental del combate, define la cantidad de miembros de los equipos, 1 o 3, con una representación visual a su derecha. Si el modo de juego cambia, los equipos se restablecen completamente.
+
 ```bash
 opciones_modo = ["Robot vs Robot", "Equipo vs Equipo"]
         
@@ -117,8 +127,87 @@ st.session_state.combate["Modo"] = st.radio(
     help = "Establece la distribución de equipos para el combate: [1 vs 1] o [3 vs 3]"
     )
 ```
-- Gestionar equipos: módulo relacionado con la configuración de cada equipo que participará en el combate. Cada bloque relacionado a un equipo, posee un formulario que depende de la función validar_robot() enunciada anteriormente. Se apoya en el modo de juego establecido para que los equipos sean parejos. Cada robot consume células de energía, una cantidad específica y definida para cada robot. Una vez agregado un robot al equipo podrás verlo abajo, representado en una "tabla" de pandas estructurada por series; estas son: combatiente(robot), C/E(células que consume) y borrar(al seleccionar la casilla asociada a un robot lo elimina del equipo, dando mayor libertad de configuración) Al final de esta sección podrás ver un panel que muestra la cantidad de células disponibles y el total de células que requiere la configuración de equipos que seleccionaste; en caso de ser superior, a la hora de confirmar el combate te dará error y tendrás que crear equipos nuevos que se adapten a la cantidad de células disponibles para ese día.
+
+- Gestionar equipos: módulo relacionado con la configuración de cada equipo que participará en el combate. Cada bloque relacionado a un equipo, posee un formulario que depende de la función validar_robot() enunciada anteriormente. 
+
+```bash
+robot_a = st.selectbox(
+    label = "**Escoja un :violet[robot]:**",
+    options = [robot for robot in st.session_state.disponibles["robots"] if robot not in st.session_state.usados['robots']],
+    index = None,
+    help = panel_robot
+    )
+
+arma_izq_a = st.selectbox(
+    label = "**Escoja un :violet[arma] para el brazo izquierdo:**",
+    options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
+    index = None,
+    help = panel_armas
+    )
+                
+arma_der_a = st.selectbox(
+    label = "**Escoja un :violet[arma] para el brazo derecho:**",
+    options = [arma for arma in st.session_state.disponibles["armas"] if arma not in st.session_state.usados["armas"]],
+    index = None,
+    help = panel_incomp
+    )
+
+```
+Se apoya en el modo de juego establecido para que los equipos sean parejos. Cada robot consume células de energía, una cantidad específica y definida para cada robot. Una vez agregado un robot al equipo podrás verlo abajo, representado en una "tabla" de pandas estructurada por series; estas son: combatiente(robot), C/E(células que consume) y borrar(al seleccionar la casilla asociada a un robot lo elimina del equipo, dando mayor libertad de configuración).
+
+```bash
+with col3:
+    st.dataframe(
+        pd.Series(
+            data = [robot for robot in st.session_state.combate["Equipo_A"].keys()], 
+            name = "Equipo A" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente A"),
+        hide_index = True
+        )
+    
+with col4:
+    st.dataframe(
+        pd.Series(
+            data = [f"⚡️{st.session_state.inventario["robots"][robot]}" for robot in st.session_state.combate["Equipo_A"].keys()], 
+            name = "C/E"),
+        hide_index = True
+        )
+    
+with col5:
+    st.session_state.robot_seleccionado["A"] = st.dataframe(
+        pd.Series(
+            data =[1 + robot for robot in range(len(st.session_state.combate["Equipo_A"].keys()))], 
+            name = "Borrar A"),
+        hide_index = True,
+        on_select = "rerun",
+        selection_mode = "single-cell",
+        )
+```
+
+Al final de esta sección podrás ver un panel que muestra la cantidad de células disponibles y el total de células que requiere la configuración de equipos que seleccionaste; en caso de ser superior, a la hora de confirmar el combate te dará error y tendrás que crear equipos nuevos que se adapten a la cantidad de células disponibles para ese día.
+
+```bash
+with st.container(
+    border = True
+    ):
+        
+    if not st.session_state.combate["Fecha"]:
+            
+        st.markdown(
+            body = ":yellow[Células de Energía]", 
+            text_alignment = "center",
+            help = "Menú de distribución de Células de Energía. Escoja una fecha para más información sobre el Sistema de Energía."                
+            )
+    else:
+            
+        st.markdown(
+            body = f":violet[Células] disponibles: ⚡️:yellow[{st.session_state.disponibles["celulas"]}]  /  :violet[Células] requeridas: ⚡️:yellow[{energia}]", 
+            text_alignment = "center",
+            help = "Menú de distribución de Células de Energía. La cantidad requerida no puede pasar la cantidad disponible; en caso de que sí, redistribuya los Equipos borrando algunos robots añadidos mediante las barras laterales de 'Borrar', pulsando en la casilla con el número del robot."                
+            )
+```
+
 - Tipo de control: seleccionas la forma en la que se controlan los robots en ese combate mediante un radio, muestra también una representación visual del estilo de control.
+
 ```bash
 st.session_state.combate["Control"] = st.radio(
     label = "**Escoja un tipo de :violet[Control]:**",
@@ -128,7 +217,9 @@ st.session_state.combate["Control"] = st.radio(
     help = "Escoger entre controlar a los robots Manualmente o con IA Boxing."
     )
 ```
+
 - Patrocinador: rellenas una caja de texto con el nombre del patrocinador en cuestión que organizó el evento(una especie de mecanismo para diferenciar combates).
+
 ```bash
 Patrocinador = st.text_input(
             label = "**Escriba el nombre de un :violet[Patrocinador] para el combate:**",
@@ -138,7 +229,9 @@ Patrocinador = st.text_input(
             placeholder = "Escriba un nombre."
             )
 ```
+
 Los nombres no pueden ser repetidos y además sigue las reglas de validación de validar_patrocinador() mencionada anteriormente.
+
 ```bash
 if Patrocinador:                    # ~ Validacion Patrocinador ~ #
         

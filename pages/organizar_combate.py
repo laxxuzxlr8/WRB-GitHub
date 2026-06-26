@@ -603,8 +603,8 @@ with col1:                      # ~ Asignacion Equipo A ~ #
             pd.Series(
                 data = [robot for robot in st.session_state.combate["Equipo_A"].keys()], 
                 name = "Equipo A" if st.session_state.combate["Modo"] == "Equipo vs Equipo" else "Combatiente A"),
-                hide_index = True
-                )
+            hide_index = True
+            )
     
     with col4:
         st.dataframe(
